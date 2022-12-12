@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import * as api from '../../api/index.js'
-
+import { createNewUser } from "../../actions/UserActions.js";
 
 const CreateAccount = () => {
     const [user, setUserData] = useState({
@@ -13,7 +12,7 @@ const CreateAccount = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(user)
-        api.createUser(user)
+        createNewUser(user)
     };
 
 

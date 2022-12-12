@@ -1,14 +1,14 @@
-import axios from 'axios';
-const API = axios.create({ baseURL: 'http://localhost:5000', mode: "cors"})
+import * as api from '../api/index.js'
 
 
-export const createNewUser = (user) => async () => {
+export const createNewUser = async (user) => {
     try {
-      const { data } = await API.createUser(user);
+      const { data } = await api.createUser(user);
       console.log(data)
       return data
     } catch (error) {
       console.log(error);
     }
 };
+
 
