@@ -20,10 +20,7 @@ The main reason to use stable diffusion is that currently it's the only open sou
 * Node
 
 
-
-
-
-
+# Bonus
 
 Shawn: This is my change to the readme. :3
 
