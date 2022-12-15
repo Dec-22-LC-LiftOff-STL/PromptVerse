@@ -6,18 +6,18 @@ The main reason to use stable diffusion is that currently it's the only open sou
 
 
 Features
-1.    Users can create and authenticate accounts.
-2.    Users can search for specific prompts/images other users have posted.
-3.    Users can create, edit, or delete an image/prompt/model.
-4.    Users can follow other users they want to see more content from.
-5.    Users can save posts they like to a collection.
+* Users can create and authenticate accounts.
+* Users can search for specific prompts/images other users have posted.
+* Users can create, edit, or delete an image/prompt/model.
+* Users can follow other users they want to see more content from.
+* Users can save posts they like to a collection.
 
 
 Technologies 
-1.  MongoDb
-2.  Express
-3.  React
-4.  Node
+* MongoDb
+* Express
+* React
+* Node
 
 
 
