@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "type": "module",
-  "proxy": "http://localhost:3000",
+
   "scripts": {
     "start": "node index.js"
   },
