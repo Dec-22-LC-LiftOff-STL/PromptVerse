@@ -8,8 +8,8 @@ const CreateAccount = () => {
         "posts": []
     });
     const [comfirmPassword, setComfirmPassword] = useState({"password": ""})
-    const [passwordsMatchCheck, setPasswordsMatchCheck] = useState(true)
-    const [usedEmailCheck, setusedEmailCheck] = useState(true)
+    const [passwordsMatchCheck, setPasswordsMatchCheck] = useState(false)
+    const [usedEmailCheck, setusedEmailCheck] = useState(false)
 
 
     const handleSubmit = async (event) => {
