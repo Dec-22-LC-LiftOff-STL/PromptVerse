@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { createNewUser } from "../../actions/UserActions.js";
+import { UserLoginAction } from "../../actions/UserActions.js";
 
 const UserLogin = () => {
     const [user, setUserData] = useState({
@@ -8,12 +8,25 @@ const UserLogin = () => {
         "password": "",
         "posts": []
     });
+    const [usedEmailCheck, setusedEmailCheck] = useState(false)
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log(user)
-       
-        var data = await createNewUser(user)
+        var data = await UserLoginAction(user)
+
+        if ("message" in data){
+            if (data['message'] === "Request failed with status code 400") {
+                setusedEmailCheck(true)
+                console.log("no email")
+                return
+            }
+        }
+        else {
+            setusedEmailCheck(false)
+        }
+
         console.log(data)
     };
 
@@ -31,6 +44,12 @@ const UserLogin = () => {
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />
     </div>
+
+    {usedEmailCheck !== false && 
+            <div className=" p-2 bg-red-600 rounded-lg text-center mb-5 font-serif">
+                No account with this email exists.
+            </div>
+        }
     
 
     <div className="mb-6">

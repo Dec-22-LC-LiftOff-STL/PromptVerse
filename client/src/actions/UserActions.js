@@ -13,3 +13,13 @@ export async function createNewUser(user) {
 };
 
 
+export async function UserLoginAction(user) {
+  try {
+    const { data } = await api.ApiUserLogin(user);
+    console.log(data)
+    return data
+  } catch (error) {
+    console.log(error);
+    return error
+  }
+};

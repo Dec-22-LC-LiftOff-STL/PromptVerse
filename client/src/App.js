@@ -1,5 +1,5 @@
 import './index.css';
-import CreateAccount from './components/User/CreateAccount';
+// import CreateAccount from './components/User/CreateAccount';
 import Header from './components/Ui/Header';
 import UserLogin from './components/User/UserLogin.js';
 
