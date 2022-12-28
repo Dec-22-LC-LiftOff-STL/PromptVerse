@@ -1,18 +1,18 @@
 import express from "express";
 
-import { getUsers, AddUser, removeUser, updateUser} from "../controllers/UserActions.js";
-import auth from "../middleware/auth.js";
+import { getUsers, signup, removeUser, updateUser} from "../controllers/UserActions.js";
+import requireAuth from "../middleware/auth.js";
 
 
 const router = express.Router();
 
 router.get('/', getUsers);
 
-router.post('/newUser', AddUser);
+router.post('/signup', signup);
 
-router.post('/updateUser', auth, updateUser);
+router.post('/updateUser', requireAuth, updateUser);
 
-router.delete('/:id', auth, removeUser)
+router.delete('/:id', requireAuth, removeUser)
 
 
 export default router;
