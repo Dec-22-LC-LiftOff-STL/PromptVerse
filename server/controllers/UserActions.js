@@ -23,6 +23,7 @@ export const signup = async (req, res) => {
     // check for duplicate email
     const email_check_UserSchema = await UserSchema.findOne({ email })
     if (email_check_UserSchema) return res.status(400).json({ msg: 'User already exists' })
+    
     bcrypt.hash(password, 7, async (err, hash) => {
         newUserSchema.password = hash
     })
@@ -37,6 +38,7 @@ export const signup = async (req, res) => {
     }
 }
 
+
 export const LoginUser = async (req, res) => {
     const { email, password } = req.body;
     const UserModel = req.body;
@@ -44,6 +46,8 @@ export const LoginUser = async (req, res) => {
     const email_check_UserSchema = await UserSchema.findOne({ email })
     if (!email_check_UserSchema) return res.status(400).json({ msg: 'User already exists' })
 
+    const token = createToken(email_check_UserSchema._id)
+    return res.status(201).json({ email_check_UserSchema, token })
 
 
     console.log(password);

@@ -1,15 +1,19 @@
-
 import React, { useState } from "react";
 import { UserLoginAction } from "../../actions/UserActions.js";
+import {useNavigate} from 'react-router-dom';
 
-const UserLogin = () => {
+
+const UserLogin = (CookieFunctions) => {
+    //const [userToken, setUserToken, removeUserToken] = useCookies(['user_token']);
     const [user, setUserData] = useState({
         "email": "",
         "password": "",
         "posts": []
     });
     const [usedEmailCheck, setusedEmailCheck] = useState(false)
+    const navigate = useNavigate()
 
+    console.log(CookieFunctions)
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -27,7 +31,10 @@ const UserLogin = () => {
             setusedEmailCheck(false)
         }
 
-        console.log(data)
+        console.log(data["email_check_UserSchema"])
+        CookieFunctions.data.setUserData('user_data', data["user_data"], {path: '/'}); 
+        CookieFunctions.data.setUserToken('user_token', data["user_token"], {path: '/'});
+        navigate("/")
     };
 
     return (<form onSubmit={handleSubmit} className=" bg-slate-800 text-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-[98%] lg:w-[400px]">

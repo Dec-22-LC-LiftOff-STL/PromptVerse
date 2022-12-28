@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { createNewUser } from "../../actions/UserActions.js";
+import {useNavigate} from 'react-router-dom';
+
 
 const CreateAccount = () => {
     const [user, setUserData] = useState({
@@ -10,6 +12,7 @@ const CreateAccount = () => {
     const [comfirmPassword, setComfirmPassword] = useState({"password": ""})
     const [passwordsMatchCheck, setPasswordsMatchCheck] = useState(false)
     const [usedEmailCheck, setusedEmailCheck] = useState(false)
+    const navigate = useNavigate()
 
 
     const handleSubmit = async (event) => {
@@ -33,7 +36,9 @@ const CreateAccount = () => {
         else {
             setusedEmailCheck(false)
         }
+        
         console.log(data)
+        navigate("/")
     };
 
 
