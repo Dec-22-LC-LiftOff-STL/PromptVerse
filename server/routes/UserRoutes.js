@@ -1,6 +1,6 @@
 import express from "express";
 
-import { getUsers, signup, removeUser, updateUser} from "../controllers/UserActions.js";
+import { getUsers, signup, removeUser, updateUser, LoginUser} from "../controllers/UserActions.js";
 import requireAuth from "../middleware/auth.js";
 
 
