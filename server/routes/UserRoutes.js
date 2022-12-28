@@ -12,6 +12,8 @@ router.post('/signup', signup);
 
 router.post('/updateUser', requireAuth, updateUser);
 
+router.post('/Login', LoginUser);
+
 router.delete('/:id', requireAuth, removeUser)
 
 

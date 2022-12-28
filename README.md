@@ -20,6 +20,13 @@ The main reason to use stable diffusion is that currently it's the only open sou
 * Node
 
 
+## Setup
+ * clone the repo locally.
+ * open two terminals.
+ * cd into client folder and run npm install and then npm start in first terminal.
+ * cd into server folder and run npm install and then npm start in second terminal.
+  
+
 # Bonus
 
 Shawn: This is my change to the readme. :3

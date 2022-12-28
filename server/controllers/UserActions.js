@@ -37,6 +37,19 @@ export const signup = async (req, res) => {
     }
 }
 
+export const LoginUser = async (req, res) => {
+    const { email, password } = req.body;
+    const UserModel = req.body;
+
+    const email_check_UserSchema = await UserSchema.findOne({ email })
+    if (!email_check_UserSchema) return res.status(400).json({ msg: 'User already exists' })
+
+
+
+    console.log(password);
+}
+
+
 
 export const getUsers = async (req, res) => { 
     try {
