@@ -1,23 +1,25 @@
 import React, { useState } from "react";
 import { UserLoginAction } from "../../actions/UserActions.js";
 import {useNavigate} from 'react-router-dom';
+import { useCookies, Cookies } from 'react-cookie';
 
 
-const UserLogin = (CookieFunctions) => {
-    //const [userToken, setUserToken, removeUserToken] = useCookies(['user_token']);
+const UserLogin = () => {
+    const cookies = new Cookies();
+
     const [user, setUserData] = useState({
         "email": "",
         "password": "",
         "posts": []
     });
+
     const [usedEmailCheck, setusedEmailCheck] = useState(false)
     const navigate = useNavigate()
 
-    console.log(CookieFunctions)
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(user)
+        //console.log(user)
         var data = await UserLoginAction(user)
 
         if ("message" in data){
@@ -31,9 +33,9 @@ const UserLogin = (CookieFunctions) => {
             setusedEmailCheck(false)
         }
 
-        console.log(data["email_check_UserSchema"])
-        CookieFunctions.data.setUserData('user_data', data["user_data"], {path: '/'}); 
-        CookieFunctions.data.setUserToken('user_token', data["user_token"], {path: '/'});
+
+        cookies.set('user_data', data["email_check_UserSchema"], { path: '/' });
+        cookies.set('user_token', data["token"], { path: '/' });
         navigate("/")
     };
 
