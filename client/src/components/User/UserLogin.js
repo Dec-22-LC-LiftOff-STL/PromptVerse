@@ -14,23 +14,33 @@ const UserLogin = () => {
     });
 
     const [usedEmailCheck, setusedEmailCheck] = useState(false)
+    const [usedPasswordCheck, setPasswordCheck] = useState(false)
     const navigate = useNavigate()
 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        //console.log(user)
         var data = await UserLoginAction(user)
+        
 
         if ("message" in data){
-            if (data['message'] === "Request failed with status code 400") {
+            console.log(data['response']["data"]["msg"] )
+
+            if (data['response']["data"]["msg"] === "no user with this email") {
                 setusedEmailCheck(true)
-                console.log("no email")
                 return
             }
-        }
-        else {
-            setusedEmailCheck(false)
+            else {
+                setusedEmailCheck(false)
+            }
+            if (data['response']["data"]["msg"] === "incorrect password") {
+                setPasswordCheck(true)
+                return
+            }
+            else {
+                setPasswordCheck(false)
+                return
+            }
         }
 
 
@@ -73,6 +83,11 @@ const UserLogin = () => {
         />
     </div>
 
+    {usedPasswordCheck !== false && 
+        <div className=" p-2 bg-red-600 rounded-lg text-center mb-5 font-serif">
+            Incorrect password.
+        </div>
+    }
 
     <div className="flex items-center justify-between"> 
         <button className=" bg-slate-600 text-white p-2 rounded-md"> Login </button>

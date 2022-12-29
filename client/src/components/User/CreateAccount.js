@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { createNewUser } from "../../actions/UserActions.js";
 import {useNavigate} from 'react-router-dom';
+import { useCookies, Cookies } from 'react-cookie';
 
 
 const CreateAccount = () => {
+    const cookies = new Cookies();
     const [user, setUserData] = useState({
         "email": "",
         "password": "",
@@ -13,6 +15,7 @@ const CreateAccount = () => {
     const [passwordsMatchCheck, setPasswordsMatchCheck] = useState(false)
     const [usedEmailCheck, setusedEmailCheck] = useState(false)
     const navigate = useNavigate()
+
 
 
     const handleSubmit = async (event) => {
@@ -38,6 +41,8 @@ const CreateAccount = () => {
         }
         
         console.log(data)
+        cookies.set('user_data', data["newUserSchema"], { path: '/' });
+        cookies.set('user_token', data["token"], { path: '/' });
         navigate("/")
     };
 
