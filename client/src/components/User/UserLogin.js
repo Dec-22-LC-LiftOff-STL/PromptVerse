@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { UserLoginAction } from "../../actions/UserActions.js";
 import {useNavigate} from 'react-router-dom';
-import { useCookies, Cookies } from 'react-cookie';
+import { Cookies } from 'react-cookie';
 
 
 const UserLogin = () => {

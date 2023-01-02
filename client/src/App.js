@@ -4,15 +4,14 @@ import UserLogin from './components/User/UserLogin.js';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreateAccount from './components/User/CreateAccount';
 import Homepage from './components/Ui/HomePage';
-import { useCookies, Cookies } from 'react-cookie';
-import { useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useCookies } from 'react-cookie';
+
 
 
 
 function App() {
-  const [userToken, setUserToken, removeUserToken] = useCookies(['user_token']);
-  const [userData, setUserData, removeUserData] = useCookies(['user_data']);
+  const [userToken, setUserToken] = useCookies(['user_token']);
+  const [userData, setUserData] = useCookies(['user_data']);
   console.log(userData, userToken)
 
   
