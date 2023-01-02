@@ -20,10 +20,10 @@ const Header = (data) => {
 
 
   return (
-    <div className=" bg-slate-900 w-full text-white p-4 mb-4 flex">
+    <div className=" bg-slate-900 w-full text-white p-4 mb-4 flex font-sans font-bold">
       <h1 onClick={() => navigate('/')} className="font-bold self-center lg:text-2xl cursor-pointer">Ai Prompt Share</h1>
       {userData !== undefined && 
-        <button className='truncate lg:visible invisible ml-auto mr-5 cursor-pointer font-serif text'>{userData["email"]}</button>
+        <button className='truncate lg:visible invisible ml-auto mr-5 cursor-pointer text'>{userData["email"]}</button>
       }
       {userData !== undefined &&
       <div className=" dropdown dropdown-end">
