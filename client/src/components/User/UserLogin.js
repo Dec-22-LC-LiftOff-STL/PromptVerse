@@ -48,7 +48,7 @@ const UserLogin = (CookieFunctions) => {
         type="email"
         value={user.email}
         onChange={(e) => setUserData({ ...user, email: e.target.value })}
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        className="shadow bg-white appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />
     </div>
 
@@ -67,7 +67,7 @@ const UserLogin = (CookieFunctions) => {
         type="password"
         value={user.password}
         onChange={(e) => setUserData({ ...user, password: e.target.value })}
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        className="shadow bg-white appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />
     </div>
 
