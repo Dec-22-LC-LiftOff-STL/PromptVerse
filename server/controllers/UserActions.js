@@ -24,15 +24,16 @@ export const signup = async (req, res) => {
     const email_check_UserSchema = await UserSchema.findOne({ email })
     if (email_check_UserSchema) return res.status(400).json({ msg: 'User already exists' })
     
-    bcrypt.hash(password, 7, async (err, hash) => {
-        newUserSchema.password = hash
-    })
+    const hashedPassword = await bcrypt.hash(password, 10)
+    console.log(hashedPassword)
+    newUserSchema["password"] = hashedPassword
 
+    console.log(newUserSchema)
     
     try {
         await newUserSchema.save();
-        const token = createToken(user._id)
-        return res.status(201).json({ email, token })
+        const token = createToken(newUserSchema._id)
+        return res.status(201).json({ newUserSchema, token })
     } catch (error) {
         return res.status(409).json({ message: error.message })
     }
@@ -44,13 +45,14 @@ export const LoginUser = async (req, res) => {
     const UserModel = req.body;
 
     const email_check_UserSchema = await UserSchema.findOne({ email })
-    if (!email_check_UserSchema) return res.status(400).json({ msg: 'User already exists' })
+    if (!email_check_UserSchema) return res.status(400).json({ msg: 'no user with this email' })
 
     const token = createToken(email_check_UserSchema._id)
+
+    const isMatch = await bcrypt.compare(password, email_check_UserSchema["password"]);
+    if (!isMatch) return res.status(400).json({ msg: 'incorrect password' })
+
     return res.status(201).json({ email_check_UserSchema, token })
-
-
-    console.log(password);
 }
 
 

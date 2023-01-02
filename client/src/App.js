@@ -4,7 +4,7 @@ import UserLogin from './components/User/UserLogin.js';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreateAccount from './components/User/CreateAccount';
 import Homepage from './components/Ui/HomePage';
-import { useCookies } from 'react-cookie';
+import { useCookies, Cookies } from 'react-cookie';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 

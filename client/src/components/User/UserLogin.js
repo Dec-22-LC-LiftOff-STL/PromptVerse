@@ -1,39 +1,51 @@
 import React, { useState } from "react";
 import { UserLoginAction } from "../../actions/UserActions.js";
 import {useNavigate} from 'react-router-dom';
+import { useCookies, Cookies } from 'react-cookie';
 
 
-const UserLogin = (CookieFunctions) => {
-    //const [userToken, setUserToken, removeUserToken] = useCookies(['user_token']);
+const UserLogin = () => {
+    const cookies = new Cookies();
+
     const [user, setUserData] = useState({
         "email": "",
         "password": "",
         "posts": []
     });
+
     const [usedEmailCheck, setusedEmailCheck] = useState(false)
+    const [usedPasswordCheck, setPasswordCheck] = useState(false)
     const navigate = useNavigate()
 
-    console.log(CookieFunctions)
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(user)
         var data = await UserLoginAction(user)
+        
 
         if ("message" in data){
-            if (data['message'] === "Request failed with status code 400") {
+            console.log(data['response']["data"]["msg"] )
+
+            if (data['response']["data"]["msg"] === "no user with this email") {
                 setusedEmailCheck(true)
-                console.log("no email")
+                return
+            }
+            else {
+                setusedEmailCheck(false)
+            }
+            if (data['response']["data"]["msg"] === "incorrect password") {
+                setPasswordCheck(true)
+                return
+            }
+            else {
+                setPasswordCheck(false)
                 return
             }
         }
-        else {
-            setusedEmailCheck(false)
-        }
 
-        console.log(data["email_check_UserSchema"])
-        CookieFunctions.data.setUserData('user_data', data["user_data"], {path: '/'}); 
-        CookieFunctions.data.setUserToken('user_token', data["user_token"], {path: '/'});
+
+        cookies.set('user_data', data["email_check_UserSchema"], { path: '/' });
+        cookies.set('user_token', data["token"], { path: '/' });
         navigate("/")
     };
 
@@ -71,6 +83,11 @@ const UserLogin = (CookieFunctions) => {
         />
     </div>
 
+    {usedPasswordCheck !== false && 
+        <div className=" p-2 bg-red-600 rounded-lg text-center mb-5 font-serif">
+            Incorrect password.
+        </div>
+    }
 
     <div className="flex items-center justify-between"> 
         <button className=" bg-slate-600 text-white p-2 rounded-md"> Login </button>
