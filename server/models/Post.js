@@ -3,8 +3,9 @@ import mongoose from "mongoose";
 
 const postSchema = mongoose.Schema({
     title: String,
-    Image: String,
+    image: String,
     promptUsed: String,
+    Negative_Prompt: String
 })
 
 

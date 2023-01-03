@@ -7,7 +7,7 @@ const router = express.Router();
 
 // router.get('/', getUsers);
 
-router.post('/createPost',CreatePost);
+router.post('/createPost', requireAuth, CreatePost);
 
 // router.post('/updateUser', requireAuth, updateUser);
 
