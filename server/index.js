@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import dotenv from 'dotenv';
 import userRoutes from './routes/UserRoutes.js'
+import PostRoutes from './routes/PostRoutes.js'
 
 
 const app = express();
@@ -15,7 +16,7 @@ mongoose.set('strictQuery', false);
 app.use(cors());
 
 app.use('/users', userRoutes)
-
+app.use('/posts', PostRoutes)
 
 app.get('/', (req, res) => {
     res.send("hello world");
