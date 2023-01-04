@@ -98,7 +98,7 @@ const UserLogin = () => {
         }
 
         <div className="flex items-center justify-between"> 
-            <button className=" bg-slate-600 text-white p-2 rounded-md"> Login </button>
+            <button className=" btn btn-outline btn-success"> Login </button>
         </div>
     </form>
 );

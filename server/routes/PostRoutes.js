@@ -1,11 +1,11 @@
 import express from "express";
-import { CreatePost } from "../controllers/PostActions.js";
+import { CreatePost, getPosts } from "../controllers/PostActions.js";
 import requireAuth from "../middleware/auth.js";
 
 
 const router = express.Router();
 
-// router.get('/', getUsers);
+router.get('/', getPosts);
 
 router.post('/createPost', requireAuth, CreatePost);
 

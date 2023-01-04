@@ -11,3 +11,14 @@ export async function createNewPost(post) {
       return error
     }
 };
+
+
+export async function getPosts() {
+  try {
+      const { data } = await api.fetchPosts();
+      console.log(data)
+      return data
+  } catch (error) {
+      console.log(error)
+  }
+}

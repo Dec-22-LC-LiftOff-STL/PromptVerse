@@ -13,7 +13,7 @@ const Postpage = () => {
     const [TitleCheck, setTitleCheck] = useState(true)
     const [PromptCheck, setPromptCheck] = useState(true)
     const [ImageCheck, setImageCheck] = useState(true)
-
+    const [stepsCheck, setStepsCheck] = useState(true)
 
     const [image, setImage] = useState()
 
@@ -21,7 +21,10 @@ const Postpage = () => {
         "title": "",
         "image": "",
         "promptUsed": "",
-        "Negative_Prompt": ""
+        "Negative_Prompt": "",
+        "sampler": "Euler a",
+        "steps": 0,
+        "post_user_id": cookies.get("user_data")["_id"]
     });
 
 
@@ -82,6 +85,14 @@ const Postpage = () => {
             return
         }
 
+        if (!post["steps"] <= 0) {
+            setStepsCheck(true)
+        }
+        else {
+            setStepsCheck(false)
+            return
+        }
+
         if (post["image"] !== "") {
             setImageCheck(true)
         }
@@ -92,7 +103,7 @@ const Postpage = () => {
 
         var data = await createNewPost(post)
         console.log(data);
-        navigate("/")
+        //navigate("/")
     };
 
     return (
@@ -160,11 +171,68 @@ const Postpage = () => {
             </textarea>
         </div>
 
-        <div  className=" w-full flex justify-center mb-5">
+        <div class="flex justify-center md:justify-start md:form-control w-auto">
+            <div className=" md:form-control">
+                <label class="label">
+                    <span class="label-text">Sampler Used</span>
+                </label>
+
+                <select onChange={(e) => setPostData({ ...post, sampler: e.target.value })} className="select select-bordered w-full mb-5">
+                    <option selected>Euler a</option>
+                    <option>Euler</option>
+                    <option>LMS</option>
+                    <option>Heun</option>
+                    <option>DPM2</option>
+                    <option>DPM2 a</option>
+                    <option>DPM++ 2S a</option>
+                    <option>DPM++ 2M</option>
+                    <option>DPM++ SDE</option>
+                    <option>DPM fast</option>
+                    <option>DPM adaptive</option>
+                    <option>LMS Karras</option>
+                    <option>DPM2 Karras</option>
+                    <option>DPM2 a Karras</option>
+                    <option>DPM++ 2S a Karras</option>
+                    <option>DPM++ 2M Karras</option>
+                    <option>DPM++ SDE Karras</option>
+                    <option>DDIM</option>
+                    <option>PLMS</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div className="mb-4 w-auto mt-1">
+            <label className="label">
+                <span className="label-text">Steps</span>
+            </label> 
+            <input
+            type="number"
+            value={post.steps}
+            onChange={(e) => setPostData({ ...post, steps: e.target.value })}
+            placeholder="20" class="input input-bordered w-full" 
+            />
+        </div>
+
+        {stepsCheck !== true && 
+            <div className="alert alert-error shadow-lg">
+                <div>
+                <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span>Image steps required.</span>
+                </div>
+            </div>
+        }
+
+
+        <div  className="form-control w-full flex justify-center mb-5">
+        <label class="label">
+            <span class="label-text">Upload Image</span>
+        </label>
             <input type="file" 
             onChange={(e) => handleImageUpload(e)}
             class="file-input file-input-bordered w-auto max-w-xs file-input-primary" />
         </div>
+
 
         {ImageCheck !== true && 
           <div className="alert alert-error shadow-lg mb-4">
@@ -176,7 +244,7 @@ const Postpage = () => {
         }
 
         <div className="flex items-center justify-center"> 
-            <button className=" bg-lime-700 text-white p-2 rounded-md"> Share </button>
+            <button className="btn btn-outline btn-success"> Share </button>
         </div>
     </form>
 );

@@ -5,7 +5,9 @@ const postSchema = mongoose.Schema({
     title: String,
     image: String,
     promptUsed: String,
-    Negative_Prompt: String
+    Negative_Prompt: String,
+    sampler: String,
+    steps: Number
 })
 
 

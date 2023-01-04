@@ -99,7 +99,7 @@ const CreateAccount = () => {
         }
 
         <div className="flex items-center justify-between"> 
-            <button className=" bg-slate-600 text-white p-2 rounded-md"> Create </button>
+            <button className="btn btn-outline btn-success"> Create </button>
         </div>
       </form>
     );
