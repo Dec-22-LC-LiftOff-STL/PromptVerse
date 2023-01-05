@@ -13,6 +13,7 @@
     "react-dom": "^18.2.0",
     "react-image-file-resizer": "^0.4.8",
     "react-scripts": "5.0.1",
+    "react-stack-grid": "^0.7.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
