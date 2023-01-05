@@ -124,7 +124,7 @@ const Postpage = () => {
             <input
             value={post.title}
             onChange={(e) => setPostData({ ...post, title: e.target.value })}
-            placeholder="Type here" class="input input-bordered w-full" 
+            placeholder="Type here" className=" input input-bordered w-full bg-grey" 
             />
         </div>
 
@@ -171,32 +171,32 @@ const Postpage = () => {
             </textarea>
         </div>
 
-        <div class="flex justify-center md:justify-start md:form-control w-auto">
+        <div className="flex justify-center md:justify-start md:form-control w-auto">
             <div className=" md:form-control">
-                <label class="label">
-                    <span class="label-text">Sampler Used</span>
+                <label className="label">
+                    <span className="label-text">Sampler Used</span>
                 </label>
 
                 <select onChange={(e) => setPostData({ ...post, sampler: e.target.value })} className="select select-bordered w-full mb-5">
-                    <option selected>Euler a</option>
-                    <option>Euler</option>
-                    <option>LMS</option>
-                    <option>Heun</option>
-                    <option>DPM2</option>
-                    <option>DPM2 a</option>
-                    <option>DPM++ 2S a</option>
-                    <option>DPM++ 2M</option>
-                    <option>DPM++ SDE</option>
-                    <option>DPM fast</option>
-                    <option>DPM adaptive</option>
-                    <option>LMS Karras</option>
-                    <option>DPM2 Karras</option>
-                    <option>DPM2 a Karras</option>
-                    <option>DPM++ 2S a Karras</option>
-                    <option>DPM++ 2M Karras</option>
-                    <option>DPM++ SDE Karras</option>
-                    <option>DDIM</option>
-                    <option>PLMS</option>
+                    <option value="Euler a" defaultValue={"Euler a"}>Euler a</option>
+                    <option value="Euler">Euler</option>
+                    <option value="LMS">LMS</option>
+                    <option value="Heun">Heun</option>
+                    <option value="DPM2">DPM2</option>
+                    <option value="DPM2 a">DPM2 a</option>
+                    <option value="DPM++ 2S a">DPM++ 2S a</option>
+                    <option value="DPM++ 2M">DPM++ 2M</option>
+                    <option value="DPM++ SDE">DPM++ SDE</option>
+                    <option value="DPM fast">DPM fast</option>
+                    <option value="DPM adaptive">DPM adaptive</option>
+                    <option value="LMS Karras">LMS Karras</option>
+                    <option value="DPM2 Karras">DPM2 Karras</option>
+                    <option value="DPM2 a Karras">DPM2 a Karras</option>
+                    <option value="DPM++ 2S a Karras">DPM++ 2S a Karras</option>
+                    <option value="DPM++ 2M Karras">DPM++ 2M Karras</option>
+                    <option value="DPM++ SDE Karras">DPM++ SDE Karras</option>
+                    <option value="DDIM">DDIM</option>
+                    <option value="PLMS">PLMS</option>
                 </select>
             </div>
         </div>
@@ -210,7 +210,7 @@ const Postpage = () => {
             type="number"
             value={post.steps}
             onChange={(e) => setPostData({ ...post, steps: e.target.value })}
-            placeholder="20" class="input input-bordered w-full" 
+            placeholder="20" className="input input-bordered w-full" 
             />
         </div>
 
@@ -225,12 +225,12 @@ const Postpage = () => {
 
 
         <div  className="form-control w-full flex justify-center mb-5">
-        <label class="label">
-            <span class="label-text">Upload Image</span>
+        <label className="label">
+            <span className="label-text">Upload Image</span>
         </label>
             <input type="file" 
             onChange={(e) => handleImageUpload(e)}
-            class="file-input file-input-bordered w-auto max-w-xs file-input-primary" />
+            className="file-input file-input-bordered w-auto max-w-xs file-input-primary" />
         </div>
 
 

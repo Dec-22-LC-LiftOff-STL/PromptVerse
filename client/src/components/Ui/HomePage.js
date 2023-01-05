@@ -28,9 +28,12 @@ const Homepage = () => {
     return (
       <>
         <div className=" w-full md:w-[98%] h-screen flex flex-col gap-2 flex-wrap content-start justify-start">
+
             {posts !== undefined && 
             <>
                 {posts.map(post => (
+
+
                     <div className="h-max flex-grow-1">
                         <img className=" w-[256px] h-full rounded-md" alt="post_image" src={post.image}/>
                     </div>
