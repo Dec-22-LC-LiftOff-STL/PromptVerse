@@ -51,8 +51,10 @@ const CreateAccount = () => {
     return (
     <form onSubmit={handleSubmit} className=" bg-slate-800 text-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-[98%] lg:w-[400px]">
         
+        <h1 className=" text-center font-sans text-xl mb-[-8px]"> Create Account </h1>
+        <div class="divider"></div> 
+
         <div className="mb-4">
-            <h1 className=" text-center font-sans text-xl"> Create Account </h1>
             <label className="block text-white text-sm font-bold mb-2">
             Email:
             </label>
@@ -98,8 +100,8 @@ const CreateAccount = () => {
             </div>
         }
 
-        <div className="flex items-center justify-between"> 
-            <button className="btn btn-outline btn-success"> Create </button>
+        <div className="flex items-center justify-between w-full"> 
+            <button className="btn btn-outline btn-success w-full"> Create </button>
         </div>
       </form>
     );

@@ -54,14 +54,27 @@ const Homepage = () => {
   
 
     return (
-        <Masonry columns={{ xs: 1, sm: 2, md: 4, lg: 6, xl: 8}} spacing={1}>
-        {posts.map((data, index) => (
-          <img className="rounded-md shadow-md" src={data.image} alt={index} key={index} sx={ data.height } />
-        ))}
-        {posts.map((data, index) => (
-          <img className=" rounded-md shadow-md" src={data.image} alt={index} key={index} sx={ data.height } />
-        ))}
-      </Masonry>
+        <>
+        {posts.length >= 1 && 
+            <Masonry columns={{ xs: 1, sm: 2, md: 4, lg: 6, xl: 8}} spacing={1}>
+                {posts.map((data, index) => (
+                    <div sx={ data.height }  class="card card-compact w-96 bg-base-100 shadow-xl cursor-pointer transition duration-75 ease-in-out hover:-translate-y-1">
+                            <figure><img src={data.image} alt={index} /></figure>
+                            <div class="card-body mb-[-10px]">
+                                <h2 class="card-title mt-[-10px] truncate text-ellipsis opacity-80">{data.title}</h2>
+                                <p className="mt-[-10px] truncate text-ellipsis opacity-80">{data.promptUsed}awdsadawdawdsadawdawdsadawdawdsadawdawdsadawdawdsadawdawdsadawdawdsadawdawdsadawdawdsadawdawdsadawd</p>
+                            </div>
+                    </div>
+                ))}
+            </Masonry>
+        }
+
+        {posts.length === 0 && 
+            <div className=" w-100% h-screen flexjustify-center">
+                <button class="btn loading mt-10">loading</button>
+            </div>
+        }
+    </>
     );
 
 }

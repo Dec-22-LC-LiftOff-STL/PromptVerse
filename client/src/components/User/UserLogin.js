@@ -52,9 +52,11 @@ const UserLogin = () => {
     return (
     
     <form onSubmit={handleSubmit} className=" bg-slate-800 text-white shadow-md rounded-md px-8 pt-6 pb-8 mb-4 w-[98%] lg:w-[400px]">
-            
+        
+        <h1 className=" text-center font-sans text-xl mb-[-8px]"> Login </h1>
+        <div class="divider"></div> 
+
         <div className="mb-4">
-            <h1 className=" text-center font-sans text-xl"> Login </h1>
             <label className="block text-white text-sm font-bold mb-2">
             Email:
             </label>
@@ -97,8 +99,8 @@ const UserLogin = () => {
         </div>
         }
 
-        <div className="flex items-center justify-between"> 
-            <button className=" btn btn-outline btn-success"> Login </button>
+        <div className="flex items-center justify-between w-full"> 
+            <button className=" btn btn-outline btn-success w-full"> Login </button>
         </div>
     </form>
 );

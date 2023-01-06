@@ -7,7 +7,8 @@ const postSchema = mongoose.Schema({
     promptUsed: String,
     Negative_Prompt: String,
     sampler: String,
-    steps: Number
+    steps: Number,
+    seed: Number
 })
 
 

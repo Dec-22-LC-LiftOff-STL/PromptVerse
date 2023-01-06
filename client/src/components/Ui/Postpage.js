@@ -24,6 +24,7 @@ const Postpage = () => {
         "Negative_Prompt": "",
         "sampler": "Euler a",
         "steps": 0,
+        "seed": -1,
         "post_user_id": cookies.get("user_data")["_id"]
     });
 
@@ -109,7 +110,8 @@ const Postpage = () => {
     return (
     <form onSubmit={handleSubmit} className=" bg-slate-800 text-white shadow-md rounded-md px-8 pt-6 pb-8 mb-4 w-full lg:w-[700px]">
         
-        <h1 className=" text-center font-sans text-xl mb-3"> Create Post </h1>
+        <h1 className=" text-center font-sans text-xl mt-1"> Create Post </h1>
+        <div class="divider"></div> 
         
         {image !== undefined &&
             <div  className=" w-full flex justify-center mb-5">
@@ -171,7 +173,7 @@ const Postpage = () => {
             </textarea>
         </div>
 
-        <div className="flex justify-center md:justify-start md:form-control w-auto">
+        <div className="flex justify-start md:form-control w-auto">
             <div className=" md:form-control">
                 <label className="label">
                     <span className="label-text">Sampler Used</span>
@@ -223,6 +225,18 @@ const Postpage = () => {
             </div>
         }
 
+        <div className="mb-4 w-auto mt-1">
+            <label className="label">
+                <span className="label-text">Seed</span>
+            </label> 
+            <input
+            type="number"
+            value={post.seed}
+            onChange={(e) => setPostData({ ...post, seed: e.target.value })}
+            placeholder="20" className="input input-bordered w-full" 
+            />
+        </div>
+
 
         <div  className="form-control w-full flex justify-center mb-5">
         <label className="label">
@@ -243,8 +257,8 @@ const Postpage = () => {
           </div>
         }
 
-        <div className="flex items-center justify-center"> 
-            <button className="btn btn-outline btn-success"> Share </button>
+        <div className="flex items-center justify-center w-full md:w-auto"> 
+            <button className="btn btn-outline btn-success w-full md:w-auto"> Share </button>
         </div>
     </form>
 );
