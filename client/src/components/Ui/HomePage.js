@@ -1,7 +1,29 @@
-import React, {useEffect, useState, onr} from "react";
+import React, {useEffect, useState} from "react";
 import { useCookies, Cookies } from 'react-cookie';
 import { getPosts } from "../../actions/PostActions";
-import StackGrid, {transitions} from "react-stack-grid";
+import { Masonry } from "@mui/lab";
+
+
+
+
+const loadImages = (images) => {
+    images.forEach((value) => {
+  
+      const img = new Image();
+      img.src = value["imageUrl"];
+    
+      img.onload = () => {
+        value["height"] = img.height;
+      };
+      img.onerror = (err) => {
+        console.log("img error");
+        console.error(err);
+      };
+  
+    })
+    return images
+  };
+
 
 
 const Homepage = () => {
@@ -9,7 +31,6 @@ const Homepage = () => {
     const token = cookies.get('user_token');
     const userData = cookies.get('user_data');
     const [posts, setPosts] = useState([]);
-    const { scaleDown } = transitions;
     const [update, setUpdate] = useState(false)
     
 
@@ -17,7 +38,7 @@ const Homepage = () => {
         const data = await getPosts()
         console.log(posts)
         if (data !== []) {
-            setPosts(data)
+            setPosts(loadImages(data))
         }
     }
 
@@ -33,22 +54,14 @@ const Homepage = () => {
   
 
     return (
-        <StackGrid
-        className=" w-full h-auto"
-        appear={scaleDown.appear}
-        appeared={scaleDown.appeared}
-        enter={scaleDown.enter}
-        entered={scaleDown.entered}
-        leaved={scaleDown.leaved}
-        columnWidth={210}
-        gridRef={grid => setStackGrid(grid)}
-        monitorImagesLoaded={true}>
-            {posts.map(post => (
-                <div key={post._id} className="h-max flex-grow-1 cursor-pointer hover:opacity-80">
-                    <img className=" w-[256px] h-full rounded-md" alt="post_image" src={post.image}/>
-                </div>
-            ))}
-        </StackGrid>
+        <Masonry columns={{ xs: 1, sm: 2, md: 4, lg: 6, xl: 8}} spacing={1}>
+        {posts.map((data, index) => (
+          <img className="rounded-md shadow-md" src={data.image} alt={index} key={index} sx={ data.height } />
+        ))}
+        {posts.map((data, index) => (
+          <img className=" rounded-md shadow-md" src={data.image} alt={index} key={index} sx={ data.height } />
+        ))}
+      </Masonry>
     );
 
 }
