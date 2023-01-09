@@ -6,7 +6,7 @@ import CreateAccount from './components/User/CreateAccount';
 import Homepage from './components/Ui/HomePage';
 import { useCookies } from 'react-cookie';
 import Postpage from './components/Ui/Postpage';
-
+import PostDetailsPage from './components/Ui/PostDetailsPage';
 
 
 function App() {
@@ -27,7 +27,8 @@ function App() {
           <Route path="/Login" element={<UserLogin data={CookieFunctions} />} />
           <Route path="/Sign-Up" element={<CreateAccount data={CookieFunctions} />} />
           <Route path="/" element={<Homepage data={CookieFunctions}/>} />
-
+          <Route path="/post/:id" element={<PostDetailsPage /> } />
+          
         </Routes>
       </BrowserRouter>
     </div>

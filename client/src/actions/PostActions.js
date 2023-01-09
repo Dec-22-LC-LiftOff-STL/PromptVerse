@@ -22,3 +22,15 @@ export async function getPosts() {
       console.log(error)
   }
 }
+
+
+export async function getPostWithId(id) {
+  try {
+      const { data } = await api.fetchPostWithId(id)
+      console.log(data)
+      return data
+  } catch (error) {
+      console.log(error)
+      return error
+  }
+}

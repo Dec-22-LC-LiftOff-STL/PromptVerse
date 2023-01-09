@@ -20,3 +20,5 @@ export const ApiUserLogin = (UserLogin) =>  API.post("/users/Login", UserLogin);
 export const createPost = (newPost) =>  API.post("/posts/createPost", newPost);
 
 export const fetchPosts = () => API.get("/posts/");
+
+export const fetchPostWithId = (id) => API.post(`${"posts/getPost"}/${id}`);

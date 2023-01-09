@@ -104,7 +104,7 @@ const Postpage = () => {
 
         var data = await createNewPost(post)
         console.log(data);
-        //navigate("/")
+        navigate("/")
     };
 
     return (

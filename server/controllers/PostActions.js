@@ -36,6 +36,18 @@ export const getPosts = async (req, res) => {
 }
 
 
+export const getPostWithId = async (req, res) => {
+    try {
+        const { id } = req.params
+        if (!await Post.findById(id));
+        const post = await Post.findById(id);
+        res.json(post);
+    } catch (error) {
+        res.status(404).json({ message: "post not found" });
+    }
+}
+
+
 // export const getPosts = async (req, res) => {
 //     try {
 //       const page = parseInt(req.query.page) || 1;
