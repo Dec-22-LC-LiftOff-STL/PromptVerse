@@ -5,11 +5,11 @@ import requireAuth from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.get('/', getPosts);
+router.post('/getPosts/:id', getPosts)
 
 router.post('/createPost', requireAuth, CreatePost);
 
-router.post('/getPost/:id', requireAuth, getPostWithId)
+router.post('/getPost/:id', getPostWithId)
 
 // router.post('/updateUser', requireAuth, updateUser);
 

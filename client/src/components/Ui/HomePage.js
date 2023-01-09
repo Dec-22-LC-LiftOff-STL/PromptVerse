@@ -31,25 +31,41 @@ const Homepage = () => {
     const userData = cookies.get('user_data');
     const [posts, setPosts] = useState([]);
     const [update, setUpdate] = useState(false)
+    const [skip, setSkip] = useState(0)
     const navigate = useNavigate()
 
 
-    const GetPosts = async (event) => {
-        const data = await getPosts()
-        if (data !== []) {
-            setPosts(loadImages(data))
-        }
+    // const GetPosts = async (event) => {
+    //     const data = await getPosts()
+    //     if (data !== []) {
+    //         setPosts([...posts, ...loadImages(data)])
+    //         // setPosts(loadImages(data))
+    //     }
+    // }
+
+    const update_posts = () => {
+        setSkip(posts.length)
     }
 
     // const [stackGrid, setStackGrid] = useState();
     
 
     useEffect(() => {
-        GetPosts()
-    //    if (stackGrid) {
-    //         stackGrid.updateLayout()
-    //     }
-    }, [update]);
+        const fetchTodos = async () => {
+            try {
+            var data = await getPosts(skip)
+            console.log(data)
+            if (data !== []) {
+                setPosts([...posts, ...loadImages(data)])
+                // setPosts(loadImages(data))
+                }
+            } catch (e) {
+      
+            }
+          }
+      
+          fetchTodos()
+    }, [skip]);
   
 
     return (
@@ -73,6 +89,8 @@ const Homepage = () => {
                 <button class="btn loading mt-10">loading</button>
             </div>
         }
+
+        <button className=" btn btn-outline btn-success mb-6 w-full md:w-[200px]" onClick={() => update_posts()}>Load More</button>
     </>
     );
 

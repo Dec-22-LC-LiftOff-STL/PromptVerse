@@ -8,6 +8,8 @@ import { useCookies } from 'react-cookie';
 import Postpage from './components/Ui/Postpage';
 import PostDetailsPage from './components/Ui/PostDetailsPage';
 
+import UnlimitedScroll from './components/Ui/Scrolling';
+
 
 function App() {
   const [userToken, setUserToken] = useCookies(['user_token']);
@@ -28,7 +30,9 @@ function App() {
           <Route path="/Sign-Up" element={<CreateAccount data={CookieFunctions} />} />
           <Route path="/" element={<Homepage data={CookieFunctions}/>} />
           <Route path="/post/:id" element={<PostDetailsPage /> } />
-          
+
+          <Route path="/scrolling" element={<UnlimitedScroll /> } />
+
         </Routes>
       </BrowserRouter>
     </div>

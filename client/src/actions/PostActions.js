@@ -13,9 +13,9 @@ export async function createNewPost(post) {
 };
 
 
-export async function getPosts() {
+export async function getPosts(id) {
   try {
-      const { data } = await api.fetchPosts();
+      const { data } = await api.fetchPosts(id);
       console.log(data)
       return data
   } catch (error) {

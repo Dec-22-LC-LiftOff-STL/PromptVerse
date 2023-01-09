@@ -26,13 +26,28 @@ export const CreatePost = async (req, res) => {
 }
 
 
+// export const getPosts = async (req, res) => { 
+//     try {
+//         const PostModels = await Post.find();
+//         res.status(200).json(PostModels);
+//     } catch (error) {
+//         res.status(404).json({ message: error.message });
+//     }
+// }
+
+
 export const getPosts = async (req, res) => { 
     try {
-        const PostModels = await Post.find();
-        res.status(200).json(PostModels);
-    } catch (error) {
-        res.status(404).json({ message: error.message });
-    }
+        const { id } = req.params
+        const skip =
+        id && /^\d+$/.test(id) ? Number(id) : 0
+    
+        const todos = await Post.find({}, undefined, { skip, limit: 20 }).sort('_id')
+    
+        res.send(todos)
+      } catch (e) {
+        res.status(500).send()
+      }
 }
 
 
@@ -46,23 +61,3 @@ export const getPostWithId = async (req, res) => {
         res.status(404).json({ message: "post not found" });
     }
 }
-
-
-// export const getPosts = async (req, res) => {
-//     try {
-//       const page = parseInt(req.query.page) || 1;
-//       const limit = parseInt(req.query.limit) || 30;
-  
-//       const total = await Post.countDocuments();
-//       const pages = Math.ceil(total / limit);
-  
-//       const PostModels = await Post.find()
-//         .skip(limit * (page - 1))
-//         .limit(limit)
-//         .toArray();
-  
-//       res.status(200).json({ total, pages, data: PostModels });
-//     } catch (error) {
-//       res.status(404).json({ message: error.message });
-//     }
-//   };

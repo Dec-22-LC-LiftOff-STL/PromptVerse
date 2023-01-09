@@ -5,27 +5,9 @@
 /* * {
     outline: 1px solid #f00 !important;
   } */
-  @layer components {
 
-  .pin_container {
-    margin: 0;
-    padding: 0;
-    width: 80vw;
-    display: 'grid';
-    grid-template-columns: 'repeat(auto-fill, 250px)';
-    grid-Auto-Rows: '10px';
-    position: 'absolute';
-    left: '50%';
-    transform: 'translateX(-50%)';
-    justify-Content: 'center';
-    background-Color: 'black';
+
+@layer components {
+
+
 }
-
-/* .card {
-  margin: '15px 10px';
-  padding: 0;
-  border-Radius: '16px';
-  background-color: 'red';
-grid-Row-End: 'span 26';
-} */
-  }

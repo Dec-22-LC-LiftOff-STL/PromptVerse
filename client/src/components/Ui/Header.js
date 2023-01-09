@@ -7,15 +7,17 @@ import { Cookies } from 'react-cookie';
 const Header = (data) => {
   const navigate = useNavigate()
   const cookies = new Cookies();
-  const token = cookies.get('user_token');
-  const userData = cookies.get('user_data');
+  var token = cookies.get('user_token');
+  var userData = cookies.get('user_data');
   
   const Logout = () => {
-
     cookies.remove('user_data');
     cookies.remove('user_token');
+    token = cookies.get('user_token');
+    userData = cookies.get('user_data');
     navigate("/")
   }
+
 
 
   return (
