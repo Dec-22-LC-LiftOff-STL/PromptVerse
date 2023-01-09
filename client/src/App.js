@@ -7,8 +7,7 @@ import Homepage from './components/Ui/HomePage';
 import { useCookies } from 'react-cookie';
 import Postpage from './components/Ui/Postpage';
 import PostDetailsPage from './components/Ui/PostDetailsPage';
-
-import UnlimitedScroll from './components/Ui/Scrolling';
+import ProfilePage from './components/User/ProfilePage';
 
 
 function App() {
@@ -30,8 +29,7 @@ function App() {
           <Route path="/Sign-Up" element={<CreateAccount data={CookieFunctions} />} />
           <Route path="/" element={<Homepage data={CookieFunctions}/>} />
           <Route path="/post/:id" element={<PostDetailsPage /> } />
-
-          <Route path="/scrolling" element={<UnlimitedScroll /> } />
+          <Route path="/Profile/:id" element={<ProfilePage /> } />
 
         </Routes>
       </BrowserRouter>

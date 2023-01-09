@@ -14,11 +14,6 @@ const loadImages = (images) => {
       img.onload = () => {
         value["height"] = img.height;
       };
-    //   img.onerror = (err) => {
-    //     console.log("img error");
-    //     console.error(err);
-    //   };
-  
     })
     return images
   };
