@@ -83,3 +83,23 @@ export const updateUser = async (req, res) => {
     const updated = await UserSchema.findById(_id)
     res.json(updated);
 }
+
+
+export const GetUserFromId = async (req, res) => { 
+    const { _id } = req.body
+    console.log(req.body)
+    try {
+        if (await UserSchema.findById( mongoose.Types.ObjectId(_id)));
+
+
+         // "63ace82779fa82b0686efdc7"
+            const user = await UserSchema.findById( mongoose.Types.ObjectId(req.body["_id"]))
+
+            console.log(user, _id, "here")
+            //return res.status(201).json({ "email": user["email"], "posts": user["posts"], "_id": user["_id"] })
+    
+    } catch (error) {
+        console.log(error)
+        return res.status(409).json({ message: "user with this id not found" })
+    }
+}

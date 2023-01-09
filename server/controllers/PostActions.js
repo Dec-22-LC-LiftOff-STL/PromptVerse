@@ -11,10 +11,10 @@ export const CreatePost = async (req, res) => {
 
 
     try {
-        if (!await User.findById(mongoose.Types.ObjectId(req.body["post_user_id"])));
+        if (!await User.findById(mongoose.Types.ObjectId(req.body["user_id"])));
         
         await User.findOneAndUpdate(
-            { _id: mongoose.Types.ObjectId(req.body["post_user_id"]) },
+            { _id: mongoose.Types.ObjectId(req.body["user_id"]) },
             { $push: { posts: newPostSchema["_id"] } }
         )
 
@@ -24,7 +24,6 @@ export const CreatePost = async (req, res) => {
         return res.status(409).json({ message: error.message })
     }
 }
-
 
 // export const getPosts = async (req, res) => { 
 //     try {

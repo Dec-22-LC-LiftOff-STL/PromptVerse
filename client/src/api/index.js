@@ -17,6 +17,8 @@ export const createUser = (newUser) =>  API.post("/users/signup", newUser);
 
 export const ApiUserLogin = (UserLogin) =>  API.post("/users/Login", UserLogin);
 
+export const fetchUserWithId = (id) => API.post(`/users/getUser`, id);
+
 export const createPost = (newPost) =>  API.post("/posts/createPost", newPost);
 
 export const fetchPosts = (id) => API.post(`${"posts/getPosts"}/${id}`);

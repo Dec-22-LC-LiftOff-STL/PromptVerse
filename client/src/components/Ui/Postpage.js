@@ -25,7 +25,7 @@ const Postpage = () => {
         "sampler": "Euler a",
         "steps": 0,
         "seed": -1,
-        "post_user_id": cookies.get("user_data")["_id"]
+        "user_id": cookies.get("user_data")["_id"]
     });
 
 
@@ -101,7 +101,6 @@ const Postpage = () => {
             setImageCheck(false)
             return
         }
-
         var data = await createNewPost(post)
         console.log(data);
         navigate("/")

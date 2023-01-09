@@ -85,7 +85,9 @@ const Homepage = () => {
             </div>
         }
 
-        <button className=" btn btn-outline btn-success mb-6 w-full md:w-[200px]" onClick={() => update_posts()}>Load More</button>
+        {posts.length >= 1 &&
+            <button className=" btn btn-outline btn-success mb-6 w-full md:w-[200px]" onClick={() => update_posts()}>Load More</button>
+        }
     </>
     );
 

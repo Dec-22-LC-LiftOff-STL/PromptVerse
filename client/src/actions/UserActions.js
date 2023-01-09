@@ -23,3 +23,15 @@ export async function UserLoginAction(user) {
     return error
   }
 };
+
+
+export async function getUserWithId(id) {
+  try {
+      const { data } = await api.fetchUserWithId(id)
+      console.log(data)
+      return data
+  } catch (error) {
+      console.log(error)
+      return error
+  }
+}

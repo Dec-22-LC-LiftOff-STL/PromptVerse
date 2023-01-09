@@ -11,6 +11,7 @@ router.post('/createPost', requireAuth, CreatePost);
 
 router.post('/getPost/:id', getPostWithId)
 
+
 // router.post('/updateUser', requireAuth, updateUser);
 
 // router.post('/Login', LoginUser);

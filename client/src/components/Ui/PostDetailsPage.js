@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom'
 import { getPostWithId } from "../../actions/PostActions";
 import { useNavigate } from "react-router-dom";
+import { getUserWithId } from "../../actions/UserActions";
 
 
 
@@ -58,6 +59,7 @@ function ClipboardCopy({ type, name, copyText }) {
 const PostDetailsPage = () => {
     const { id } = useParams()
     const [post, setPost] = useState([]);
+    const [postUser, setPostUser] = useState(undefined)
     const [update, setUpdate] = useState(false)
     const navigate = useNavigate()
 
@@ -68,12 +70,26 @@ const PostDetailsPage = () => {
             if (data !== []) {
                 console.log(data)
                 setPost(data)
+
+                const user_Data = await getUserWithId({"_id": data["_id"]})
+                if (!('response' in user_Data)) {
+                    if (user_Data !== []) {
+                        console.log(user_Data)
+                        setPostUser(data)
+                    }
+                }
+                else {
+                    console.log("here")
+                    navigate("/")
+                }
             }
+
         }
         else {
             console.log("here")
             navigate("/")
         }
+        
     }
 
     useEffect(() => {

@@ -1,6 +1,6 @@
 import express from "express";
 
-import { getUsers, signup, removeUser, updateUser, LoginUser} from "../controllers/UserActions.js";
+import { getUsers, signup, removeUser, updateUser, LoginUser, GetUserFromId} from "../controllers/UserActions.js";
 import requireAuth from "../middleware/auth.js";
 
 
@@ -15,6 +15,8 @@ router.post('/updateUser', requireAuth, updateUser);
 router.post('/Login', LoginUser);
 
 router.delete('/:id', requireAuth, removeUser)
+
+router.post('/getUser', GetUserFromId)
 
 
 export default router;

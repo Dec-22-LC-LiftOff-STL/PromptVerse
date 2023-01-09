@@ -8,7 +8,8 @@ const postSchema = mongoose.Schema({
     Negative_Prompt: String,
     sampler: String,
     steps: Number,
-    seed: Number
+    seed: Number,
+    user_id: String
 })
 
 
