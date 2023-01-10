@@ -26,11 +26,15 @@ const Header = (data) => {
     window.location.reload()
   }
 
+  const goToHomepage = () => {
+    navigate('/')
+    window.location.reload()
+  }
 
 
   return (
     <div className=" bg-slate-900 w-full text-white p-1 mb-4 flex font-sans font-bold shadow-lg">
-      <h1 onClick={() => navigate('/')} className="font-bold self-center md:text-2xl cursor-pointer btn btn-ghost normal-case">Ai Prompt Share</h1>
+      <h1 onClick={() => goToHomepage()} className="font-bold self-center md:text-2xl cursor-pointer btn btn-ghost normal-case">Ai Prompt Share</h1>
       
       {userData !== undefined && 
         <button onClick={() => goToProfile()} className='truncate md:visible invisible ml-auto mr-1 max-w-[140px] cursor-pointer text btn btn-ghost normal-case'>{userData["email"]}</button>

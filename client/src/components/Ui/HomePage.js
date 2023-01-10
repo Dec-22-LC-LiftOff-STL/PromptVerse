@@ -129,7 +129,7 @@ const Homepage = ( {type, search_value} ) => {
                 <span>No Results Found</span>
             }
             {type === "profile" &&
-                <span>This User Hasn't Posted Anything Yet.</span>
+                <span>No Posts Available.</span>
             }
             </div>
         </div>
