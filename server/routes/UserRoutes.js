@@ -16,7 +16,7 @@ router.post('/Login', LoginUser);
 
 router.delete('/:id', requireAuth, removeUser)
 
-router.post('/getUser', GetUserFromId)
+router.post('/getUser/:id', GetUserFromId)
 
 
 export default router;

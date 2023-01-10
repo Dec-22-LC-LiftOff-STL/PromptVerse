@@ -86,17 +86,22 @@ export const updateUser = async (req, res) => {
 
 
 export const GetUserFromId = async (req, res) => { 
-    const { _id } = req.body
-    console.log(req.body)
+
+    console.log(req.params)
     try {
-        if (await UserSchema.findById( mongoose.Types.ObjectId(_id)));
+        const { id } = req.params
+        if (!await UserSchema.findById(id));
+        const post = await UserSchema.findById(id);
+        res.json(post);
+
+        // if (await UserSchema.findById( mongoose.Types.ObjectId(_id)));
 
 
-         // "63ace82779fa82b0686efdc7"
-            const user = await UserSchema.findById( mongoose.Types.ObjectId(req.body["_id"]))
+        //  // "63ace82779fa82b0686efdc7"
+        //     const user = await UserSchema.findById( mongoose.Types.ObjectId(req.body["_id"]))
 
-            console.log(user, _id, "here")
-            //return res.status(201).json({ "email": user["email"], "posts": user["posts"], "_id": user["_id"] })
+        //     console.log(user, _id, "here")
+        //     //return res.status(201).json({ "email": user["email"], "posts": user["posts"], "_id": user["_id"] })
     
     } catch (error) {
         console.log(error)

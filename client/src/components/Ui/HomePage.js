@@ -43,30 +43,17 @@ const Homepage = () => {
 
     const update_posts = () => {
         setSkip(posts.length)
+        LoadMorePosts()
     }
 
     const searchPosts = () => {
         setPosts([])
         setSkip(0)
-        fetchPosts()
+        SearchPosts()
     }
 
     // const [stackGrid, setStackGrid] = useState();
     const LoadMorePosts = async () => { 
-        try {
-            var data = await getPosts({"skip":skip,"search": search})
-            console.log(data)
-            if (data.length >= 1) {
-                setPosts([...posts, ...loadImages(data)])
-            }
-            }
-        catch (e) {
-  
-        }
-    }
-
-
-    const fetchPosts = async () => {
         try {
             var data = await getPosts({"skip":skip,"search": search})
             console.log(data)
@@ -82,7 +69,27 @@ const Homepage = () => {
         catch (e) {
   
         }
+    }
+
+
+    const SearchPosts = async () => {
+        try {
+            var data = await getPosts({"skip":skip,"search": search})
+            console.log(data)
+            if (data.length >= 1) {
+                setPosts(data)
+                setSearchResultsFound(false)
+            }
+            else {
+                setSearchResultsFound(true)
+                setPosts([])
+            }
+            }
+        catch (e) {
+  
+        }
       }
+
 
     useEffect(() => {
         LoadMorePosts()
@@ -93,8 +100,8 @@ const Homepage = () => {
         <>
  <div className=" w-screen flex flex-col justify-center items-center gap-3">
         <h1 className=" md:text-xl font-bold">Ai Prompt Share</h1>
-        <input className=" input input-bordered w-[95%] md:w-[50%]"  onChange={(e) => setsearch(e.target.value)}/>
-        <button onClick={()=>searchPosts()} className= " btn">Search</button>
+        <input className=" input input-bordered w-[95%] md:w-[50%] shadow-md"  onChange={(e) => setsearch(e.target.value)}/>
+        <button onClick={()=>searchPosts()} className= " btn shadow-sm">Search</button>
     </div>
 
         {posts.length >= 1 && 
