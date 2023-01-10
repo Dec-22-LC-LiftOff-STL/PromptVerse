@@ -68,7 +68,7 @@ const PostDetailsPage = () => {
         const data = await getPostWithId(id)
         if (!('response' in data)) {
             if (data !== []) {
-                console.log(data)
+                // console.log(data)
                 setPost(data)
 
                 const user_Data = await getUserWithId(data["user_id"])

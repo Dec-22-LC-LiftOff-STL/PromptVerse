@@ -41,7 +41,7 @@ const Postpage = () => {
         // const base64 = await convertToBase64(file);
         //console.log(base64)
         const image = await resizeFile(file);
-        console.log(image)
+        // console.log(image)
         setImage(image);
         setPostData({ ...post, image: image})
     };
@@ -102,7 +102,7 @@ const Postpage = () => {
             return
         }
         var data = await createNewPost(post)
-        console.log(data);
+        // console.log(data);
         navigate("/")
     };
 

@@ -27,7 +27,7 @@ function App() {
           <Route path="/CreatePost" element={<Postpage data={CookieFunctions} />} />
           <Route path="/Login" element={<UserLogin data={CookieFunctions} />} />
           <Route path="/Sign-Up" element={<CreateAccount data={CookieFunctions} />} />
-          <Route path="/" element={<Homepage data={CookieFunctions}/>} />
+          <Route path="/" element={<Homepage type="homepage" search_value={""} data={CookieFunctions}/>} />
           <Route path="/post/:id" element={<PostDetailsPage /> } />
           <Route path="/Profile/:id" element={<ProfilePage /> } />
 

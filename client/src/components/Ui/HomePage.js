@@ -20,7 +20,10 @@ const loadImages = (images) => {
 
 
 
-const Homepage = () => {
+const Homepage = ( {type, search_value} ) => {
+
+    // console.log(type, search_value)
+
     const cookies = new Cookies();
     const token = cookies.get('user_token');
     const userData = cookies.get('user_data');
@@ -28,22 +31,14 @@ const Homepage = () => {
     const [update, setUpdate] = useState(false)
     const [skip, setSkip] = useState(0)
     const navigate = useNavigate()
-    const [search, setsearch] = useState("");
-
+    const [search, setsearch] = useState(search_value);
     const [searchResultsFound, setSearchResultsFound] = useState(false)
 
 
-    // const GetPosts = async (event) => {
-    //     const data = await getPosts()
-    //     if (data !== []) {
-    //         setPosts([...posts, ...loadImages(data)])
-    //         // setPosts(loadImages(data))
-    //     }
-    // }
 
     const update_posts = () => {
         setSkip(posts.length)
-        LoadMorePosts()
+        //LoadMorePosts()
     }
 
     const searchPosts = () => {
@@ -63,7 +58,6 @@ const Homepage = () => {
             }
             else {
                 setSearchResultsFound(true)
-                setPosts([])
             }
             }
         catch (e) {
@@ -98,11 +92,14 @@ const Homepage = () => {
 
     return (
         <>
- <div className=" w-screen flex flex-col justify-center items-center gap-3">
-        <h1 className=" md:text-xl font-bold">Ai Prompt Share</h1>
-        <input className=" input input-bordered w-[95%] md:w-[50%] shadow-md"  onChange={(e) => setsearch(e.target.value)}/>
-        <button onClick={()=>searchPosts()} className= " btn shadow-sm">Search</button>
-    </div>
+        
+        {type === "homepage" &&
+            <div className=" w-full flex flex-col justify-center items-center gap-3">
+                <h1 className=" md:text-xl font-bold">Ai Prompt Share</h1>
+                <input className=" input input-bordered w-[95%] md:w-[50%] shadow-md"  onChange={(e) => setsearch(e.target.value)}/>
+                <button onClick={()=>searchPosts()} className= " btn shadow-sm">Search</button>
+            </div>
+          }
 
         {posts.length >= 1 && 
             <Masonry columns={{ xs: 1, sm: 2, md: 4, lg: 6, xl: 8}} spacing={1}>
@@ -128,7 +125,12 @@ const Homepage = () => {
         <div class="alert alert-error shadow-lg md:w-[50%] mt-5">
             <div>
             <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            <span>No Results Found</span>
+            {type === "homepage" &&
+                <span>No Results Found</span>
+            }
+            {type === "profile" &&
+                <span>This User Hasn't Posted Anything Yet.</span>
+            }
             </div>
         </div>
         }
