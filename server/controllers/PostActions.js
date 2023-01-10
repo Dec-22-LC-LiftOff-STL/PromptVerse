@@ -37,11 +37,13 @@ export const CreatePost = async (req, res) => {
 
 export const getPosts = async (req, res) => { 
     try {
-        const { id } = req.params
-        const skip =
-        id && /^\d+$/.test(id) ? Number(id) : 0
+        console.log(req.body)
+        const { skip, search } = req.params
+        const skipNumber =
+        skip && /^\d+$/.test(skip) ? Number(skip) : 0
+        
     
-        const todos = await Post.find({}, undefined, { skip, limit: 20 }).sort('_id')
+        const todos = await Post.find({}, undefined, { skipNumber, limit: 20 }).sort('_id')
     
         res.send(todos)
       } catch (e) {

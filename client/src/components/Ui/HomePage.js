@@ -28,6 +28,7 @@ const Homepage = () => {
     const [update, setUpdate] = useState(false)
     const [skip, setSkip] = useState(0)
     const navigate = useNavigate()
+    const [search, setsearch] = useState("");
 
 
     // const GetPosts = async (event) => {
@@ -42,13 +43,17 @@ const Homepage = () => {
         setSkip(posts.length)
     }
 
+    const searchPosts = () => {
+        setSkip(0)
+    }
+
     // const [stackGrid, setStackGrid] = useState();
     
 
     useEffect(() => {
         const fetchTodos = async () => {
             try {
-            var data = await getPosts(skip)
+            var data = await getPosts({"skip":skip,"search": search})
             console.log(data)
             if (data !== []) {
                 setPosts([...posts, ...loadImages(data)])
@@ -65,6 +70,12 @@ const Homepage = () => {
 
     return (
         <>
+ <div className=" w-screen flex flex-col justify-center items-center gap-3">
+        <h1 className=" md:text-xl font-bold">Ai Prompt Share</h1>
+        <input className=" input input-bordered w-[95%] md:w-[50%]"  onChange={(e) => setsearch(e.target.value)}/>
+        <button onClick={()=>searchPosts()} className= " btn">Search</button>
+    </div>
+
         {posts.length >= 1 && 
             <Masonry columns={{ xs: 1, sm: 2, md: 4, lg: 6, xl: 8}} spacing={1}>
                 {posts.map((data, index) => (
