@@ -30,6 +30,8 @@ const Homepage = () => {
     const navigate = useNavigate()
     const [search, setsearch] = useState("");
 
+    const [searchResultsFound, setSearchResultsFound] = useState(false)
+
 
     // const GetPosts = async (event) => {
     //     const data = await getPosts()
@@ -44,27 +46,46 @@ const Homepage = () => {
     }
 
     const searchPosts = () => {
+        setPosts([])
         setSkip(0)
+        fetchPosts()
     }
 
     // const [stackGrid, setStackGrid] = useState();
-    
-
-    useEffect(() => {
-        const fetchTodos = async () => {
-            try {
+    const LoadMorePosts = async () => { 
+        try {
             var data = await getPosts({"skip":skip,"search": search})
             console.log(data)
-            if (data !== []) {
+            if (data.length >= 1) {
                 setPosts([...posts, ...loadImages(data)])
-                // setPosts(loadImages(data))
-                }
-            } catch (e) {
-      
             }
-          }
-      
-          fetchTodos()
+            }
+        catch (e) {
+  
+        }
+    }
+
+
+    const fetchPosts = async () => {
+        try {
+            var data = await getPosts({"skip":skip,"search": search})
+            console.log(data)
+            if (data.length >= 1) {
+                setPosts([...posts, ...loadImages(data)])
+                setSearchResultsFound(false)
+            }
+            else {
+                setSearchResultsFound(true)
+                setPosts([])
+            }
+            }
+        catch (e) {
+  
+        }
+      }
+
+    useEffect(() => {
+        LoadMorePosts()
     }, [skip]);
   
 
@@ -90,13 +111,22 @@ const Homepage = () => {
             </Masonry>
         }
 
-        {posts.length === 0 && 
+        { (posts.length === 0 && searchResultsFound === false) && 
             <div className=" w-100% h-screen flexjustify-center">
                 <button class="btn loading mt-10">loading</button>
             </div>
         }
 
-        {posts.length >= 1 &&
+        {searchResultsFound === true &&
+        <div class="alert alert-error shadow-lg md:w-[50%] mt-5">
+            <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>No Results Found</span>
+            </div>
+        </div>
+        }
+
+        { (posts.length >= 1 && searchResultsFound === false) &&
             <button className=" btn btn-outline btn-success mb-6 w-full md:w-[200px]" onClick={() => update_posts()}>Load More</button>
         }
     </>
