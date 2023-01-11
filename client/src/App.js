@@ -24,7 +24,8 @@ function App() {
         <Header data={CookieFunctions} />
         <Routes>
           
-          <Route path="/CreatePost" element={<Postpage data={CookieFunctions} />} />
+          <Route path="/CreatePost" element={<Postpage type="CreatePost" data={CookieFunctions} />} />
+          <Route path="/EditPost/:id" element={<Postpage type="EditPost" data={CookieFunctions} />} />
           <Route path="/Login" element={<UserLogin data={CookieFunctions} />} />
           <Route path="/Sign-Up" element={<CreateAccount data={CookieFunctions} />} />
           <Route path="/" element={<Homepage type="homepage" search_value={""} data={CookieFunctions}/>} />

@@ -1,5 +1,5 @@
 import express from "express";
-import { CreatePost, getPosts, getPostWithId } from "../controllers/PostActions.js";
+import { CreatePost, getPosts, getPostWithId, updatePost } from "../controllers/PostActions.js";
 import requireAuth from "../middleware/auth.js";
 
 
@@ -8,6 +8,10 @@ const router = express.Router();
 router.post('/getPosts/', getPosts)
 
 router.post('/createPost', requireAuth, CreatePost);
+
+
+router.post('/EditPost', requireAuth, updatePost);
+
 
 router.post('/getPost/:id', getPostWithId)
 

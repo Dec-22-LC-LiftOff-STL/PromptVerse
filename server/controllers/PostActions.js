@@ -64,3 +64,19 @@ export const getPostWithId = async (req, res) => {
         res.status(404).json({ message: "post not found" });
     }
 }
+
+
+export const updatePost = async (req, res) => {
+    const { _id } = req.body;
+
+    console.log(" updating post ")
+
+    if (!await Post.findById(_id));
+
+    await Post.findByIdAndUpdate(_id, req.body, { new: true });
+
+    const updated = await Post.findById(_id)
+
+    res.json(updated);
+
+}

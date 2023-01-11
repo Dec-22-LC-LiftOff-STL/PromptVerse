@@ -27,9 +27,6 @@ const ProfilePage = () => {
             }
     }
 
-    const onChangeValue = (value) => {
-        console.log(value);
-      }
 
 
     useEffect(() => {

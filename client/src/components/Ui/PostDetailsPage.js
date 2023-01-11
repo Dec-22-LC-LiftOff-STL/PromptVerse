@@ -3,9 +3,8 @@ import { useParams } from 'react-router-dom'
 import { getPostWithId } from "../../actions/PostActions";
 import { useNavigate } from "react-router-dom";
 import { getUserWithId } from "../../actions/UserActions";
-
-
-
+import EditIcon from '@mui/icons-material/Edit';
+import { Cookies } from 'react-cookie';
 
 
 function ClipboardCopy({ type, name, copyText }) {
@@ -62,6 +61,8 @@ const PostDetailsPage = () => {
     const [postUser, setPostUser] = useState(undefined)
     const [update, setUpdate] = useState(false)
     const navigate = useNavigate()
+    const cookies = new Cookies();
+    const userData = cookies.get('user_data');
 
 
     const GetPosts = async (event) => {
@@ -102,12 +103,28 @@ const PostDetailsPage = () => {
         {post.length !== [] && 
             <div className=" flex gap-5 bg-slate-800 p-10 rounded-md items-top md:flex-row flex-col mb-20">
 
-                <div>
-                    <img className=" rounded-xl md:min-w-[512px]" alt={post.title} src={post.image}/>
+                <div className=" md:w-[125%]">
+                    <label for="my-modal-5" ><img className="rounded-md object-fill block cursor-pointer" alt={post.title} src={post.image}/></label>
+
+                </div>
+                
+                <input type="checkbox" id="my-modal-5" className="modal-toggle" />
+                <div className="modal">
+                    <div className="modal-box w-11/12 flex flex-col max-w-5xl">
+                        <img className="rounded-md object-fill block cursor-pointer" alt={post.title} src={post.image}/>
+                        <div className="modal-action">
+                        <label htmlFor="my-modal-5" className="btn">Close</label>
+                        </div>
+                    </div>
                 </div>
 
+
                 <div className=" flex flex-col gap-2 w-full">
-                    <h1 className=" font-bold">{post.title}</h1>
+                    <h1 className=" font-bold">{post.title}
+                    { userData?.["_id"] === post["user_id"] &&
+                        <button onClick={() => navigate("/EditPost/"+post["_id"])} className=" ml-2 cursor-pointer btn-sm btn-outline rounded-md">Edit Post</button>
+                    } 
+                    </h1>
                     { postUser !== undefined &&
                         <h2 className=" font-thin">by <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button></h2>
                     }

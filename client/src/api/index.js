@@ -23,6 +23,7 @@ export const fetchUserWithId = (id) => API.post(`${"users/getUser"}/${id}`);
 
 export const createPost = (newPost) =>  API.post("/posts/createPost", newPost);
 
+export const updatePost = (updatedPost) =>  API.post("/posts/EditPost", updatedPost);
 // export const fetchPosts = (id) => API.post(`${"posts/getPosts"}/${id}`);
 
 export const fetchPosts = (search) => API.post("/posts/getPosts", search);

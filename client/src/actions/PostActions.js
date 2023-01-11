@@ -13,6 +13,18 @@ export async function createNewPost(post) {
 };
 
 
+export async function updateOldPost(post) {
+  try {
+    const { data } = await api.updatePost(post);
+    // console.log(data)
+    return data
+  } catch (error) {
+    console.log(error);
+    return error
+  }
+};
+
+
 export async function getPosts(id) {
   try {
       const { data } = await api.fetchPosts(id);
