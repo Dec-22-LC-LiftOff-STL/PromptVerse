@@ -8,6 +8,7 @@ import { useCookies } from 'react-cookie';
 import Postpage from './components/Ui/Postpage';
 import PostDetailsPage from './components/Ui/PostDetailsPage';
 import ProfilePage from './components/User/ProfilePage';
+import CreateModelPage from './components/Ui/CreateModelPage';
 
 
 function App() {
@@ -23,7 +24,9 @@ function App() {
       <BrowserRouter>
         <Header data={CookieFunctions} />
         <Routes>
-          
+
+          <Route path="/EditModel/:id" element={<CreateModelPage type="EditModel" />} />
+          <Route path="/CreateModel" element={<CreateModelPage type="CreateModel" />} />
           <Route path="/CreatePost" element={<Postpage type="CreatePost" data={CookieFunctions} />} />
           <Route path="/EditPost/:id" element={<Postpage type="EditPost" data={CookieFunctions} />} />
           <Route path="/Login" element={<UserLogin data={CookieFunctions} />} />

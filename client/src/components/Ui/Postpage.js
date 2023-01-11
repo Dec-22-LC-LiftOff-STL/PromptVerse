@@ -21,6 +21,7 @@ const Postpage = ( { type } ) => {
     const [update, setUpdate] = useState(false)
     const [image, setImage] = useState()
 
+
     const [post, setPostData] = useState({
         "title": "",
         "image": "",
@@ -55,7 +56,6 @@ const Postpage = ( { type } ) => {
             console.log("here")
             navigate("/")
         }
-        
         }
     }
 

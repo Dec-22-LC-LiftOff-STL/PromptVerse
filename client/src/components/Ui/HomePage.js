@@ -106,15 +106,13 @@ const Homepage = ( {type, search_value} ) => {
             <Masonry columns={{ xs: 1, sm: 2, md: 4, lg: 6, xl: 8}} spacing={1}>
                 {posts.map((data, index) => (
                     <div sx={ data.height } key={data["_id"]}  class="z-0 card card-compact w-96 bg-base-100 shadow-xl transition duration-75 ease-in-out hover:-translate-y-1">
-                            <figure><img className=" cursor-pointer" onClick={() => navigate(`/post/${data._id}`)} src={data.image} alt={index} /></figure>
+                            { userData?.["_id"] === data["user_id"] &&
+                                <EditIcon onClick={() => navigate("/EditPost/"+data["_id"])} className="ml-2 mt-2 cursor-pointer bg-none absolute"/> 
+                            }
+                            <figure><img className=" cursor-pointer rounded-md" onClick={() => navigate(`/post/${data._id}`)} src={data.image} alt={index} /></figure>
                             <div class="card-body mb-[-10px]">
-                                <h2 class="card-title mt-[-10px] truncate text-ellipsis opacity-80">{data.title}
-                                { userData?.["_id"] === data["user_id"] &&
-                                    <EditIcon onClick={() => navigate("/EditPost/"+data["_id"])} className=" ml-auto cursor-pointer"/> 
-                                }
-                                </h2>
+                                <h2 class="card-title mt-[-10px] truncate text-ellipsis w-auto opacity-80">{data.title}</h2>
                                 <p className="mt-[-10px] truncate text-ellipsis opacity-80">{data.promptUsed}</p>
-
                             </div>
                     </div>
                 ))}

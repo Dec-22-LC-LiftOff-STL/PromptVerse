@@ -11,13 +11,15 @@ const Header = (data) => {
   var token = cookies.get('user_token');
   var userData = cookies.get('user_data');
   
+  console.log(userData)
 
   const Logout = () => {
     cookies.remove('user_data');
     cookies.remove('user_token');
+    token = cookies.get('user_token');
+    userData = cookies.get('user_data');
+    console.log(userData)
     navigate("/")
-    window.location.reload()
-    setUpdate(!update)
   }
 
   const goToProfile = () => {
@@ -46,6 +48,7 @@ const Header = (data) => {
         <ul tabIndex={0} className="dropdown-content menu p-3 shadow mt-2 bg-slate-800 rounded-box w-52">
           <li><button onClick={() => goToProfile()}>Profile</button></li>
           <li><button onClick={() => navigate('/CreatePost')}>Create Post</button></li>
+          <li><button onClick={() => navigate('/CreateModel')}>Create Model</button></li>
           <li><button>Settings</button></li> 
           <li><button onClick={() => Logout()}>Logout</button></li>
         </ul>

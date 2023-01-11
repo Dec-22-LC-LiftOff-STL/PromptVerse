@@ -5,6 +5,8 @@ import bodyParser from "body-parser";
 import dotenv from 'dotenv';
 import userRoutes from './routes/UserRoutes.js'
 import PostRoutes from './routes/PostRoutes.js'
+import ModelRoutes from './routes/ModelRoutes.js'
+
 
 
 const app = express();
@@ -17,6 +19,8 @@ app.use(cors());
 
 app.use('/users', userRoutes)
 app.use('/posts', PostRoutes)
+app.use('/models', ModelRoutes)
+
 
 app.get('/', (req, res) => {
     res.send("hello world");
