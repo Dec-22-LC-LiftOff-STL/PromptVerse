@@ -9,6 +9,8 @@ import Postpage from './components/Ui/Postpage';
 import PostDetailsPage from './components/Ui/PostDetailsPage';
 import ProfilePage from './components/User/ProfilePage';
 import CreateModelPage from './components/Ui/CreateModelPage';
+import ModelDetailsPage from './components/Ui/ModelDetailsPage';
+import ModelsPage from './components/Ui/ModelsPage';
 
 
 function App() {
@@ -24,9 +26,11 @@ function App() {
       <BrowserRouter>
         <Header data={CookieFunctions} />
         <Routes>
-
+          
+          <Route path="/models" element={<ModelsPage type="homepage" search_value={""} />} />
           <Route path="/EditModel/:id" element={<CreateModelPage type="EditModel" />} />
           <Route path="/CreateModel" element={<CreateModelPage type="CreateModel" />} />
+          <Route path="/model/:id" element={<ModelDetailsPage /> } />
           <Route path="/CreatePost" element={<Postpage type="CreatePost" data={CookieFunctions} />} />
           <Route path="/EditPost/:id" element={<Postpage type="EditPost" data={CookieFunctions} />} />
           <Route path="/Login" element={<UserLogin data={CookieFunctions} />} />

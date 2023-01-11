@@ -127,7 +127,7 @@ const CreateModelPage = ( { type } ) => {
         }
 
 
-        // navigate("/post/"+id)
+        navigate("/model/"+id)
     };
 
 

@@ -48,3 +48,25 @@ export const getModelWithId = async (req, res) => {
     }
 }
 
+
+export const getModels = async (req, res) => { 
+    try {
+        console.log(req.body)
+        const skip = req.body["skip"] && /^\d+$/.test(req.body["skip"]) ? Number(req.body["skip"]) : 0
+
+        if (req.body["search"] !== "") {
+            var models = await Model.find({ $text: { $search: req.body["search"] } }, undefined, { skip, limit: 20 }).sort('_id')
+        }
+
+        
+        else {
+            var models = await Model.find({}, undefined, { skip, limit: 20 }).sort('_id')
+        }
+
+
+        res.send(models)
+      } catch (e) {
+        console.log(e)
+        res.status(500).send()
+      }
+}

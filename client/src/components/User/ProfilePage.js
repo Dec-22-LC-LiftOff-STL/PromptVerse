@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { getUserWithId } from "../../actions/UserActions";
 import { useNavigate } from "react-router-dom";
 import Homepage from "../Ui/HomePage";
+import ModelsPage from "../Ui/ModelsPage";
 
 
 const ProfilePage = () => {
@@ -46,7 +47,7 @@ const ProfilePage = () => {
 
                 <form className="btn-group">
                     <input onClick={() => setNavState("posts")} defaultChecked type="radio" value="posts" name="options" data-title="Posts" className="btn"/>
-                    <input onClick={() => setNavState("collections")}  type="radio" value="collections" name="options" data-title="Collections" className="btn" />
+                    <input onClick={() => setNavState("models")}  type="radio" value="models" name="options" data-title="Models" className="btn" />
                 </form>
 
 
@@ -57,15 +58,9 @@ const ProfilePage = () => {
                 }
 
 
-                { navState === "collections" &&
+                { (navState === "models" && profileUser !== undefined) &&
                 <>
-
-
-                    <div>
-                        collections
-                    </div>
-
-
+                    <ModelsPage type="profile" search_value={profileUser._id} />
                 </>
                 }
 

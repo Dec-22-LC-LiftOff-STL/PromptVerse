@@ -34,3 +34,14 @@ export async function getModelWithId(id) {
         return error
     }
   }
+
+  
+  export async function getModels(id) {
+    try {
+        const { data } = await api.fetchModels(id);
+        // console.log(data)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+  }

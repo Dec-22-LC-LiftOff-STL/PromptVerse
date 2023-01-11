@@ -18,15 +18,14 @@ export const ApiUserLogin = (UserLogin) =>  API.post("/users/Login", UserLogin);
 export const fetchUserWithId = (id) => API.post(`${"users/getUser"}/${id}`);
 
 
-export const createPost = (newPost) =>  API.post("/posts/createPost", newPost);
-export const updatePost = (updatedPost) =>  API.post("/posts/EditPost", updatedPost);
-
-
+export const fetchModels = (search) => API.post("/models/getModels", search);
 export const createModel = (newModel) =>  API.post("/models/createModel", newModel);
 export const updateModel = (updatedModel) =>  API.post("/models/EditModel", updatedModel);
 export const fetchModelWithId = (id) => API.post(`${"models/getModel"}/${id}`);
 
 
+export const createPost = (newPost) =>  API.post("/posts/createPost", newPost);
+export const updatePost = (updatedPost) =>  API.post("/posts/EditPost", updatedPost);
 export const fetchPosts = (search) => API.post("/posts/getPosts", search);
 export const fetchPostWithId = (id) => API.post(`${"posts/getPost"}/${id}`);
 
