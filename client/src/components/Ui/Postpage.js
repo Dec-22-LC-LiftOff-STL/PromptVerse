@@ -5,6 +5,7 @@ import { createNewPost, updateOldPost } from "../../actions/PostActions.js";
 import Resizer from "react-image-file-resizer";
 import { useParams } from "react-router-dom";
 import { getPostWithId } from "../../actions/PostActions.js";
+import { getModels } from "../../actions/ModelActions";
 
 
 const Postpage = ( { type } ) => {
@@ -18,8 +19,10 @@ const Postpage = ( { type } ) => {
     const [PromptCheck, setPromptCheck] = useState(true)
     const [ImageCheck, setImageCheck] = useState(true)
     const [stepsCheck, setStepsCheck] = useState(true)
+    const [modelCheck, setModelCheck] = useState(true)
     const [update, setUpdate] = useState(false)
     const [image, setImage] = useState()
+    const [models, setmodels] = useState([]);
 
 
     const [post, setPostData] = useState({
@@ -30,7 +33,8 @@ const Postpage = ( { type } ) => {
         "sampler": "Euler a",
         "steps": 0,
         "seed": -1,
-        "user_id": cookies.get("user_data")["_id"]
+        "user_id": cookies.get("user_data")["_id"],
+        "model_id": ""
     });
 
 
@@ -40,7 +44,9 @@ const Postpage = ( { type } ) => {
         }
         console.log("here")
         GetPost()
+        GetModels()
     }, [update])
+
 
 
     const GetPost = async (event) => {
@@ -58,6 +64,19 @@ const Postpage = ( { type } ) => {
         }
         }
     }
+
+
+    const GetModels = async () => {
+        try {
+            var data = await getModels({"skip":0,"search":""})
+            if (data.length >= 1) {
+                setmodels(data)
+            }
+            }
+        catch (e) {
+  
+        }
+      }
 
 
 
@@ -94,6 +113,7 @@ const Postpage = ( { type } ) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+
         if (post["title"] !== "") {
             setTitleCheck(true)
         }
@@ -109,6 +129,16 @@ const Postpage = ( { type } ) => {
             setPromptCheck(false)
             return
         }
+
+
+        if (post["model_id"] !== "") {
+            setModelCheck(true)
+        }
+        else {
+            setModelCheck(false)
+            return
+        }
+        console.log("here")
 
         if (!post["steps"] <= 0) {
             setStepsCheck(true)
@@ -128,7 +158,9 @@ const Postpage = ( { type } ) => {
 
         if (type === "CreatePost") {
             var data = await createNewPost(post)
+            console.log("here")
         } else {
+            console.log("here")
             var data = await updateOldPost(post)
         }
 
@@ -209,6 +241,35 @@ const Postpage = ( { type } ) => {
                     placeholder="ugly, deformed, bad lighting">
                 </textarea>
             </div>
+
+            <div className="flex justify-start md:form-control w-auto">
+                <div className=" md:form-control">
+                    <label className="label">
+                        <span className="label-text">Model Used</span>
+                    </label>
+
+                    <select onChange={(e) => setPostData({ ...post, model_id: e.target.value })} className="select select-bordered w-full mb-5">
+                        { models.length !== 0 &&
+                            <>
+                            {models.map((data, index) => (
+                                <option key={data._id} value={data["_id"]}> {data.name} </option>
+                            ))}
+                            </>
+                        }
+                    </select>
+                </div>
+            </div>
+
+
+            {PromptCheck !== true && 
+                <div className="alert alert-error shadow-lg">
+                    <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span>Model required.</span>
+                    </div>
+                </div>
+            }
+
 
             <div className="flex justify-start md:form-control w-auto">
                 <div className=" md:form-control">

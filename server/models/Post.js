@@ -9,7 +9,8 @@ const postSchema = mongoose.Schema({
     sampler: String,
     steps: Number,
     seed: Number,
-    user_id: String
+    user_id: String,
+    model_id: String
 })
 
 

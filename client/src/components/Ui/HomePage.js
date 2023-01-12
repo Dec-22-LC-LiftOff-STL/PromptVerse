@@ -4,7 +4,7 @@ import ModelsPage from "./ModelsPage";
 
 
 const HomePage = () => {
-    const [navState, setNavState] = useState("collections")
+    const [navState, setNavState] = useState("posts")
 
 
     return (

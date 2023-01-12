@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { getUserWithId } from "../../actions/UserActions";
 import EditIcon from '@mui/icons-material/Edit';
 import { Cookies } from 'react-cookie';
+import { getModelWithId } from "../../actions/ModelActions";
 
 
 function ClipboardCopy({ type, name, copyText }) {
@@ -44,7 +45,7 @@ function ClipboardCopy({ type, name, copyText }) {
                 <input className=" input input-bordered" type="text" value={copyText} readOnly />
             }
              {type !== "Display" && 
-                <button className=" btn" onClick={handleCopyClick}>
+                <button className=" btn btn-sm mt-2" onClick={handleCopyClick}>
                      <span>{isCopied ? 'Copied!' : 'Copy'}</span>
                 </button>
              }
@@ -60,6 +61,7 @@ const PostDetailsPage = () => {
     const [post, setPost] = useState([]);
     const [postUser, setPostUser] = useState(undefined)
     const [update, setUpdate] = useState(false)
+    const [postModel, setPostModel] = useState(undefined)
     const navigate = useNavigate()
     const cookies = new Cookies();
     const userData = cookies.get('user_data');
@@ -71,7 +73,7 @@ const PostDetailsPage = () => {
             if (data !== []) {
                 // console.log(data)
                 setPost(data)
-
+                
                 const user_Data = await getUserWithId(data["user_id"])
                 if (!('response' in user_Data)) {
                     if (user_Data !== undefined) {
@@ -79,8 +81,14 @@ const PostDetailsPage = () => {
                     }
                 }
                 else {
-                    console.log("here")
                     navigate("/")
+                }
+
+                const model_data = await getModelWithId(data["model_id"])
+                if (!('response' in model_data)) {
+                    if (model_data !== undefined) {
+                        setPostModel(model_data)
+                    }
                 }
             }
 
@@ -120,23 +128,34 @@ const PostDetailsPage = () => {
 
 
                 <div className=" flex flex-col gap-2 w-full">
+
                     <h1 className=" font-bold">{post.title}
-                    { userData?.["_id"] === post["user_id"] &&
-                        <button onClick={() => navigate("/EditPost/"+post["_id"])} className=" ml-2 cursor-pointer btn-sm btn-outline rounded-md">Edit Post</button>
-                    } 
+                        { userData?.["_id"] === post["user_id"] &&
+                            <button onClick={() => navigate("/EditPost/"+post["_id"])} className=" ml-2 cursor-pointer btn-sm btn-outline rounded-md">Edit Post</button>
+                        } 
                     </h1>
+
                     { postUser !== undefined &&
                         <h2 className=" font-thin">by <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button></h2>
                     }
+
+                    {postModel !== undefined &&
+                        <>
+                            <ClipboardCopy type="Display" name="Model Used" copyText={postModel.name} />
+                            <button onClick={() => navigate("/model/"+postModel._id)} className=" btn btn-sm w-full"> view model</button>
+                        </>
+                    }
+
                     <ClipboardCopy type="textarea" name="Prompt" copyText={post.promptUsed} />
                     {post.Negative_Prompt !== "" &&
                         <ClipboardCopy type="textarea" name="Negative Prompt" copyText={post.Negative_Prompt} />
                     }
                     <ClipboardCopy type="input" name="Seed" copyText={post.seed} />
                     <ClipboardCopy type="Display" name="Sampler" copyText={post.sampler} />
+                    
                 </div>
 
-
+                    
             </div>
         }
 

@@ -7,6 +7,7 @@ import User from '../models/User.js';
 
 export const CreatePost = async (req, res) => {
     const PostModel = req.body;
+    console.log("post creation")
     const newPostSchema = new Post(PostModel)
 
 

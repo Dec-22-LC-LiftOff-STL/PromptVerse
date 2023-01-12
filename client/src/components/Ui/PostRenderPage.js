@@ -34,7 +34,7 @@ const PostRenderPage = ( {type, search_value} ) => {
     const navigate = useNavigate()
     const [search, setsearch] = useState(search_value);
     const [searchResultsFound, setSearchResultsFound] = useState(false)
-
+    
 
 
     const update_posts = () => {
@@ -117,7 +117,7 @@ const PostRenderPage = ( {type, search_value} ) => {
                             }
                             <figure><img className=" cursor-pointer rounded-md" onClick={() => navigate(`/post/${data._id}`)} src={data.image} alt={index} /></figure>
                             <div class="card-body mb-[-10px]">
-                                <h2 class="card-title mt-[-10px] truncate text-ellipsis w-auto opacity-80">{data.title}</h2>
+                                <h2 class="card-title mt-[-10px] truncate text-ellipsis w-auto opacity-100">{data.title}</h2>
                                 <p className="mt-[-10px] truncate text-ellipsis opacity-80">{data.promptUsed}</p>
                             </div>
                     </div>
