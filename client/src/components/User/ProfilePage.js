@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom'
 import { getUserWithId } from "../../actions/UserActions";
 import { useNavigate } from "react-router-dom";
-import Homepage from "../Ui/HomePage";
+import Homepage from "../Ui/PostRenderPage";
 import ModelsPage from "../Ui/ModelsPage";
 
 

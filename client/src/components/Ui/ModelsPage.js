@@ -70,18 +70,24 @@ const ModelsPage = ( {type, search_value} ) => {
       }
 
 
+
     useEffect(() => {
         LoadMoremodels()
     }, [skip]);
-  
+    
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            searchmodels()
+       }
+    }
 
     return (
         <>
         
         {type === "homepage" &&
-            <div className=" w-full flex flex-col justify-center items-center gap-3">
-                <h1 className=" md:text-xl font-bold">PromptVerse</h1>
-                <input className=" input input-bordered w-[95%] md:w-[50%] shadow-md"  onChange={(e) => setsearch(e.target.value)}/>
+            <div className=" w-full flex flex-col justify-center items-center gap-3 mb-10">
+                <input onKeyUp={handleKeyDown} className=" input input-bordered w-[95%] md:w-[50%] shadow-md"  onChange={(e) => setsearch(e.target.value)}/>
                 <button onClick={()=>searchmodels()} className= " btn shadow-sm">Search</button>
             </div>
           }
@@ -132,7 +138,7 @@ const ModelsPage = ( {type, search_value} ) => {
         }
 
         { (models.length >= 1 && searchResultsFound === false) &&
-            <button className=" btn btn-outline btn-success mb-6 w-full md:w-[200px]" onClick={() => update_models()}>Load More</button>
+            <button className=" btn btn-outline btn-success mb-6 mt-2 w-full md:w-[200px]" onClick={() => update_models()}>Load More</button>
         }
     </>
     );

@@ -3,7 +3,7 @@ import Header from './components/Ui/Header';
 import UserLogin from './components/User/UserLogin.js';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreateAccount from './components/User/CreateAccount';
-import Homepage from './components/Ui/HomePage';
+import PostRenderPage from './components/Ui/PostRenderPage';
 import { useCookies } from 'react-cookie';
 import Postpage from './components/Ui/Postpage';
 import PostDetailsPage from './components/Ui/PostDetailsPage';
@@ -11,6 +11,7 @@ import ProfilePage from './components/User/ProfilePage';
 import CreateModelPage from './components/Ui/CreateModelPage';
 import ModelDetailsPage from './components/Ui/ModelDetailsPage';
 import ModelsPage from './components/Ui/ModelsPage';
+import HomePage from './components/Ui/HomePage';
 
 
 function App() {
@@ -35,7 +36,8 @@ function App() {
           <Route path="/EditPost/:id" element={<Postpage type="EditPost" data={CookieFunctions} />} />
           <Route path="/Login" element={<UserLogin data={CookieFunctions} />} />
           <Route path="/Sign-Up" element={<CreateAccount data={CookieFunctions} />} />
-          <Route path="/" element={<Homepage type="homepage" search_value={""} data={CookieFunctions}/>} />
+          <Route path="/" element={<HomePage />} />
+          {/* <Route path="/" element={<PostRenderPage type="homepage" search_value={""} data={CookieFunctions}/>} /> */}
           <Route path="/post/:id" element={<PostDetailsPage /> } />
           <Route path="/Profile/:id" element={<ProfilePage /> } />
 
