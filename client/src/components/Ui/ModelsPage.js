@@ -80,7 +80,7 @@ const ModelsPage = ( {type, search_value} ) => {
         
         {type === "homepage" &&
             <div className=" w-full flex flex-col justify-center items-center gap-3">
-                <h1 className=" md:text-xl font-bold">Ai Prompt Share</h1>
+                <h1 className=" md:text-xl font-bold">PromptVerse</h1>
                 <input className=" input input-bordered w-[95%] md:w-[50%] shadow-md"  onChange={(e) => setsearch(e.target.value)}/>
                 <button onClick={()=>searchmodels()} className= " btn shadow-sm">Search</button>
             </div>
