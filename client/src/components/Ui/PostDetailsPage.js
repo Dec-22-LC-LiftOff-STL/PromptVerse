@@ -109,13 +109,13 @@ const PostDetailsPage = () => {
         <>
 
         {post.length !== [] && 
-            <div className=" flex gap-5 bg-slate-800 p-10 rounded-md items-top md:flex-row flex-col mb-20">
+            <div className=" flex gap-5 bg-slate-800 p-10 rounded-md items-top flex-col mb-20">
 
-                <div className=" md:w-[125%]">
-                    <label for="my-modal-5" ><img className="rounded-md object-fill block cursor-pointer" alt={post.title} src={post.image}/></label>
-
+                <div>
+                    <label className="flex items-center justify-center" for="my-modal-5" ><img className="rounded-md md:w-[80%] object-fill block cursor-pointer" alt={post.title} src={post.image}/></label>
                 </div>
                 
+
                 <input type="checkbox" id="my-modal-5" className="modal-toggle" />
                 <div className="modal">
                     <div className="modal-box w-11/12 flex flex-col max-w-5xl">
@@ -129,6 +129,7 @@ const PostDetailsPage = () => {
 
                 <div className=" flex flex-col gap-2 w-full">
 
+
                     <h1 className=" font-bold">{post.title}
                         { userData?.["_id"] === post["user_id"] &&
                             <button onClick={() => navigate("/EditPost/"+post["_id"])} className=" ml-2 cursor-pointer btn-sm btn-outline rounded-md">Edit Post</button>
@@ -139,20 +140,30 @@ const PostDetailsPage = () => {
                         <h2 className=" font-thin">by <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button></h2>
                     }
 
-                    {postModel !== undefined &&
-                        <>
-                            <ClipboardCopy type="Display" name="Model Used" copyText={postModel.name} />
-                            <button onClick={() => navigate("/model/"+postModel._id)} className=" btn btn-sm w-full"> view model</button>
-                        </>
-                    }
+                    <div className=" divider mb-[-5px] mt-[-5px]"></div>
 
-                    <ClipboardCopy type="textarea" name="Prompt" copyText={post.promptUsed} />
-                    {post.Negative_Prompt !== "" &&
-                        <ClipboardCopy type="textarea" name="Negative Prompt" copyText={post.Negative_Prompt} />
-                    }
-                    <ClipboardCopy type="input" name="Seed" copyText={post.seed} />
-                    <ClipboardCopy type="Display" name="Sampler" copyText={post.sampler} />
-                    
+                    <div className=" flex flex-col md:flex-row justify-between">
+
+                        <div className=" flex flex-col">
+                            <ClipboardCopy type="textarea" name="Prompt" copyText={post.promptUsed} />
+                            {post.Negative_Prompt !== "" &&
+                                <ClipboardCopy type="textarea" name="Negative Prompt" copyText={post.Negative_Prompt} />
+                            }
+                        </div>
+                        
+                        <div className=" flex flex-col">
+                            {postModel !== undefined &&
+                                <>
+                                    <ClipboardCopy type="Display" name="Model Used" copyText={postModel.name} />
+                                    <button onClick={() => navigate("/model/"+postModel._id)} className=" btn btn-sm w-full"> view model</button>
+                                </>
+                            }
+                            <ClipboardCopy type="input" name="Seed" copyText={post.seed} />
+                            <ClipboardCopy type="Display" name="Sampler" copyText={post.sampler} />
+                        </div>
+
+                    </div>
+
                 </div>
 
                     

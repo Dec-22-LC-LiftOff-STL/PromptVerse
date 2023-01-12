@@ -54,6 +54,7 @@ const Header = (data) => {
         </div>
 
       }
+      
       {userData !== undefined && 
         <button onClick={() => goToProfile()} className='truncate md:visible invisible ml-auto mr-1 max-w-[140px] cursor-pointer text btn btn-ghost normal-case'>{userData["email"]}</button>
       }
