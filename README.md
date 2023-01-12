@@ -1,4 +1,4 @@
-# ai-promt-share
+# PromptVerse
 
 A website where people can share AI generated images/prompts/models using stable diffusion. Users can create and share images along with the prompts they used, steps and any other settings they used to generate the images and share them with other people.
 
