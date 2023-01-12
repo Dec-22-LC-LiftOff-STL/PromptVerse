@@ -107,7 +107,7 @@ const Homepage = ( {type, search_value} ) => {
                 {posts.map((data, index) => (
                     <div sx={ data.height } key={data["_id"]}  class="z-0 card card-compact w-96 bg-base-100 shadow-xl transition duration-75 ease-in-out hover:-translate-y-1">
                             { userData?.["_id"] === data["user_id"] &&
-                                <EditIcon onClick={() => navigate("/EditPost/"+data["_id"])} className="ml-2 mt-2 cursor-pointer bg-none absolute"/> 
+                                <EditIcon onClick={() => navigate("/EditPost/"+data["_id"])} className="ml-2 mt-2 cursor-pointer bg-none absolute hover:bg-gray-600 opacity-80 rounded-empty"/> 
                             }
                             <figure><img className=" cursor-pointer rounded-md" onClick={() => navigate(`/post/${data._id}`)} src={data.image} alt={index} /></figure>
                             <div class="card-body mb-[-10px]">
