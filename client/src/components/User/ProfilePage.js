@@ -47,6 +47,7 @@ const ProfilePage = () => {
 
                 <form className="btn-group">
                     <input onClick={() => setNavState("posts")} defaultChecked type="radio" value="posts" name="options" data-title="Posts" className="btn"/>
+                    <input onClick={() => setNavState("collections")} defaultChecked type="radio" value="collections" name="options" data-title="Collections" className="btn"/>
                     <input onClick={() => setNavState("models")}  type="radio" value="models" name="options" data-title="Models" className="btn" />
                 </form>
 

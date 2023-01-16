@@ -6,9 +6,7 @@ import { Cookies } from 'react-cookie';
 
 const Header = (data) => {
   const navigate = useNavigate()
-  const [update, setUpdate] = useState(false)
   const cookies = new Cookies();
-  var token = cookies.get('user_token');
   var userData = cookies.get('user_data');
   
   console.log(userData)
@@ -16,7 +14,6 @@ const Header = (data) => {
   const Logout = () => {
     cookies.remove('user_data');
     cookies.remove('user_token');
-    token = cookies.get('user_token');
     userData = cookies.get('user_data');
     console.log(userData)
     navigate("/")
@@ -37,49 +34,52 @@ const Header = (data) => {
     <div className=" bg-slate-900 w-full text-white p-1 mb-4 flex font-sans font-bold shadow-lg">
       <h1 onClick={() => goToHomepage()} className="font-bold self-center md:text-2xl cursor-pointer btn btn-ghost normal-case">PromptVerse</h1>
 
+
       {userData !== undefined && 
-
-        <div className=' hidden md:inline menu menu-horizontal items-center justify-center mt-1'>
-          <li tabindex="0">
-            <a>
-              Create
-              <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
-            </a>
-            <ul class="p-2 bg-slate-700 mt-[3px] rounded-md shadow-lg">
-              <li><a href='/createCollection'>New Collection</a></li>
-              <li><a href='/createModel'>New Model</a></li>
-              <li><a href='/createPost'>New Post</a></li>
-            </ul>
-          </li>
+        <div class="dropdown hidden md:inline bg-transparent self-center pt-1">
+          <label tabindex="0" className=' self-center'> 
+                <button className=' self-center btn btn-sm btn-ghost'>
+                Create
+                <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
+              </button></label>
+          <ul tabindex="0" class="dropdown-content menu p-2 mt-3 shadow bg-slate-700 rounded-box w-52">
+            <li><a href='/CreateCollection'>New Collection</a></li>
+            <li><a href='/createModel'>New Model</a></li>
+            <li><a href='/createPost'>New Post</a></li>
+          </ul>
         </div>
-
       }
-      
+
+
       {userData !== undefined && 
         <button onClick={() => goToProfile()} className='truncate md:visible invisible ml-auto mr-1 max-w-[140px] cursor-pointer text btn btn-ghost normal-case'>{userData["email"]}</button>
       }
 
+
       {userData !== undefined &&
-      <div className=" dropdown dropdown-end">
-        <button class=" outline-none btn btn-square btn-ghost mr-1">
-          <svg tabIndex={0}  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-7 h-7 stroke-current outline-none"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-        </button>
-        <ul tabIndex={0} className="dropdown-content menu p-3 shadow mt-2 bg-slate-700 rounded-b-md w-52">
-          <li><button onClick={() => goToProfile()}>Profile</button></li>
-          <li><button onClick={() => navigate('/CreatePost')}>Create Post</button></li>
-          <li><button onClick={() => navigate('/CreateModel')}>Create Model</button></li>
-          <li><button>Settings</button></li> 
-          <li><button onClick={() => Logout()}>Logout</button></li>
-        </ul>
-      </div>
+        <div className=" dropdown dropdown-end">
+          <button class=" outline-none btn btn-square btn-ghost mr-1">
+            <svg tabIndex={0}  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-7 h-7 stroke-current outline-none"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+          <ul tabIndex={0} className="dropdown-content menu p-2 shadow mt-1 bg-slate-700 rounded-b-md w-52">
+            <li><button onClick={() => goToProfile()}>Profile</button></li>
+            <li><button onClick={() => navigate('/CreatePost')}>Create Post</button></li>
+            <li><button onClick={() => navigate('/CreateCollection')}>Create Collection</button></li>
+            <li><button onClick={() => navigate('/CreateModel')}>Create Model</button></li>
+            <li><button>Settings</button></li> 
+            <li><button onClick={() => Logout()}>Logout</button></li>
+          </ul>
+        </div>
       }
 
-      {userData === undefined && 
-        <button onClick={() => navigate('/Login')} className=' ml-auto mr-5 cursor-pointer font-serif text btn btn-ghost'> Login </button>
-      }
 
       {userData === undefined && 
-        <button onClick={() => navigate('/Sign-Up')} className='cursor-pointer font-serif mr-5 btn btn-ghost'> Sign Up </button>
+        <button onClick={() => navigate('/Login')} className=' ml-auto mr-5 cursor-pointer font-serif text btn btn-sm self-center btn-ghost'> Login </button>
+      }
+
+
+      {userData === undefined && 
+        <button onClick={() => navigate('/Sign-Up')} className='cursor-pointer font-serif mr-5 btn btn-sm self-center btn-primary'> Sign Up </button>
       }
 
     </div>

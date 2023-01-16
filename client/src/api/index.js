@@ -24,6 +24,12 @@ export const updateModel = (updatedModel) =>  API.post("/models/EditModel", upda
 export const fetchModelWithId = (id) => API.post(`${"models/getModel"}/${id}`);
 
 
+export const fetchCollection = (search) => API.post("/collections/getCollections", search);
+export const createCollection = (newModel) =>  API.post("/collections/createCollections", newModel);
+export const updateCollection = (updatedModel) =>  API.post("/collections/EditCollections", updatedModel);
+export const fetchCollectionWithId = (id) => API.post(`${"collections/getCollections"}/${id}`);
+
+
 export const createPost = (newPost) =>  API.post("/posts/createPost", newPost);
 export const updatePost = (updatedPost) =>  API.post("/posts/EditPost", updatedPost);
 export const fetchPosts = (search) => API.post("/posts/getPosts", search);

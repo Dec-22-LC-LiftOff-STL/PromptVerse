@@ -12,6 +12,7 @@ import CreateModelPage from './components/Ui/CreateModelPage';
 import ModelDetailsPage from './components/Ui/ModelDetailsPage';
 import ModelsPage from './components/Ui/ModelsPage';
 import HomePage from './components/Ui/HomePage';
+import CreateCollectionPage from './components/Ui/CreateCollectionPage';
 
 
 function App() {
@@ -28,17 +29,23 @@ function App() {
         <Header data={CookieFunctions} />
         <Routes>
           
-          <Route path="/models" element={<ModelsPage type="homepage" search_value={""} />} />
           <Route path="/EditModel/:id" element={<CreateModelPage type="EditModel" />} />
           <Route path="/CreateModel" element={<CreateModelPage type="CreateModel" />} />
           <Route path="/model/:id" element={<ModelDetailsPage /> } />
+
+
+          <Route path="/CreateCollection" element={<CreateCollectionPage type="CreateCollection" />} />
+ 
+
+
           <Route path="/CreatePost" element={<Postpage type="CreatePost" data={CookieFunctions} />} />
           <Route path="/EditPost/:id" element={<Postpage type="EditPost" data={CookieFunctions} />} />
+          <Route path="/post/:id" element={<PostDetailsPage /> } />
+
           <Route path="/Login" element={<UserLogin data={CookieFunctions} />} />
           <Route path="/Sign-Up" element={<CreateAccount data={CookieFunctions} />} />
+
           <Route path="/" element={<HomePage />} />
-          {/* <Route path="/" element={<PostRenderPage type="homepage" search_value={""} data={CookieFunctions}/>} /> */}
-          <Route path="/post/:id" element={<PostDetailsPage /> } />
           <Route path="/Profile/:id" element={<ProfilePage /> } />
 
         </Routes>

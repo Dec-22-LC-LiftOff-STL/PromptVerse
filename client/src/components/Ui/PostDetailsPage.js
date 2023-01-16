@@ -39,7 +39,7 @@ function ClipboardCopy({ type, name, copyText }) {
                 <span class="label-text">{name}</span>
             </label>
             {type === "textarea" && 
-                <textarea className=" textarea textarea-bordered " type="text" value={copyText} readOnly />
+                <textarea className=" textarea textarea-bordered h-auto" type="text" value={copyText} readOnly />
             }
             {(type === "input" || type === "Display")  && 
                 <input className=" input input-bordered" type="text" value={copyText} readOnly />
