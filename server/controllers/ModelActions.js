@@ -1,5 +1,5 @@
 import Model from "../models/Model.js";
-import User from "../models/User.js";
+import mongoose from "mongoose";
 
 
 export const updateModel = async (req, res) => {
@@ -15,7 +15,7 @@ export const updateModel = async (req, res) => {
         const updated = await Model.findById(_id)
     
         res.json(updated);
-        
+
     } catch (error) {
         return res.status(409).json({ message: error.message })
     }
@@ -27,12 +27,6 @@ export const CreateModel = async (req, res) => {
     const newModelSchema = new Model(model)
 
     try {
-        // if (!await Model.findById(mongoose.Types.ObjectId(req.body["user_id"])));
-        
-        // await User.findOneAndUpdate(
-        //     { _id: mongoose.Types.ObjectId(req.body["user_id"]) },
-        //     { $push: { posts: newPostSchema["_id"] } }
-        // )
         await newModelSchema.save();
         return res.status(201).json({ newModelSchema })
     } catch (error) {
@@ -73,4 +67,17 @@ export const getModels = async (req, res) => {
         console.log(e)
         res.status(500).send()
       }
+}
+
+
+export const removeModel = async (req, res ) => {
+    console.log("removing model")
+    try {
+        const {id} = req.params;
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No model with id: ${id}`);
+        await Model.findByIdAndRemove(id);
+        res.json({ message: "model deleted "})
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
 }

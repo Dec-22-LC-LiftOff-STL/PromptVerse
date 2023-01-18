@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Resizer from "react-image-file-resizer";
 import { useNavigate } from "react-router-dom";
 import { Cookies } from "react-cookie";
-import { createNewModel, getModelWithId, updateOldModel } from "../../actions/ModelActions";
+import { createNewModel, getModelWithId, updateOldModel, removeModelWithId } from "../../actions/ModelActions";
 import { useParams } from "react-router-dom";
 
 
@@ -94,6 +94,18 @@ const CreateModelPage = ( { type } ) => {
     }
 
 
+    const delete_model = async () => { 
+        try {
+            var data = removeModelWithId(id)
+            console.log(data)
+            navigate("/")
+            window.location.reload()
+        } catch (error) {
+            
+        }
+    }
+
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -147,6 +159,22 @@ const CreateModelPage = ( { type } ) => {
     return (
         <form onSubmit={handleSubmit} className=" bg-slate-800 text-white shadow-md rounded-md px-8 pt-6 pb-8 mb-4 w-full lg:w-[700px]">
             
+
+            <input type="checkbox" id="my-modal" className="modal-toggle" />
+            <div className="modal">
+                <div className="modal-box">
+                        <h3 className="font-bold text-lg text-center">Are you sure you want to delete this model?</h3>
+                        <div className="modal-action">
+                        <div className=" w-full justify-center gap-4 flex">
+                            <label onClick={() => delete_model()} htmlFor="my-modal" className="btn btn-outline btn-error">Yes</label>
+                            <label htmlFor="my-modal" className="btn btn-outline btn-success">No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
             {type === "CreateModel" &&
                 <h1 className=" text-center font-sans text-xl mt-1"> Create Model
                 </h1>
@@ -272,7 +300,10 @@ const CreateModelPage = ( { type } ) => {
                 </div>
             } */}
 
-            <div className="flex items-center justify-center w-full md:w-auto"> 
+            <div className="flex items-center flex-col gap-4 justify-center w-full md:w-auto"> 
+                {type === "EditModel" && 
+                    <label htmlFor="my-modal" className="btn btn-outline btn-error w-full md:w-auto">Delete Model</label>
+                }
                 {type === "EditModel" && 
                     <button className="btn btn-outline btn-success w-full md:w-auto"> Update </button>
                 }

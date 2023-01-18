@@ -98,19 +98,20 @@ const ModelsPage = ( {type, search_value} ) => {
                 {models.map((data, index) => (
                     <div className="hero md:w-[90%] bg-base-200 rounded-md">
 
-                            <div className="hero-content flex-col lg:flex-row">
+                            <div className="hero-content flex-col lg:flex-row md:justify-between w-full">
                                 <img src={data.image} alt={data._id} className="max-w-sm rounded-lg shadow-2xl" />
-                            <div>
 
-                            <h2 class="card-title mt-[-10px] truncate text-ellipsis w-auto opacity-80">{data.name}</h2>
-                            <p className="py-6">{data.description}</p>
-                                <div className=" flex gap-4">
-                                    <button onClick={() => navigate("/model/"+data["_id"])} className="btn btn-primary">Details</button>
-                                    { userData?.["_id"] === data["user_id"] && 
-                                        <button onClick={() => navigate("/EditModel/"+data["_id"])} className="btn btn-error">Edit</button>
-                                    }
+ 
+                                <div className=" w-full">
+                                    <h2 class="card-title mt-[-10px] truncate text-ellipsis w-auto opacity-80">{data.name}</h2>
+                                    <p className="py-6">{data.description}</p>
+                                    <div className=" flex gap-4">
+                                        <button onClick={() => navigate("/model/"+data["_id"])} className="btn btn-primary">Details</button>
+                                            { userData?.["_id"] === data["user_id"] && 
+                                                <button onClick={() => navigate("/EditModel/"+data["_id"])} className="btn btn-error text-white">Edit</button>
+                                            }
+                                    </div>
                                 </div>
-                            </div>
 
                         </div>
                     </div>

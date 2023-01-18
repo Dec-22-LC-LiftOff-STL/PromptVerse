@@ -35,7 +35,7 @@ export async function getModelWithId(id) {
     }
   }
 
-  
+
   export async function getModels(id) {
     try {
         const { data } = await api.fetchModels(id);
@@ -43,5 +43,16 @@ export async function getModelWithId(id) {
         return data
     } catch (error) {
         console.log(error)
+    }
+  }
+
+
+  export async function removeModelWithId(id) {
+    try {
+        const { data } = await api.removeModelWithId(id)
+        return data
+    } catch (error) {
+        console.log(error)
+        return error
     }
   }
