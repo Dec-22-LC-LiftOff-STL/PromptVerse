@@ -38,16 +38,28 @@ export const CreatePost = async (req, res) => {
 
 export const getPosts = async (req, res) => { 
     try {
-        console.log(req.body)
+        // console.log(req.body)
         const skip = req.body["skip"] && /^\d+$/.test(req.body["skip"]) ? Number(req.body["skip"]) : 0
 
-        if (req.body["search"] !== "") {
-            var todos = await Post.find({ $text: { $search: req.body["search"] } }, undefined, { skip, limit: 20 }).sort('_id')
+        if (req.body["type"] == "collection") {
+            var posts = await Post.find({ in_boards: { $in: [req.body["search"]] } }, undefined, { skip, limit: 20 }) //.sort('_id')
         }
         else {
-            var todos = await Post.find({}, undefined, { skip, limit: 20 }).sort('_id')
+            if (req.body["search"] !== "") {
+                var posts = await Post.find({ $text: { $search: req.body["search"] } }, undefined, { skip, limit: 20 }).sort('_id')
+            }
+            else {
+                var posts = await Post.find({}, undefined, { skip, limit: 20 }).sort('_id')
+            }
         }
-        res.send(todos)
+
+        // 63bdbc33697d3ff75d3293b9
+        // 63c72a654255d90d4e0e6892
+        // 63c72a654255d90d4e0e6892
+        // 63c72a654255d90d4e0e6892
+
+
+        res.send(posts)
       } catch (e) {
         console.log(e)
         res.status(500).send()

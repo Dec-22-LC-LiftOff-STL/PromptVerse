@@ -15,7 +15,7 @@ const router = express.Router();
 
 export const signup = async (req, res) => {
     const { email, password } = req.body
-    console.log(req.body)
+    console.log(req.body, "creating user")
     const UserModel = req.body;
     const newUserSchema = new UserSchema(UserModel)
 
@@ -87,7 +87,7 @@ export const updateUser = async (req, res) => {
 
 export const GetUserFromId = async (req, res) => { 
 
-    console.log(req.params)
+    console.log(req.params, "getting user from id")
     try {
         const { id } = req.params
         if (!await UserSchema.findById(id));

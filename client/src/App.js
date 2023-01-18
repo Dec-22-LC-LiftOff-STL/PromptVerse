@@ -13,6 +13,7 @@ import ModelDetailsPage from './components/Ui/ModelDetailsPage';
 import ModelsPage from './components/Ui/ModelsPage';
 import HomePage from './components/Ui/HomePage';
 import CreateCollectionPage from './components/Ui/CreateCollectionPage';
+import CollectionsDetailsPage from './components/Ui/CollectionDetailsPage';
 
 
 function App() {
@@ -34,9 +35,10 @@ function App() {
           <Route path="/model/:id" element={<ModelDetailsPage /> } />
 
 
+          <Route path="/collection/:id" element={<CollectionsDetailsPage /> } />
           <Route path="/CreateCollection" element={<CreateCollectionPage type="CreateCollection" />} />
+          <Route path="/EditCollection/:id" element={<CreateCollectionPage type="EditCollection" />} />
  
-
 
           <Route path="/CreatePost" element={<Postpage type="CreatePost" data={CookieFunctions} />} />
           <Route path="/EditPost/:id" element={<Postpage type="EditPost" data={CookieFunctions} />} />

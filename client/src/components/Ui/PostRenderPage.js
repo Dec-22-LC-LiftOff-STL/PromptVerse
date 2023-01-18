@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from "react";
 import { useCookies, Cookies } from 'react-cookie';
 import { getPosts } from "../../actions/PostActions";
+import { getCollections } from "../../actions/CollectionActions";
 import { Masonry } from "@mui/lab";
 import { useNavigate } from "react-router-dom";
 import EditIcon from '@mui/icons-material/Edit';
+import Post from "./post";
+import { updateOldPost } from "../../actions/PostActions.js";
 
 
 const loadImages = (images) => {
@@ -34,7 +37,8 @@ const PostRenderPage = ( {type, search_value} ) => {
     const navigate = useNavigate()
     const [search, setsearch] = useState(search_value);
     const [searchResultsFound, setSearchResultsFound] = useState(false)
-    
+    const [collectionsData, setCollections] = useState([])
+    const [currentPost, setCurrentPost] = useState(undefined)
 
 
     const update_posts = () => {
@@ -42,16 +46,18 @@ const PostRenderPage = ( {type, search_value} ) => {
         //LoadMorePosts()
     }
 
+
     const searchPosts = () => {
         setPosts([])
         setSkip(0)
         SearchPosts()
+
     }
 
     // const [stackGrid, setStackGrid] = useState();
     const LoadMorePosts = async () => { 
         try {
-            var data = await getPosts({"skip":skip,"search": search})
+            var data = await getPosts({"skip":skip,"search": search, "type": type})
             console.log(data)
             if (data.length >= 1) {
                 setPosts([...posts, ...loadImages(data)])
@@ -60,16 +66,74 @@ const PostRenderPage = ( {type, search_value} ) => {
             else {
                 setSearchResultsFound(true)
             }
+
+            if (userData !== undefined) {
+                var collections = await getCollections({"skip":0, "search": userData["_id"]})
+                if (collections.length >= 1) {
+                    setCollections(collections)
+                    console.log(collectionsData)
+                }
+                else {
+                    setCollections([])
+                }
             }
+
+            }
+
+            
         catch (e) {
   
+        }
+    }
+
+    const remove_post_from_board = async (board_id) => {
+
+        if (currentPost !== undefined ) {
+            if (currentPost["in_boards"].includes(board_id)) {
+                const newList = currentPost["in_boards"].filter((item) => item !== board_id);
+                currentPost["in_boards"] = newList
+            }
+        }
+
+        try {
+            var data = await updateOldPost(currentPost)
+            setCurrentPost(data)
+            if (type === "collection") {
+                searchPosts()
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+    const add_post_to_board = async (board_id) => {
+
+        if (currentPost !== undefined && "in_boards" in currentPost ) {
+            if (!currentPost["in_boards"].includes(board_id)) {
+                currentPost["in_boards"].push(board_id)
+            }
+
+        }
+        else {
+            if (!currentPost["in_boards"].includes(board_id)) {
+                currentPost["in_boards"] = [board_id]
+            }
+        }
+        console.log(currentPost)
+
+        try {
+            var data = await updateOldPost(currentPost)
+            setCurrentPost(data)
+        } catch (error) {
+            console.log(error)
         }
     }
 
 
     const SearchPosts = async () => {
         try {
-            var data = await getPosts({"skip":skip,"search": search})
+            var data = await getPosts({"skip":skip,"search": search, "type": type})
             console.log(data)
             if (data.length >= 1) {
                 setPosts(data)
@@ -78,8 +142,10 @@ const PostRenderPage = ( {type, search_value} ) => {
             else {
                 setSearchResultsFound(true)
                 setPosts([])
+            } 
             }
-            }
+
+            
         catch (e) {
   
         }
@@ -98,7 +164,47 @@ const PostRenderPage = ( {type, search_value} ) => {
 
     return (
         <>
-        
+
+        <input type="checkbox" id="my-modal-6" className="modal-toggle" />
+            <div className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box flex flex-col justify-center items-center">
+
+                    <h1 className=" text-2xl mt-[-10px] mb-[-10px]">Collections</h1>
+                    <div className=" divider"></div>
+
+                     {collectionsData.length >= 1 && 
+                        <> 
+                        <div className=" flex flex-col">
+                            {collectionsData.map((data, index) => (
+                                <div key={index} className=" flex items-center gap-2">
+                                    <h1 className=" truncate overflow-hidden font-bold max-w-[100px]  md:max-w-[400px]">{data["name"]}</h1>
+                                    <button onClick={() => navigate('/collection/'+data["_id"])} className=" btn btn-sm btn-primary ml-auto">View</button>
+                                    { currentPost?.["in_boards"].includes(data["_id"]) &&
+                                        <button onClick={() => remove_post_from_board(data["_id"])} className=" btn btn-sm btn-error text-white"> Remove </button>
+                                    }
+
+                                    { !currentPost?.["in_boards"].includes(data["_id"]) &&
+                                        <button onClick={() => add_post_to_board(data["_id"])} className=" btn btn-sm btn-secondary"> Add </button>
+                                    }
+
+                                </div>
+                            ))}
+                         </div>
+                        </>
+                     }
+
+              
+                <button onClick={() => navigate('/CreateCollection')} className=" btn btn-sm btn-primary mt-6"> Create Collection  </button>
+               
+
+                <div className="modal-action">
+                    <label htmlFor="my-modal-6" className="btn">Close</label>
+                </div>
+
+                </div>
+            </div>
+
+
         {type === "homepage" &&
             <div className=" w-full flex flex-col justify-center items-center gap-3 mb-10">
                 <input onKeyUp={handleKeyDown} className=" input input-bordered w-[95%] md:w-[50%] shadow-md"  onChange={(e) => setsearch(e.target.value)}/>
@@ -111,16 +217,7 @@ const PostRenderPage = ( {type, search_value} ) => {
         {posts.length >= 1 && 
             <Masonry columns={{ xs: 1, sm: 2, md: 4, lg: 6, xl: 8}} spacing={1}>
                 {posts.map((data, index) => (
-                    <div sx={ data.height } key={data["_id"]}  class="z-0 card card-compact w-96 bg-base-100 shadow-xl transition duration-75 ease-in-out hover:-translate-y-1">
-                            { userData?.["_id"] === data["user_id"] &&
-                                <EditIcon onClick={() => navigate("/EditPost/"+data["_id"])} className="ml-2 mt-2 cursor-pointer w-5 rounded-md bg-none absolute hover:opacity-100 opacity-60 rounded-empty"/> 
-                            }
-                            <figure><img className=" cursor-pointer rounded-md" onClick={() => navigate(`/post/${data._id}`)} src={data.image} alt={index} /></figure>
-                            <div class="card-body mb-[-10px]">
-                                <h2 class="card-title mt-[-10px] truncate text-ellipsis w-auto opacity-100">{data.title}</h2>
-                                <p className="mt-[-10px] truncate text-ellipsis opacity-80">{data.promptUsed}</p>
-                            </div>
-                    </div>
+                    <Post data={data} userData={userData} setCurrentPost={setCurrentPost}/>
                 ))}
             </Masonry>
         }
@@ -132,17 +229,20 @@ const PostRenderPage = ( {type, search_value} ) => {
         }
 
         {searchResultsFound === true &&
-        <div class="alert alert-error shadow-lg md:w-[50%] mt-5">
-            <div>
-            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            {type === "homepage" &&
-                <span>No Results Found</span>
-            }
-            {type === "profile" &&
-                <span>No Posts Available.</span>
-            }
+            <div class="alert alert-error shadow-lg md:w-[50%] mt-5">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    {type === "homepage" &&
+                        <span>No Results Found</span>
+                    }
+                    {type === "profile" &&
+                        <span>No Posts Available.</span>
+                    }
+                    {type === "collection" &&
+                        <span>No Posts Found. </span>
+                    }
+                </div>
             </div>
-        </div>
         }
 
         { (posts.length >= 1 && searchResultsFound === false) &&

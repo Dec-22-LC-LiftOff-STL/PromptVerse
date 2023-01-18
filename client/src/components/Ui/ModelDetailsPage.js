@@ -120,7 +120,10 @@ const ModelDetailsPage = () => {
 
 
                 <div className=" flex flex-col gap-2 w-full">
-                <h1 className=" font-bold">{model.name}
+                    <h1 className=" font-bold">{model.name}
+                    { postUser !== undefined &&
+                        <h2 className=" font-thin mt-2">by <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button></h2>
+                    }
                     { userData?.["_id"] === model["user_id"] &&
                         <button onClick={() => navigate("/EditModel/"+model["_id"])} className=" ml-2 cursor-pointer btn-sm btn-outline rounded-md">Edit Model</button>
                     } 

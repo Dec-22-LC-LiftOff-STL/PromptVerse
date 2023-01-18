@@ -10,7 +10,8 @@ const postSchema = mongoose.Schema({
     steps: Number,
     seed: Number,
     user_id: String,
-    model_id: String
+    model_id: String,
+    in_boards: Array
 })
 
 

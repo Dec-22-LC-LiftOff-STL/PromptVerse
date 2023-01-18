@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PostRenderPage from "./PostRenderPage";
 import ModelsPage from "./ModelsPage";
+import CollectionsPage from "./CollectionsPage";
 
 
 const HomePage = () => {
@@ -27,6 +28,10 @@ const HomePage = () => {
 
             { navState === "models" &&
                 <ModelsPage type="homepage" search_value={""}/>
+            }
+
+            { navState === "collections" &&
+                <CollectionsPage type="homepage" search_value={""}/>
             }
 
 

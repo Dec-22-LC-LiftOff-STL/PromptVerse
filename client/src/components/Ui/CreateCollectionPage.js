@@ -25,6 +25,8 @@ const CreateCollectionPage = ( { type } ) => {
 
 
     useEffect(() => { 
+        console.log(id)
+
         if (!cookies.get("user_token")) {
             navigate("/")
         }
@@ -33,10 +35,14 @@ const CreateCollectionPage = ( { type } ) => {
 
 
     const GetCollection = async (event) => {
+
+        console.log(id)
+
         const data = await getCollectionWithId(id)
         if (!('response' in data)) {
             if (data !== []) {
                 setCollection(data)
+                setImage(data["image"])
                 if (data["user_id"] !== userData["_id"]) {
                     navigate("/")
                 }

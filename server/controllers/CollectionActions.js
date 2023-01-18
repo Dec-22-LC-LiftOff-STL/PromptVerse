@@ -34,6 +34,7 @@ export const CreateCollection = async (req, res) => {
 export const getCollectionWithId = async (req, res) => {
     try {
         const { id } = req.params
+        console.log(id)
         if (!await Collection.findById(id));
         const collection = await Collection.findById(id);
         res.json(collection);

@@ -34,7 +34,8 @@ const Postpage = ( { type } ) => {
         "steps": 0,
         "seed": -1,
         "user_id": cookies.get("user_data")["_id"],
-        "model_id": ""
+        "model_id": "",
+        "in_boards": []
     });
 
 

@@ -4,6 +4,7 @@ import { getUserWithId } from "../../actions/UserActions";
 import { useNavigate } from "react-router-dom";
 import Homepage from "../Ui/PostRenderPage";
 import ModelsPage from "../Ui/ModelsPage";
+import CollectionsPage from "../Ui/CollectionsPage";
 
 
 const ProfilePage = () => {
@@ -47,7 +48,7 @@ const ProfilePage = () => {
 
                 <form className="btn-group">
                     <input onClick={() => setNavState("posts")} defaultChecked type="radio" value="posts" name="options" data-title="Posts" className="btn"/>
-                    <input onClick={() => setNavState("collections")} defaultChecked type="radio" value="collections" name="options" data-title="Collections" className="btn"/>
+                    <input onClick={() => setNavState("collections")} type="radio" value="collections" name="options" data-title="Collections" className="btn"/>
                     <input onClick={() => setNavState("models")}  type="radio" value="models" name="options" data-title="Models" className="btn" />
                 </form>
 
@@ -65,12 +66,14 @@ const ProfilePage = () => {
                 </>
                 }
 
-
+                { (navState === "collections" && profileUser !== undefined) &&
+                    <CollectionsPage type="profile" search_value={""}/>
+                }
 
             </div>
         }
         { profileUser === undefined &&
-            <div className=" w-100% h-screen flexjustify-center">
+            <div className=" w-100% h-screen flex justify-center">
             <button class="btn loading mt-10">loading</button>
         </div>
         }

@@ -37,9 +37,11 @@ const CreateModelPage = ( { type } ) => {
 
     const GetModel = async (event) => {
         const data = await getModelWithId(id)
+        console.log(data)
         if (!('response' in data)) {
             if (data !== []) {
                 setModel(data)
+                setImage(data["image"])
                 if (data["user_id"] !== userData["_id"]) {
                     navigate("/")
                 }
