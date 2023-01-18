@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Resizer from "react-image-file-resizer";
 import { useNavigate } from "react-router-dom";
 import { Cookies } from "react-cookie";
-import { getCollectionWithId, createNewCollection, updateOldCollection } from "../../actions/CollectionActions";
+import { getCollectionWithId, createNewCollection, updateOldCollection, removeCollectionWithId } from "../../actions/CollectionActions";
 import { useParams } from "react-router-dom";
 
 
@@ -58,6 +58,19 @@ const CreateCollectionPage = ( { type } ) => {
         }
         }
     }
+
+
+    const delete_collection = async () => { 
+        try {
+            var data = removeCollectionWithId(id)
+            console.log(data)
+            navigate("/")
+            window.location.reload()
+        } catch (error) {
+            
+        }
+    }
+
 
     const remove_image = () => {
         setImage(undefined)
@@ -135,6 +148,22 @@ const CreateCollectionPage = ( { type } ) => {
     return (
         <form onSubmit={handleSubmit} className=" bg-slate-800 text-white shadow-md rounded-md px-8 pt-6 pb-8 mb-4 w-full lg:w-[700px]">
             
+
+            <input type="checkbox" id="my-modal" className="modal-toggle" />
+            <div className="modal">
+                <div className="modal-box">
+
+                        <h3 className="font-bold text-lg text-center">Are you sure you want to delete this collection?</h3>
+                        <div className="modal-action">
+                        <div className=" w-full justify-center gap-4 flex">
+                            <label onClick={() => delete_collection()} htmlFor="my-modal" className="btn btn-outline btn-error">Yes</label>
+                            <label htmlFor="my-modal" className="btn btn-outline btn-success">No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             {type === "CreateCollection" &&
                 <h1 className=" text-center font-sans text-xl mt-1"> Create Collection
                 </h1>
@@ -222,10 +251,15 @@ const CreateCollectionPage = ( { type } ) => {
             }
 
 
-            <div className="flex items-center justify-center w-full md:w-auto"> 
+            <div className="flex items-center justify-center flex-col gap-4 w-full md:w-auto"> 
+                {type === "EditCollection" && 
+                    <label htmlFor="my-modal" className="btn btn-outline btn-error w-full md:w-auto">Delete Collection</label>
+                }
+
                 {type === "EditCollection" && 
                     <button className="btn btn-outline btn-success w-full md:w-auto"> Update </button>
                 }
+
                 {type === "CreateCollection" && 
                     <button className="btn btn-outline btn-success w-full md:w-auto"> Share </button>
                 }

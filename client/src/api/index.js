@@ -28,6 +28,7 @@ export const fetchCollection = (search) => API.post("/collections/getCollections
 export const createCollection = (newModel) =>  API.post("/collections/createCollections", newModel);
 export const updateCollection = (updatedModel) =>  API.post("/collections/EditCollections", updatedModel);
 export const fetchCollectionWithId = (id) => API.post(`${"/collections/getCollection"}/${id}`);
+export const removeCollectionWithId = (id) => API.post(`${"collections/removeCollection"}/${id}`);
 
 
 export const createPost = (newPost) =>  API.post("/posts/createPost", newPost);

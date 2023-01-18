@@ -45,3 +45,14 @@ export async function getCollectionWithId(id) {
         console.log(error)
     }
   }
+
+
+  export async function removeCollectionWithId(id) {
+    try {
+        const { data } = await api.removeCollectionWithId(id)
+        return data
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+  }

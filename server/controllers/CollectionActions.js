@@ -1,5 +1,5 @@
 import Collection from "../models/Collection.js";
-
+import mongoose from 'mongoose';
 
 
 export const updateCollection = async (req, res) => {
@@ -66,4 +66,17 @@ export const getCollections = async (req, res) => {
         console.log(e)
         res.status(500).send()
       }
+}
+
+
+export const removeCollection = async (req, res ) => {
+    console.log("removing collection")
+    try {
+        const {id} = req.params;
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No collection with id: ${id}`);
+        await Collection.findByIdAndRemove(id);
+        res.json({ message: "collection deleted "})
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
 }
