@@ -3,18 +3,22 @@ import User from "../models/User.js";
 
 
 export const updateModel = async (req, res) => {
-    const { _id } = req.body;
+    try {
+        const { _id } = req.body;
 
-    console.log(" updating Model ")
-
-    if (!await Model.findById(_id));
-
-    await Model.findByIdAndUpdate(_id, req.body, { new: true });
-
-    const updated = await Model.findById(_id)
-
-    res.json(updated);
-
+        console.log(" updating Model ")
+    
+        if (!await Model.findById(_id));
+    
+        await Model.findByIdAndUpdate(_id, req.body, { new: true });
+    
+        const updated = await Model.findById(_id)
+    
+        res.json(updated);
+        
+    } catch (error) {
+        return res.status(409).json({ message: error.message })
+    }
 }
 
 
@@ -58,7 +62,7 @@ export const getModels = async (req, res) => {
             var models = await Model.find({ $text: { $search: req.body["search"] } }, undefined, { skip, limit: 20 }).sort('_id')
         }
 
-        
+
         else {
             var models = await Model.find({}, undefined, { skip, limit: 20 }).sort('_id')
         }

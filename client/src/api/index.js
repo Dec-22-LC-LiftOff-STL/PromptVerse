@@ -34,4 +34,4 @@ export const createPost = (newPost) =>  API.post("/posts/createPost", newPost);
 export const updatePost = (updatedPost) =>  API.post("/posts/EditPost", updatedPost);
 export const fetchPosts = (search) => API.post("/posts/getPosts", search);
 export const fetchPostWithId = (id) => API.post(`${"posts/getPost"}/${id}`);
-
+export const removePostWithId = (id) => API.post(`${"posts/removePost"}/${id}`);

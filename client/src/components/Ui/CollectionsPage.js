@@ -135,7 +135,7 @@ const CollectionsPage = ( {type, search_value} ) => {
                 <span>No Results Found</span>
             }
             {type === "profile" &&
-                <span>No models Available.</span>
+                <span>No Results Found.</span>
             }
             </div>
         </div>

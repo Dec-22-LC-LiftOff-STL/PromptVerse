@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {useNavigate} from 'react-router-dom';
 import { Cookies } from 'react-cookie';
-import { createNewPost, updateOldPost } from "../../actions/PostActions.js";
+import { createNewPost, updateOldPost, removePostWithId } from "../../actions/PostActions.js";
 import Resizer from "react-image-file-resizer";
 import { useParams } from "react-router-dom";
 import { getPostWithId } from "../../actions/PostActions.js";
@@ -83,13 +83,25 @@ const Postpage = ( { type } ) => {
         catch (e) {
   
         }
-      }
+    }
+    
+    
+    const delete_post = async () => { 
+        try {
+            var data = removePostWithId(id)
+            console.log(data)
+            navigate("/")
+            window.location.reload()
+        } catch (error) {
+            
+        }
+    }
 
-      const remove_image = () => {
+
+    const remove_image = () => {
         setImage(undefined)
         setPostData({ ...post, image: undefined})
     }
-
 
 
     const handleImageUpload = async (e) => {
@@ -216,6 +228,22 @@ const Postpage = ( { type } ) => {
                     </div> 
                 </>
             }
+
+
+            <input type="checkbox" id="my-modal" className="modal-toggle" />
+                <div className="modal">
+                    <div className="modal-box">
+
+                        <h3 className="font-bold text-lg text-center">Are you sure you want to delete this post?</h3>
+                        <div className="modal-action">
+                        <div className=" w-full justify-center gap-4 flex">
+                            <label onClick={() => delete_post()} htmlFor="my-modal" className="btn btn-outline btn-error">Yes</label>
+                            <label htmlFor="my-modal" className="btn btn-outline btn-success">No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             {ImageCheck !== true && 
                 <div className="alert alert-error shadow-lg mb-4 mt-4">
@@ -374,16 +402,10 @@ const Postpage = ( { type } ) => {
             </div>
 
 
-            {/* <div  className="form-control w-full flex justify-center mb-5">
-            <label className="label">
-                <span className="label-text">Upload Image</span>
-            </label>
-                <input type="file" 
-                onChange={(e) => handleImageUpload(e)}
-                className="file-input file-input-bordered w-auto max-w-xs file-input-primary" />
-            </div> */}
-
-            <div className="flex items-center justify-center w-full md:w-auto"> 
+            <div className="flex items-center flex-col gap-3 justify-center w-full md:w-auto"> 
+                {type === "EditPost" && 
+                    <label htmlFor="my-modal" className="btn btn-outline btn-error w-full md:w-auto">Delete Post</label>
+                }
                 {type === "EditPost" && 
                     <button className="btn btn-outline btn-success w-full md:w-auto"> Update </button>
                 }
@@ -391,6 +413,7 @@ const Postpage = ( { type } ) => {
                     <button className="btn btn-outline btn-success w-full md:w-auto"> Share </button>
                 }
             </div>
+
         </form>
     );
 };

@@ -3,17 +3,21 @@ import Collection from "../models/Collection.js";
 
 
 export const updateCollection = async (req, res) => {
-    const { _id } = req.body;
+    try {
+        const { _id } = req.body;
 
-    console.log(" updating Collection ")
+        console.log(" updating Collection ")
 
-    if (!await Collection.findById(_id));
+        if (!await Collection.findById(_id));
 
-    await Collection.findByIdAndUpdate(_id, req.body, { new: true });
+        await Collection.findByIdAndUpdate(_id, req.body, { new: true });
 
-    const updated = await Collection.findById(_id)
+        const updated = await Collection.findById(_id)
 
-    res.json(updated);
+        res.json(updated);
+    } catch (error) {
+        return res.status(409).json({ message: error.message })
+    }
 
 }
 

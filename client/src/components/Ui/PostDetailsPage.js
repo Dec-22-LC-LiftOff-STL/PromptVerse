@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom'
-import { getPostWithId } from "../../actions/PostActions";
+import { getPostWithId, removePostWithId } from "../../actions/PostActions";
 import { useNavigate } from "react-router-dom";
 import { getUserWithId } from "../../actions/UserActions";
 import EditIcon from '@mui/icons-material/Edit';
@@ -67,37 +67,50 @@ const PostDetailsPage = () => {
     const userData = cookies.get('user_data');
 
 
-    const GetPosts = async (event) => {
-        const data = await getPostWithId(id)
-        if (!('response' in data)) {
-            if (data !== []) {
-                // console.log(data)
-                setPost(data)
-                
-                const user_Data = await getUserWithId(data["user_id"])
-                if (!('response' in user_Data)) {
-                    if (user_Data !== undefined) {
-                        setPostUser(user_Data)
-                    }
-                }
-                else {
-                    navigate("/")
-                }
-
-                const model_data = await getModelWithId(data["model_id"])
-                if (!('response' in model_data)) {
-                    if (model_data !== undefined) {
-                        setPostModel(model_data)
-                    }
-                }
-            }
-
-        }
-        else {
-            console.log("here")
+    const delete_post = async () => { 
+        try {
+            var data = removePostWithId(id)
+            console.log(data)
             navigate("/")
+            window.location.reload()
+        } catch (error) {
+            
         }
-        
+    }
+
+
+    const GetPosts = async (event) => {
+        if (id !== undefined) {
+            const data = await getPostWithId(id)
+            if (!('response' in data)) {
+                if (data !== []) {
+                    // console.log(data)
+                    setPost(data)
+                    
+                    const user_Data = await getUserWithId(data["user_id"])
+                    if (!('response' in user_Data)) {
+                        if (user_Data !== undefined) {
+                            setPostUser(user_Data)
+                        }
+                    }
+                    else {
+                        navigate("/")
+                    }
+    
+                    const model_data = await getModelWithId(data["model_id"])
+                    if (!('response' in model_data)) {
+                        if (model_data !== undefined) {
+                            setPostModel(model_data)
+                        }
+                    }
+                }
+    
+            }
+            else {
+                console.log("here")
+                navigate("/")
+            }
+        }
     }
 
     useEffect(() => {
@@ -107,6 +120,21 @@ const PostDetailsPage = () => {
 
     return (
         <>
+
+
+    <input type="checkbox" id="my-modal" className="modal-toggle" />
+            <div className="modal">
+                <div className="modal-box">
+
+                    <h3 className="font-bold text-lg text-center">Are you sure you want to delete this post?</h3>
+                    <div className="modal-action">
+                    <div className=" w-full justify-center gap-4 flex">
+                        <label onClick={() => delete_post()} htmlFor="my-modal" className="btn btn-outline btn-error">Yes</label>
+                        <label htmlFor="my-modal" className="btn btn-outline btn-success">No</label>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         {post.length !== [] && 
             <div className=" flex gap-5 bg-slate-800 p-10 rounded-md items-top flex-col mb-20">
@@ -132,12 +160,17 @@ const PostDetailsPage = () => {
                     <h1 className=" font-bold">{post.title}</h1>
 
                     { postUser !== undefined &&
-                        <div className=" flex items-center flex-row">
-                            
+                        <div className=" flex md:items-center flex-col md:flex-row gap-2">
+
                             <h2 className=" font-thin">by <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button></h2>
 
                             { userData?.["_id"] === post["user_id"] &&
-                                <button onClick={() => navigate("/EditPost/"+post["_id"])} className=" ml-2 cursor-pointer btn-sm btn-outline rounded-md">Edit Post</button>
+                                <> 
+                                <div className=" flex justify-start md:ml-3 md:items-center items-start">
+                                    <button onClick={() => navigate("/EditPost/"+post["_id"])} className="btn mr-2 btn-primary  cursor-pointer btn-sm btn-outline rounded-md">Edit Post</button>
+                                    <label htmlFor="my-modal" className="btn btn-sm btn-outline btn-error">Delete Post</label>
+                                </div>
+                                </>
                             } 
 
                         </div>

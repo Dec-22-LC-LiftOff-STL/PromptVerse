@@ -78,18 +78,28 @@ export const getPostWithId = async (req, res) => {
     }
 }
 
+export const removePost = async (req, res ) => {
+    try {
+        const {id} = req.params;
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+        await Post.findByIdAndRemove(id);
+        res.json({ message: "post deleted "})
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
 
 export const updatePost = async (req, res) => {
-    const { _id } = req.body;
+    try {
+    
+        const { _id } = req.body;
+        console.log(" updating post ")
+        if (!await Post.findById(_id));
+        await Post.findByIdAndUpdate(_id, req.body, { new: true });
+        const updated = await Post.findById(_id)
+        res.json(updated);
 
-    console.log(" updating post ")
-
-    if (!await Post.findById(_id));
-
-    await Post.findByIdAndUpdate(_id, req.body, { new: true });
-
-    const updated = await Post.findById(_id)
-
-    res.json(updated);
-
+    } catch (error) {
+        return res.status(409).json({ message: error.message })
+    }
 }

@@ -1,5 +1,5 @@
 import express from "express";
-import { CreatePost, getPosts, getPostWithId, updatePost } from "../controllers/PostActions.js";
+import { CreatePost, getPosts, getPostWithId, updatePost, removePost } from "../controllers/PostActions.js";
 import requireAuth from "../middleware/auth.js";
 
 
@@ -14,6 +14,9 @@ router.post('/EditPost', requireAuth, updatePost);
 
 
 router.post('/getPost/:id', getPostWithId)
+
+
+router.post('/removePost/:id', removePost)
 
 
 // router.post('/updateUser', requireAuth, updateUser);

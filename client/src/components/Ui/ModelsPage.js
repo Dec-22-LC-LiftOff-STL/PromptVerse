@@ -97,7 +97,7 @@ const ModelsPage = ( {type, search_value} ) => {
 
                 {models.map((data, index) => (
                     <div className="hero md:w-[90%] bg-base-200 rounded-md">
-                        
+
                             <div className="hero-content flex-col lg:flex-row">
                                 <img src={data.image} alt={data._id} className="max-w-sm rounded-lg shadow-2xl" />
                             <div>
@@ -133,7 +133,7 @@ const ModelsPage = ( {type, search_value} ) => {
                 <span>No Results Found</span>
             }
             {type === "profile" &&
-                <span>No models Available.</span>
+                <span>No Models Found.</span>
             }
             </div>
         </div>
