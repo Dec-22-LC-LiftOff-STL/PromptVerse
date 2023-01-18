@@ -43,7 +43,6 @@ const Postpage = ( { type } ) => {
         if (!cookies.get("user_token")) {
             navigate("/")
         }
-        console.log("here")
         GetPost()
         GetModels()
     }, [update])
@@ -51,18 +50,25 @@ const Postpage = ( { type } ) => {
 
 
     const GetPost = async (event) => {
-        const data = await getPostWithId(id)
-        if (!('response' in data)) {
-            if (data !== []) {
-                setPostData(data)
-                if (data["user_id"] !== userData["_id"]) {
-                    navigate("/")
+        if (id !== undefined) {
+            const data = await getPostWithId(id)
+
+            if (data?.["code"] === "ERR_BAD_REQUEST") {
+                navigate("/")
+            }
+
+            if (!('response' in data)) {
+                if (data !== []) {
+                    setPostData(data)
+                    setImage(data["image"])
+                    if (data["user_id"] !== userData["_id"]) {
+                        navigate("/")
+                    }
+            }
+            else {
+                navigate("/")
                 }
-        }
-        else {
-            console.log("here")
-            navigate("/")
-        }
+            }
         }
     }
 
@@ -79,17 +85,20 @@ const Postpage = ( { type } ) => {
         }
       }
 
+      const remove_image = () => {
+        setImage(undefined)
+        setPostData({ ...post, image: undefined})
+    }
+
 
 
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
-        // const base64 = await convertToBase64(file);
-        //console.log(base64)
         const image = await resizeFile(file);
-        // console.log(image)
         setImage(image);
         setPostData({ ...post, image: image})
     };
+
 
       const resizeFile = (file) =>
         new Promise((resolve) => {
@@ -115,6 +124,14 @@ const Postpage = ( { type } ) => {
         event.preventDefault();
 
 
+        if (post["image"] !== "") {
+            setImageCheck(true)
+        }
+        else {
+            setImageCheck(false)
+            return
+        }
+
         if (post["title"] !== "") {
             setTitleCheck(true)
         }
@@ -123,6 +140,7 @@ const Postpage = ( { type } ) => {
             return
         }
 
+
         if (post["promptUsed"] !== "") {
             setPromptCheck(true)
         }
@@ -130,7 +148,7 @@ const Postpage = ( { type } ) => {
             setPromptCheck(false)
             return
         }
-
+        
 
         if (post["model_id"] !== "") {
             setModelCheck(true)
@@ -139,7 +157,7 @@ const Postpage = ( { type } ) => {
             setModelCheck(false)
             return
         }
-        console.log("here")
+
 
         if (!post["steps"] <= 0) {
             setStepsCheck(true)
@@ -149,13 +167,6 @@ const Postpage = ( { type } ) => {
             return
         }
 
-        if (post["image"] !== "") {
-            setImageCheck(true)
-        }
-        else {
-            setImageCheck(false)
-            return
-        }
 
         if (type === "CreatePost") {
             var data = await createNewPost(post)
@@ -184,8 +195,34 @@ const Postpage = ( { type } ) => {
             <div class="divider"></div> 
             
             {image !== undefined &&
-                <div  className=" w-full flex justify-center mb-5">
+                <div  className=" w-full flex flex-col justify-center mb-5">
                     <img src={image} alt="preview_image" />
+                    <button onClick={() => remove_image()} className=" btn btn-sm btn-primary mt-2"> Remove </button>
+                </div>
+            }
+
+            {image === undefined &&
+                <>
+                    <span className="label-text">Post Image</span>
+                    <div class="flex items-center justify-center w-full mt-2">
+                        <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                            </div>
+                            <input onChange={(e) => handleImageUpload(e)} id="dropzone-file" type="file" class="hidden" />
+                        </label>
+                    </div> 
+                </>
+            }
+
+            {ImageCheck !== true && 
+                <div className="alert alert-error shadow-lg mb-4 mt-4">
+                    <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span>Pick an image to upload.</span>
+                    </div>
                 </div>
             }
 
@@ -262,7 +299,7 @@ const Postpage = ( { type } ) => {
             </div>
 
 
-            {PromptCheck !== true && 
+            {modelCheck !== true && 
                 <div className="alert alert-error shadow-lg">
                     <div>
                     <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -337,24 +374,14 @@ const Postpage = ( { type } ) => {
             </div>
 
 
-            <div  className="form-control w-full flex justify-center mb-5">
+            {/* <div  className="form-control w-full flex justify-center mb-5">
             <label className="label">
                 <span className="label-text">Upload Image</span>
             </label>
                 <input type="file" 
                 onChange={(e) => handleImageUpload(e)}
                 className="file-input file-input-bordered w-auto max-w-xs file-input-primary" />
-            </div>
-
-
-            {ImageCheck !== true && 
-            <div className="alert alert-error shadow-lg mb-4">
-                <div>
-                <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span>Pick an image to upload.</span>
-                </div>
-            </div>
-            }
+            </div> */}
 
             <div className="flex items-center justify-center w-full md:w-auto"> 
                 {type === "EditPost" && 

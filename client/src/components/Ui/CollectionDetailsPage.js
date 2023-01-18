@@ -57,6 +57,13 @@ const CollectionsDetailsPage = () => {
             <>
 
             <div className=" flex justify-center items-center flex-col w-[100%]">
+
+                <div className="avatar">
+                    <div className="w-24 rounded-full">
+                        <img alt={collection["_id"]} src={collection["image"]}/>
+                    </div>
+                </div>
+
                 <h1 className=" text-3xl"> {collection["name"]} </h1>
                 { postUser !== undefined &&
                     <h2 className=" font-thin mt-2">by <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button></h2>

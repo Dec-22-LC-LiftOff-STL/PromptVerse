@@ -36,9 +36,13 @@ const CreateCollectionPage = ( { type } ) => {
 
     const GetCollection = async (event) => {
 
-        console.log(id)
 
         const data = await getCollectionWithId(id)
+        
+        if (data?.["code"] === "ERR_BAD_REQUEST" && id !== undefined) {
+            navigate("/")
+        }
+
         if (!('response' in data)) {
             if (data !== []) {
                 setCollection(data)
@@ -48,6 +52,7 @@ const CreateCollectionPage = ( { type } ) => {
                 }
         }
         else {
+            console.log(data)
             console.log("here")
             navigate("/")
         }
@@ -80,10 +85,7 @@ const CreateCollectionPage = ( { type } ) => {
 
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
-        // const base64 = await convertToBase64(file);
-        //console.log(base64)
         const image = await resizeFile(file);
-        // console.log(image)
         setImage(image);
         setCollection({ ...Collection, image: image})
     };

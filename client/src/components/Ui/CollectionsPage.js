@@ -92,26 +92,31 @@ const CollectionsPage = ( {type, search_value} ) => {
           }
 
         {models.length >= 1 && 
-            <div className=" flex flex-col gap-5 justify-center items-center">
+            <div className=" flex flex-col gap-5 justify-center items-center w-full md:w-auto">
                 {models.map((data, index) => (
-                    <div sx={ data.height }  className="hero md:w-[90%] bg-base-200 rounded-md">
-                            <div className="hero-content flex-col lg:flex-row-reverse">
-                                <img src={data.image} alt={data._id} className="max-w-sm rounded-lg shadow-2xl" />
-                            <div>
+                    <div className="hero min-h-auto bg-base-200 rounded-md shadow-md">
+                        <div className="hero-content flex-col lg:flex-row-reverse md:justify-between w-full ">
 
-                            <h2 class="card-title mt-[-10px] truncate text-ellipsis w-auto opacity-80">{data.name}</h2>
-                            <p className="py-6">{data.description}</p>
-                            <div className=" flex gap-4">
-                                <button onClick={() => navigate("/collection/"+data["_id"])} className="btn btn-primary">View</button>
+
+                            {/* <div class="avatar">
+                                <div class="w-[300px] rounded">
+                                <img src={data["image"]} alt={data["_id"]} />
+                                </div>
+                            </div> */}
+
+                            <img src={data["image"]} alt={data["_id"]} className="max-w-sm rounded-lg shadow-2xl max-h-[300px]" />
+
+                            <div className=" w-full">
+                                <h1 className="text-2xl font-bold">{data["name"]}</h1>
+                                <p className="py-6 opacity-80">{data.description}</p>
+                                <button onClick={() => navigate("/collection/"+data["_id"])} className="btn btn-primary mr-4">View</button>
                                 { userData?.["_id"] === data["user_id"] && 
                                     <button onClick={() => navigate("/EditCollection/"+data["_id"])} className="btn btn-error">Edit</button>
                                 }
                             </div>
-                            </div>
+                            
                         </div>
                     </div>
-
-
                 ))}
                 </div>
         }

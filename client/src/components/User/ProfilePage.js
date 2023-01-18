@@ -67,7 +67,7 @@ const ProfilePage = () => {
                 }
 
                 { (navState === "collections" && profileUser !== undefined) &&
-                    <CollectionsPage type="profile" search_value={""}/>
+                    <CollectionsPage type="profile" search_value={profileUser._id}/>
                 }
 
             </div>

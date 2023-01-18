@@ -129,15 +129,18 @@ const PostDetailsPage = () => {
 
                 <div className=" flex flex-col gap-2 w-full">
 
-
-                    <h1 className=" font-bold">{post.title}
-                        { userData?.["_id"] === post["user_id"] &&
-                            <button onClick={() => navigate("/EditPost/"+post["_id"])} className=" ml-2 cursor-pointer btn-sm btn-outline rounded-md">Edit Post</button>
-                        } 
-                    </h1>
+                    <h1 className=" font-bold">{post.title}</h1>
 
                     { postUser !== undefined &&
-                        <h2 className=" font-thin">by <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button></h2>
+                        <div className=" flex items-center flex-row">
+                            
+                            <h2 className=" font-thin">by <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button></h2>
+
+                            { userData?.["_id"] === post["user_id"] &&
+                                <button onClick={() => navigate("/EditPost/"+post["_id"])} className=" ml-2 cursor-pointer btn-sm btn-outline rounded-md">Edit Post</button>
+                            } 
+
+                        </div>
                     }
 
                     <div className=" divider mb-[-5px] mt-[-5px]"></div>

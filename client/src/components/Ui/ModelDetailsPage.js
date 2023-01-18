@@ -120,14 +120,17 @@ const ModelDetailsPage = () => {
 
 
                 <div className=" flex flex-col gap-2 w-full">
-                    <h1 className=" font-bold">{model.name}
-                    { postUser !== undefined &&
-                        <h2 className=" font-thin mt-2">by <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button></h2>
-                    }
-                    { userData?.["_id"] === model["user_id"] &&
-                        <button onClick={() => navigate("/EditModel/"+model["_id"])} className=" ml-2 cursor-pointer btn-sm btn-outline rounded-md">Edit Model</button>
-                    } 
-                    </h1>
+                    <h1 className="font-bold">{model.name}</h1>
+
+                    <div className=" flex items-center flex-row">
+                        { postUser !== undefined &&
+                            <h2 className=" font-thin">by <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button></h2>
+                        }
+                        { userData?.["_id"] === model["user_id"] &&
+                            <button onClick={() => navigate("/EditModel/"+model["_id"])} className=" ml-2 cursor-pointer btn-sm btn-outline rounded-md self-center">Edit Model</button>
+                        } 
+                    </div>
+
                     <ClipboardCopy type="textarea display" name="Description" copyText={model.description} />
                     <ClipboardCopy type="input" name="Download Link" copyText={model.download_link} />
                 </div>
