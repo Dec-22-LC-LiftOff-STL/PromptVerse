@@ -85,7 +85,7 @@ const Postpage = ( { type } ) => {
         }
     }
     
-    
+
     const delete_post = async () => { 
         try {
             var data = removePostWithId(id)
@@ -217,11 +217,11 @@ const Postpage = ( { type } ) => {
                 <>
                     <span className="label-text">Post Image</span>
                     <div class="flex items-center justify-center w-full mt-2">
-                        <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                        <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer  hover:bg-bray-800 bg-gray-700  border-gray-600 hover:border-gray-500 hover:bg-gray-600">
                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
                                 <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                                <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                                <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                                <p class="text-xs text-gray-400">SVG, PNG, JPG</p>
                             </div>
                             <input onChange={(e) => handleImageUpload(e)} id="dropzone-file" type="file" class="hidden" />
                         </label>
@@ -404,13 +404,13 @@ const Postpage = ( { type } ) => {
 
             <div className="flex items-center flex-col gap-3 justify-center w-full md:w-auto"> 
                 {type === "EditPost" && 
-                    <label htmlFor="my-modal" className="btn btn-outline btn-error w-full md:w-auto">Delete Post</label>
+                    <label htmlFor="my-modal" className="btn btn-error w-full md:w-auto">Delete Post</label>
                 }
                 {type === "EditPost" && 
-                    <button className="btn btn-outline btn-success w-full md:w-auto"> Update </button>
+                    <button className="btn btn-primary w-full md:w-auto"> Update </button>
                 }
                 {type === "CreatePost" && 
-                    <button className="btn btn-outline btn-success w-full md:w-auto"> Share </button>
+                    <button className="btn btn-primary w-full md:w-auto"> Share </button>
                 }
             </div>
 

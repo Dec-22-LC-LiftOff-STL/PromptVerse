@@ -167,8 +167,8 @@ const PostDetailsPage = () => {
                             { userData?.["_id"] === post["user_id"] &&
                                 <> 
                                 <div className=" flex justify-start md:ml-3 md:items-center items-start">
-                                    <button onClick={() => navigate("/EditPost/"+post["_id"])} className="btn mr-2 btn-primary  cursor-pointer btn-sm btn-outline rounded-md">Edit Post</button>
-                                    <label htmlFor="my-modal" className="btn btn-sm btn-outline btn-error">Delete Post</label>
+                                    <button onClick={() => navigate("/EditPost/"+post["_id"])} className="btn mr-2 btn-primary  cursor-pointer btn-sm rounded-md">Edit Post</button>
+                                    <label htmlFor="my-modal" className="btn btn-sm text-white btn-error">Delete Post</label>
                                 </div>
                                 </>
                             } 

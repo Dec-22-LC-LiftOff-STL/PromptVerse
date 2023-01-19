@@ -142,7 +142,7 @@ const CollectionsPage = ( {type, search_value} ) => {
         }
 
         { (models.length >= 1 && searchResultsFound === false) &&
-            <button className=" btn btn-outline btn-success mb-6 mt-2 w-full md:w-[200px]" onClick={() => update_models()}>Load More</button>
+            <button className=" btn btn-primary mb-6 mt-2 w-full md:w-[200px]" onClick={() => update_models()}>Load More</button>
         }
     </>
     );

@@ -63,7 +63,7 @@ const ModelDetailsPage = () => {
     const cookies = new Cookies();
     const userData = cookies.get('user_data');
 
-    
+
     const delete_model = async () => { 
         try {
             var data = removeModelWithId(id)
@@ -158,8 +158,8 @@ const ModelDetailsPage = () => {
                         { userData?.["_id"] === model["user_id"] &&
                             <> 
                             <div className=" flex justify-start md:items-center items-start">
-                                <button onClick={() => navigate("/EditModel/"+model["_id"])} className="btn mr-2 btn-primary  cursor-pointer btn-sm btn-outline rounded-md">Edit Model</button>
-                                <label htmlFor="my-modal" className="btn btn-sm btn-outline btn-error">Delete Model</label>
+                                <button onClick={() => navigate("/EditModel/"+model["_id"])} className="btn mr-2 btn-primary  cursor-pointer btn-sm rounded-md">Edit Model</button>
+                                <label htmlFor="my-modal" className="btn btn-sm btn-error">Delete Model</label>
                             </div>
                             </>
                         } 
