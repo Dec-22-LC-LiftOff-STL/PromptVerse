@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getUserWithId } from "../../actions/UserActions";
 import { Cookies } from 'react-cookie';
 import { getModelWithId, removeModelWithId } from "../../actions/ModelActions";
+import PostRenderPage from "./PostRenderPage";
 
 
 function ClipboardCopy({ type, name, copyText }) {
@@ -36,14 +37,20 @@ function ClipboardCopy({ type, name, copyText }) {
             <label class="label">
                 <span class="label-text">{name}</span>
             </label>
+
             {(type === "textarea" || type === "textarea display") && 
-                <textarea className=" textarea textarea-bordered " type="text" value={copyText} readOnly />
+                <div class="mt-1 px-4 py-3 outline outline-1 outline-slate-600 bg-slate-600 rounded-xl shadow bg-opacity-50 font-light flex flex-col space-y-5">
+                    <p>
+                        <p class="rounded hover:bg-opacity-40 cursor-pointer " value={copyText}>{copyText}   </p>
+                    </p>
+                </div>
             }
+
             {(type === "input" || type === "Display")  && 
-                <input className=" input input-bordered" type="text" value={copyText} readOnly />
+                <input className="bg-slate-600 bg-opacity-50 input input-bordered" type="text" value={copyText} readOnly />
             }
              {(type !== "Display" && type !== "textarea display") && 
-                <button className=" btn" onClick={handleCopyClick}>
+                <button className=" btn mt-2 btn-sm" onClick={handleCopyClick}>
                      <span>{isCopied ? 'Copied!' : 'Copy'}</span>
                 </button>
              }
@@ -121,8 +128,8 @@ const ModelDetailsPage = () => {
                         <h3 className="font-bold text-lg text-center">Are you sure you want to delete this model?</h3>
                         <div className="modal-action">
                         <div className=" w-full justify-center gap-4 flex">
-                            <label onClick={() => delete_model()} htmlFor="my-modal" className="btn btn-outline btn-error">Yes</label>
-                            <label htmlFor="my-modal" className="btn btn-outline btn-success">No</label>
+                            <label onClick={() => delete_model()} htmlFor="my-modal" className="btn text-white btn-error">Yes</label>
+                            <label htmlFor="my-modal" className="btn btn-primary">No</label>
                         </div>
                     </div>
                 </div>
@@ -130,11 +137,10 @@ const ModelDetailsPage = () => {
 
 
         {model.length !== [] && 
-            <div className=" flex gap-5 bg-slate-800 p-10 rounded-md items-top md:flex-row flex-col mb-20">
+            <div className=" flex gap-5 bg-slate-800 p-10 rounded-md items-top md:flex-row flex-col mb-10">
 
                 <div className=" md:w-[125%]">
                     <label for="my-modal-5" ><img className="rounded-md object-fill block cursor-pointer" alt={model.name} src={model.image}/></label>
-
                 </div>
                 
                 <input type="checkbox" id="my-modal-5" className="modal-toggle" />
@@ -148,8 +154,8 @@ const ModelDetailsPage = () => {
                 </div>
 
 
-                <div className=" flex flex-col gap-2 w-full">
-                    <h1 className="font-bold">{model.name}</h1>
+                <div className="prose flex flex-col gap-2 w-full">
+                    <h1 className="font-bold font-Title truncate text-2xl md:text-3xl">{model.name}</h1>
 
                     <div className=" flex md:items-start flex-col gap-2">
                         { postUser !== undefined &&
@@ -158,8 +164,8 @@ const ModelDetailsPage = () => {
                         { userData?.["_id"] === model["user_id"] &&
                             <> 
                             <div className=" flex justify-start md:items-center items-start">
-                                <button onClick={() => navigate("/EditModel/"+model["_id"])} className="btn mr-2 btn-primary  cursor-pointer btn-sm rounded-md">Edit Model</button>
-                                <label htmlFor="my-modal" className="btn btn-sm btn-error">Delete Model</label>
+                                <button onClick={() => navigate("/EditModel/"+model["_id"])} className="btn mr-2 btn-primary font-normal cursor-pointer btn-sm rounded-md">Edit</button>
+                                <label htmlFor="my-modal" className="btn btn-sm text-white hover:opacity-80 btn-error text-sm font-normal">Delete</label>
                             </div>
                             </>
                         } 
@@ -178,7 +184,19 @@ const ModelDetailsPage = () => {
                 <button class="btn loading mt-10">loading</button>
             </div>
         }
-        
+
+
+        {(model.length !== [] && model["_id"] !== undefined) && 
+            <>
+                <h1 className=" font-Title text-2xl md:text-5xl mb-4"> Images Created With This Model</h1>
+                <PostRenderPage type="profile" search_value={model["_id"]}/>
+            </>
+        }
+
+        {/* //63ace75679fa82b0686efdc4
+             63bf3807bbf89875a2c2da63
+            63ace75679fa82b0686efdc4 */}
+
         </>
     )
 }

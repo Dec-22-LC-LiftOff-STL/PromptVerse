@@ -113,9 +113,13 @@ const CollectionsDetailsPage = () => {
                 <div className=" divider w-[90%] self-center"> </div>
             </div>
             
+
             {collection?.["_id"] && 
+            <>
                 <PostRenderPage type="collection" search_value={collection["_id"]}/>
+            </>
             }
+
             </>
         }
 

@@ -38,14 +38,20 @@ function ClipboardCopy({ type, name, copyText }) {
             <label class="label">
                 <span class="label-text">{name}</span>
             </label>
-            {type === "textarea" && 
-                <textarea className=" textarea textarea-bordered h-auto" type="text" value={copyText} readOnly />
+
+            {(type === "textarea" || type === "textarea display") && 
+                <div class="px-3 py-3 outline outline-1 outline-slate-600 bg-slate-600 rounded-xl shadow bg-opacity-50 font-light flex flex-col space-y-5">
+                    <p>
+                        <p class="rounded hover:bg-opacity-40 cursor-pointer " value={copyText}>{copyText}   </p>
+                    </p>
+                </div>
             }
+
             {(type === "input" || type === "Display")  && 
-                <input className=" input input-bordered" type="text" value={copyText} readOnly />
+                <input className="bg-slate-600 bg-opacity-50 input input-bordered" type="text" value={copyText} readOnly />
             }
-             {type !== "Display" && 
-                <button className=" btn btn-sm mt-2" onClick={handleCopyClick}>
+             {(type !== "Display" && type !== "textarea display") && 
+                <button className="mt-1 btn btn-sm" onClick={handleCopyClick}>
                      <span>{isCopied ? 'Copied!' : 'Copy'}</span>
                 </button>
              }
@@ -155,9 +161,9 @@ const PostDetailsPage = () => {
                 </div>
 
 
-                <div className=" flex flex-col gap-2 w-full">
+                <div className=" flex flex-col gap-2 w-full max-w-full">
 
-                    <h1 className=" font-bold">{post.title}</h1>
+                    <h1 className=" font-bold truncate text-ellipsis overflow-hidden font-Title text-2xl md:text-4xl max-w-screen">{post.title}</h1>
 
                     { postUser !== undefined &&
                         <div className=" flex md:items-center flex-col md:flex-row gap-2">
@@ -167,8 +173,8 @@ const PostDetailsPage = () => {
                             { userData?.["_id"] === post["user_id"] &&
                                 <> 
                                 <div className=" flex justify-start md:ml-3 md:items-center items-start">
-                                    <button onClick={() => navigate("/EditPost/"+post["_id"])} className="btn mr-2 btn-primary  cursor-pointer btn-sm rounded-md">Edit Post</button>
-                                    <label htmlFor="my-modal" className="btn btn-sm text-white btn-error">Delete Post</label>
+                                    <button onClick={() => navigate("/EditPost/"+post["_id"])} className="btn mr-2 btn-primary  cursor-pointer btn-sm rounded-md">Edit</button>
+                                    <label htmlFor="my-modal" className="btn btn-sm text-white btn-error hover:opacity-80">Delete</label>
                                 </div>
                                 </>
                             } 
@@ -180,21 +186,25 @@ const PostDetailsPage = () => {
 
                     <div className=" flex flex-col md:flex-row justify-between">
 
-                        <div className=" flex flex-col">
+                        <div className=" flex flex-col md:w-[50%]">
                             <ClipboardCopy type="textarea" name="Prompt" copyText={post.promptUsed} />
                             {post.Negative_Prompt !== "" &&
                                 <ClipboardCopy type="textarea" name="Negative Prompt" copyText={post.Negative_Prompt} />
                             }
                         </div>
                         
-                        <div className=" flex flex-col">
+                        <div className=" flex flex-col md:w-[45%]">
                             {postModel !== undefined &&
                                 <>
                                     <ClipboardCopy type="Display" name="Model Used" copyText={postModel.name} />
                                     <button onClick={() => navigate("/model/"+postModel._id)} className=" btn btn-sm w-full"> view model</button>
                                 </>
                             }
-                            <ClipboardCopy type="input" name="Seed" copyText={post.seed} />
+
+                            { post["seed"] !== -1 &&
+                                <ClipboardCopy type="input" name="Seed" copyText={post.seed} />
+                            }
+
                             <ClipboardCopy type="Display" name="Sampler" copyText={post.sampler} />
                         </div>
 

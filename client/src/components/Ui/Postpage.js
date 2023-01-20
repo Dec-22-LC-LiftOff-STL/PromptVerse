@@ -196,12 +196,12 @@ const Postpage = ( { type } ) => {
         <form onSubmit={handleSubmit} className=" bg-slate-800 text-white shadow-md rounded-md px-8 pt-6 pb-8 mb-4 w-full lg:w-[700px]">
             
             {type === "CreatePost" &&
-                <h1 className=" text-center font-sans text-xl mt-1"> Create Post
+                <h1 className=" text-center text-4xl mt-1 font-Title"> Create Post
                 </h1>
             }
 
             {type === "EditPost" &&
-                <h1 className=" text-center font-sans text-xl mt-1"> Edit Post </h1>
+                <h1 className=" text-center text-4xl mt-1 font-Title"> Edit Post </h1>
             }
         
             <div class="divider"></div> 
@@ -237,8 +237,8 @@ const Postpage = ( { type } ) => {
                         <h3 className="font-bold text-lg text-center">Are you sure you want to delete this post?</h3>
                         <div className="modal-action">
                         <div className=" w-full justify-center gap-4 flex">
-                            <label onClick={() => delete_post()} htmlFor="my-modal" className="btn btn-outline btn-error">Yes</label>
-                            <label htmlFor="my-modal" className="btn btn-outline btn-success">No</label>
+                            <label onClick={() => delete_post()} htmlFor="my-modal" className="btn text-white hover:opacity-80 btn-error">Yes</label>
+                            <label htmlFor="my-modal" className="btn btn-primary">No</label>
                         </div>
                     </div>
                 </div>
@@ -309,7 +309,7 @@ const Postpage = ( { type } ) => {
             </div>
 
             <div className="flex justify-start md:form-control w-auto">
-                <div className=" md:form-control">
+                <div className=" md:form-control w-full">
                     <label className="label">
                         <span className="label-text">Model Used</span>
                     </label>
@@ -338,7 +338,7 @@ const Postpage = ( { type } ) => {
 
 
             <div className="flex justify-start md:form-control w-auto">
-                <div className=" md:form-control">
+                <div className=" md:form-control w-full">
                     <label className="label">
                         <span className="label-text">Sampler Used</span>
                     </label>
@@ -404,7 +404,7 @@ const Postpage = ( { type } ) => {
 
             <div className="flex items-center flex-col gap-3 justify-center w-full md:w-auto"> 
                 {type === "EditPost" && 
-                    <label htmlFor="my-modal" className="btn btn-error w-full md:w-auto">Delete Post</label>
+                    <label htmlFor="my-modal" className="btn btn-error w-full text-white hover:opacity-80 md:w-auto">Delete Post</label>
                 }
                 {type === "EditPost" && 
                     <button className="btn btn-primary w-full md:w-auto"> Update </button>

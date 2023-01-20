@@ -176,7 +176,7 @@ const CreateModelPage = ( { type } ) => {
 
 
             {type === "CreateModel" &&
-                <h1 className=" text-center font-sans text-xl mt-1"> Create Model
+                <h1 className=" text-center  mt-1 font-Title text-4xl"> Create Model
                 </h1>
             }
 

@@ -156,7 +156,7 @@ const CreateCollectionPage = ( { type } ) => {
                         <h3 className="font-bold text-lg text-center">Are you sure you want to delete this collection?</h3>
                         <div className="modal-action">
                         <div className=" w-full justify-center gap-4 flex">
-                            <label onClick={() => delete_collection()} htmlFor="my-modal" className="btn text-white btn-error">Yes</label>
+                            <label onClick={() => delete_collection()} htmlFor="my-modal" className="btn text-white hover:opacity-80 btn-error">Yes</label>
                             <label htmlFor="my-modal" className="btn btn-primary">No</label>
                         </div>
                     </div>
@@ -165,12 +165,12 @@ const CreateCollectionPage = ( { type } ) => {
 
 
             {type === "CreateCollection" &&
-                <h1 className=" text-center font-sans text-xl mt-1"> Create Collection
+                <h1 className=" text-center font-Title text-4xl mt-1"> Create Collection
                 </h1>
             }
 
             {type === "EditCollection" &&
-                <h1 className=" text-center font-sans text-xl mt-1"> Edit Collection </h1>
+                <h1 className=" text-center font-Title text-4xl mt-1"> Edit Collection </h1>
             }
         
             <div class="divider"></div> 
@@ -253,7 +253,7 @@ const CreateCollectionPage = ( { type } ) => {
 
             <div className="flex items-center justify-center flex-col gap-4 w-full md:w-auto"> 
                 {type === "EditCollection" && 
-                    <label htmlFor="my-modal" className="btn btn-error text-white w-full md:w-auto">Delete Collection</label>
+                    <label htmlFor="my-modal" className="btn btn-error text-white hover:opacity-80  w-full md:w-auto">Delete Collection</label>
                 }
 
                 {type === "EditCollection" && 

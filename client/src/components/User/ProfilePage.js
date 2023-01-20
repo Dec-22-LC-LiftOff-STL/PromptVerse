@@ -51,6 +51,7 @@ const ProfilePage = () => {
                     <input onClick={() => setNavState("collections")} type="radio" value="collections" name="options" data-title="Collections" className="btn"/>
                     <input onClick={() => setNavState("models")}  type="radio" value="models" name="options" data-title="Models" className="btn" />
                 </form>
+                
 
 
                 { (navState === "posts" && profileUser !== undefined) &&
