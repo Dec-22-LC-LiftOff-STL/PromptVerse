@@ -38,7 +38,7 @@ export const CreatePost = async (req, res) => {
 
 export const getPosts = async (req, res) => { 
     try {
-        // console.log(req.body)
+        console.log(req.body)
         const skip = req.body["skip"] && /^\d+$/.test(req.body["skip"]) ? Number(req.body["skip"]) : 0
 
         if (req.body["type"] == "collection") {

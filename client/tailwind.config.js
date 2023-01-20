@@ -7,6 +7,7 @@ module.exports = {
     extend: {},
     fontFamily: {
       'sans': ['Helvetica', 'Arial', 'sans-serif'],
+      'Title': ['Amatic SC', 'cursive']
     }
   },
   plugins: [require("daisyui")],

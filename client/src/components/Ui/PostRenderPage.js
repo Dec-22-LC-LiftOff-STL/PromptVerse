@@ -210,12 +210,32 @@ const PostRenderPage = ( {type, search_value} ) => {
 
 
         {type === "homepage" &&
-            <div className=" w-full flex flex-col justify-center items-center gap-3 mb-10">
-                <input onKeyUp={handleKeyDown} className=" input input-bordered w-[95%] md:w-[50%] shadow-md"  onChange={(e) => setsearch(e.target.value)}/>
-                <button onClick={()=>searchPosts()} className= " btn shadow-sm">Search</button>
+        <>
 
+        <div className=" w-full flex flex-col mb-10 justify-center items-center">
+            <div className=" w-[95%] md:w-[50%]">   
+                <div className="relative">
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    <input onKeyUp={handleKeyDown} onChange={(e) => setsearch(e.target.value)} type="search" className="block w-full p-4 pl-10 text-sm text-white input" placeholder="Search Posts" required />
+                </div>
             </div>
-          }
+            <button onClick={()=>searchPosts()} class="text-white w-[95%] mt-5 btn btn-sm btn-primary md:w-[120px]">Search</button>
+        </div>
+        
+        </>
+        }       
+
+
+        {/* //     <div className=" md:w-full w-[80%] flex justify-center items-center gap-3 mb-10">
+        //         <div className="flex p-4 mr-[-20px] bg-slate-700 items-center">
+        //             <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        //         </div>
+        //         <input type="search" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..." required />
+        //         <button type="submit" class="text-white right-2.5 bottom-2.5 btn btn-sm btn-blue">Search</button>
+        //     </div> */}
+   
 
 
         {posts.length >= 1 && 
@@ -250,7 +270,7 @@ const PostRenderPage = ( {type, search_value} ) => {
         }
 
         { (posts.length >= 1 && searchResultsFound === false) &&
-            <button className=" btn btn-primary mt-2 mb-6 w-full md:w-[200px]" onClick={() => update_posts()}>Load More</button>
+            <button className=" btn btn-primary mt-2 mb-6 w-[95%] md:w-[200px]" onClick={() => update_posts()}>Load More</button>
         }
     </>
     );

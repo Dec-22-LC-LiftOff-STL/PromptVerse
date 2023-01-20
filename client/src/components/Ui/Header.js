@@ -31,8 +31,12 @@ const Header = (data) => {
 
 
   return (
-    <div className=" bg-slate-900 w-full text-white p-1 mb-4 flex font-sans font-bold shadow-lg">
-      <h1 onClick={() => goToHomepage()} className="font-bold self-center md:text-2xl cursor-pointer btn btn-ghost normal-case">PromptVerse</h1>
+    <div className=" bg-slate-800 w-full text-white p-1 mb-4 flex font-sans font-bold shadow-lg">
+
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Architects+Daughter&family=Poppins:wght@300&family=Righteous&family=Roboto:wght@300&family=Varela+Round&display=swap" rel="stylesheet"></link>
+        
+
+      <h1 onClick={() => goToHomepage()} className="font-bold text-2xl self-center md:text-3xl font-Title cursor-pointer btn btn-ghost normal-case">PromptVerse</h1>
 
 
       {userData !== undefined && 

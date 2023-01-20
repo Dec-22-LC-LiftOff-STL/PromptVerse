@@ -20,12 +20,12 @@ const Post = ( { data, userData, setCurrentPost } ) => {
                     <label htmlFor="my-modal-6" onClick={() => setCurrentPost(data)} className={" z-10 btn btn-sm btn-primary absolute mt-1 right-1 font-sans font-thin" + ((PostState === false) ? ' invisible' : ' visible')}> Save </label> 
                 }
 
-                <div class="relative overflow-hidden bg-no-repeat bg-cover max-w-xs">
+                <div class="relative overflow-hidden self-center bg-no-repeat bg-cover">
                     <figure><img className=" z-0 cursor-pointer rounded-md hover:scale-110 transition duration-300 ease-in-out" onClick={() => navigate(`/post/${data._id}`)} src={data.image} alt={data._id} /></figure>
                 </div>
 
                 <div class="card-body mb-[-10px]">
-                    <h2 class="card-title mt-[-10px] truncate text-ellipsis w-auto opacity-100">{data.title}</h2>
+                    <h2 class="card-title mt-[-10px] truncate text-ellipsis font-Title text-3xl w-auto opacity-100">{data.title}</h2>
                     <p className="mt-[-10px] truncate text-ellipsis opacity-80">{data.promptUsed}</p>
                 </div>
 

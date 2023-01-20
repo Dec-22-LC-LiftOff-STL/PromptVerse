@@ -25,7 +25,7 @@ function App() {
   var CookieFunctions = {'UserData': userData, "setUserData": setUserData, 'userToken': userToken, "setUserToken": setUserToken}
 
   return (
-    <div className="flex flex-col w-full min-h-screen h-auto gap-5 items-center bg-slate-600">
+    <div className="flex flex-col w-full min-h-screen h-auto gap-5 items-center bg-slate-700">
       <BrowserRouter>
         <Header data={CookieFunctions} />
         <Routes>

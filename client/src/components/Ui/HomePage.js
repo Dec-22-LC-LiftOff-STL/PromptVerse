@@ -11,8 +11,10 @@ const HomePage = () => {
     return (
         <div className=" w-full flex flex-col justify-center items-center gap-2">
 
+            <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Architects+Daughter&family=Poppins:wght@300&family=Righteous&family=Roboto:wght@300&family=Varela+Round&display=swap" rel="stylesheet"></link>
+        
             <div className=" w-full flex flex-col justify-center items-center gap-3">
-                <h1 className=" md:text-xl font-bold">PromptVerse</h1>
+                <h1 className=" md:text-5xl text-3xl font-bold font-Title">PromptVerse</h1>
 
                 <div className="tabs tabs-boxed gap-2 bg-transparent">
                     <button onClick={() => setNavState("posts")} className={"btn-sm rounded-md btn-primary "+ ((navState === "posts") ? 'btn-active' : 'btn-ghost')}>Posts</button>
