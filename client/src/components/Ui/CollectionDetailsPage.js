@@ -100,17 +100,23 @@ const CollectionsDetailsPage = () => {
                 }
 
                 { userData?.["_id"] === collection["user_id"] &&
-                    <div className=" flex md:justify-start md:ml-3 flex-col justify-center items-center gap-2 md:items-center">
-                        <button onClick={() => navigate("/EditCollection/"+collection["_id"])} className="btn mr-2 btn-primary cursor-pointer btn-sm rounded-md">Edit Collection</button>
-                        <label htmlFor="my-modal" className="btn btn-sm btn-error text-white">Delete Collection</label>
+                    <div className=" flex md:justify-start  flex-row justify-center items-center gap-2 md:items-center">
+                        <button onClick={() => navigate("/EditCollection/"+collection["_id"])} className="btn btn-primary cursor-pointer btn-sm rounded-md">Edit</button>
+                        <label htmlFor="my-modal" className="btn btn-sm btn-error hover:opacity-80 text-white">Delete</label>
                     </div>
                 } 
 
-                <div className="form-control w-full md:w-[50%] mt-2">
+                <div class="px-3 py-3 outline outline-1 outline-slate-600 bg-slate-600 rounded-xl shadow bg-opacity-50 font-light flex flex-col space-y-5  w-full md:w-[40%] mt-4">
+                    <p>
+                        <p class="rounded hover:bg-opacity-40 cursor-pointer text-center">{collection["description"]}   </p>
+                    </p>
+                </div>
+
+                {/* <div className="form-control w-full md:w-[50%] mt-2">
                     <textarea className=" bg-slate-700 p-2 rounded-md textarea-bordered h-auto text-center" value={collection["description"]} disabled></textarea>
                 </div>
-                
-                <div className=" divider w-[90%] self-center"> </div>
+                 */}
+                <div className=" divider w-[90%] self-center" />
             </div>
             
 

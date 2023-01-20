@@ -3,7 +3,9 @@ import { Cookies } from 'react-cookie';
 
 
 const cookies = new Cookies();
-const API = axios.create({ baseURL: 'http://localhost:5000', mode: "cors"})
+// const API = axios.create({ baseURL: 'http://localhost:5000', mode: "cors"})
+const API = axios.create({ baseURL: 'https://promptverse.onrender.com', mode: "cors"})
+
 
 API.interceptors.request.use((req) => {
     if (cookies.get('user_token')) {

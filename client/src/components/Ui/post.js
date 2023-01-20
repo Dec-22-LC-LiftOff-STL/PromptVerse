@@ -3,10 +3,14 @@ import { useNavigate } from "react-router-dom";
 import EditIcon from '@mui/icons-material/Edit';
 
 
-const Post = ( { data, userData, setCurrentPost } ) => {
+const Post = ( { type, data, userData, setCurrentPost } ) => {
     const navigate = useNavigate()
     const [PostState, setPostState] = useState(false) 
 
+    const load_post_page = () => {
+        navigate(`/post/${data._id}`)
+        window.location.reload()
+    }
     
     return (
 
@@ -21,7 +25,7 @@ const Post = ( { data, userData, setCurrentPost } ) => {
                 }
 
                 <div class="relative overflow-hidden self-center rounded-t-md bg-no-repeat bg-cover">
-                    <figure><img className=" z-0 cursor-pointer hover:scale-110 transition duration-300 ease-in-out" onClick={() => navigate(`/post/${data._id}`)} src={data.image} alt={data._id} /></figure>
+                    <figure><img className=" z-0 cursor-pointer hover:scale-110 transition duration-300 ease-in-out" onClick={() => load_post_page()} src={data.image} alt={data._id} /></figure>
                 </div>
 
                 {/* bg-slate-600  */}

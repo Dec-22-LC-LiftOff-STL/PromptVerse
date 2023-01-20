@@ -188,8 +188,7 @@ const ModelDetailsPage = () => {
 
         {(model.length !== [] && model["_id"] !== undefined) && 
             <>
-                <h1 className=" font-Title text-2xl md:text-5xl mb-4"> Images Created With This Model</h1>
-                <PostRenderPage type="profile" search_value={model["_id"]}/>
+                <PostRenderPage type="ModelDetails" search_value={model["_id"]}/>
             </>
         }
 

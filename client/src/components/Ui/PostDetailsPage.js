@@ -6,6 +6,7 @@ import { getUserWithId } from "../../actions/UserActions";
 import EditIcon from '@mui/icons-material/Edit';
 import { Cookies } from 'react-cookie';
 import { getModelWithId } from "../../actions/ModelActions";
+import PostRenderPage from "./PostRenderPage";
 
 
 function ClipboardCopy({ type, name, copyText }) {
@@ -102,13 +103,17 @@ const PostDetailsPage = () => {
                     else {
                         navigate("/")
                     }
-    
-                    const model_data = await getModelWithId(data["model_id"])
-                    if (!('response' in model_data)) {
-                        if (model_data !== undefined) {
-                            setPostModel(model_data)
+                    
+                    if (data["model_id"] !== undefined ) {
+                        const model_data = await getModelWithId(data["model_id"])
+                        if (!('response' in model_data)) {
+                            if (model_data !== undefined) {
+                                setPostModel(model_data)
+                            }
                         }
                     }
+
+
                 }
     
             }
@@ -178,7 +183,6 @@ const PostDetailsPage = () => {
                                 </div>
                                 </>
                             } 
-
                         </div>
                     }
 
@@ -221,6 +225,11 @@ const PostDetailsPage = () => {
                 <button class="btn loading mt-10">loading</button>
             </div>
         }
+
+        {(post.length !== [] && post["_id"] !== undefined) && 
+            <PostRenderPage type="PostDetails" post_id={post["_id"]} search_value={(post["promptUsed"].split(" ")[0])}/>
+        }
+
         
         </>
     )
