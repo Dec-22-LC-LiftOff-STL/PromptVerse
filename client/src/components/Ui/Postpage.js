@@ -261,7 +261,7 @@ const Postpage = ( { type } ) => {
                 <input
                 value={post.title}
                 onChange={(e) => setPostData({ ...post, title: e.target.value })}
-                placeholder="Type here" className=" input input-bordered w-full bg-grey" 
+                placeholder="Type here" className=" input input-bordered outline-none w-full bg-grey" 
                 />
             </div>
 

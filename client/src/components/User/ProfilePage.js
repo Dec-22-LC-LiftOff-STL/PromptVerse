@@ -46,12 +46,18 @@ const ProfilePage = () => {
 
                 <h1 className=" text-2xl font-bold">{profileUser.email}</h1>
 
-                <form className="btn-group">
+                {/* <form className="btn-group">
                     <input onClick={() => setNavState("posts")} defaultChecked type="radio" value="posts" name="options" data-title="Posts" className="btn"/>
                     <input onClick={() => setNavState("collections")} type="radio" value="collections" name="options" data-title="Collections" className="btn"/>
                     <input onClick={() => setNavState("models")}  type="radio" value="models" name="options" data-title="Models" className="btn" />
                 </form>
-                
+                 */}
+                 
+                <div className="tabs tabs-boxed gap-2 bg-transparent">
+                    <button onClick={() => setNavState("posts")} className={"btn-sm rounded-md btn-primary "+ ((navState === "posts") ? 'btn-active' : 'btn-ghost')}>Posts</button>
+                    <button onClick={() => setNavState("collections")} className={"btn-sm rounded-md btn-primary "+ ((navState === "collections") ? 'btn-active' : 'btn-ghost')}>Collections</button>
+                    <button onClick={() => setNavState("models")} className={"btn-sm rounded-md btn-primary "+ ((navState === "models") ? 'btn-active' : 'btn-ghost')}>Models</button>
+                </div>
 
 
                 { (navState === "posts" && profileUser !== undefined) &&
