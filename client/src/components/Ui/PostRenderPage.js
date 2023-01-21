@@ -181,14 +181,14 @@ const PostRenderPage = ( {type, search_value, post_id} ) => {
     return (
         <>
 
-        {(type === "ModelDetails" && searchResultsFound === false) &&
+        {(type === "ModelDetails" && searchResultsFound === false && posts?.length >= 1) &&
             <>
             <h1 className=" font-Title text-2xl md:text-5xl"> Images Created With This Model</h1>
             <div className=" w-[90%] divider self-center mb-5" />
             </>
         }
 
-        {(type === "PostDetails" && searchResultsFound === false) &&
+        {(type === "PostDetails" && searchResultsFound === false && posts?.length >= 1) &&
             <>
             <h1 className=" font-Title text-2xl md:text-5xl">Similar Images</h1>
             <div className=" w-[90%] divider self-center mb-5" />
@@ -234,6 +234,7 @@ const PostRenderPage = ( {type, search_value, post_id} ) => {
                 <div className="modal-action">
                     <label htmlFor="my-modal-6" className="btn">Close</label>
                 </div>
+
 
                 </div>
             </div>

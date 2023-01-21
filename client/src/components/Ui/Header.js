@@ -7,14 +7,13 @@ import { Cookies } from 'react-cookie';
 const Header = (data) => {
   const navigate = useNavigate()
   const cookies = new Cookies();
-  var userData = cookies.get('user_data');
+  var userData = cookies.get('user_data', { path: '/' });
   
-  console.log(userData)
 
   const Logout = () => {
-    cookies.remove('user_data');
-    cookies.remove('user_token');
-    userData = cookies.get('user_data');
+    cookies.remove('user_data', { path: '/' });
+    cookies.remove('user_token', { path: '/' });
+    userData = cookies.get('user_data', { path: '/' });
     console.log(userData)
     navigate("/")
   }
@@ -39,7 +38,7 @@ const Header = (data) => {
       <h1 onClick={() => goToHomepage()} className="font-bold text-2xl self-center md:text-3xl font-Title cursor-pointer btn btn-ghost normal-case">PromptVerse</h1>
 
 
-      {userData !== undefined && 
+      {cookies.get('user_data') !== undefined && 
         <div class="dropdown hidden md:inline bg-transparent self-center pt-1">
           <label tabindex="0" className=' self-center'> 
                 <button className=' self-center btn btn-sm btn-ghost'>
@@ -55,12 +54,12 @@ const Header = (data) => {
       }
 
 
-      {userData !== undefined && 
+      {cookies.get('user_data') !== undefined && 
         <button onClick={() => goToProfile()} className='truncate md:visible invisible ml-auto mr-1 max-w-[140px] cursor-pointer text btn btn-ghost normal-case'>{userData["email"]}</button>
       }
 
 
-      {userData !== undefined &&
+      {cookies.get('user_data') !== undefined &&
         <div className=" dropdown dropdown-end">
           <button class=" outline-none btn btn-square btn-ghost mr-1">
             <svg tabIndex={0}  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-7 h-7 stroke-current outline-none"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
@@ -77,12 +76,12 @@ const Header = (data) => {
       }
 
 
-      {userData === undefined && 
+      {cookies.get('user_data') === undefined && 
         <button onClick={() => navigate('/Login')} className=' ml-auto mr-5 cursor-pointer font-serif text btn btn-sm self-center btn-ghost'> Login </button>
       }
 
 
-      {userData === undefined && 
+      {cookies.get('user_data') === undefined && 
         <button onClick={() => navigate('/Sign-Up')} className='cursor-pointer font-serif mr-5 btn btn-sm self-center btn-primary'> Sign Up </button>
       }
 

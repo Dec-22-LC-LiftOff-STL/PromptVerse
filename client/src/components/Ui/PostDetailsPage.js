@@ -147,7 +147,7 @@ const PostDetailsPage = () => {
             </div>
         </div>
 
-        {post.length !== [] && 
+        {(post.length !== [] && post["_id"] !== undefined) && 
             <div className=" flex gap-5 bg-slate-800 p-10 rounded-md items-top flex-col mb-20">
 
                 <div>

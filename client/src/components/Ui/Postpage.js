@@ -182,13 +182,12 @@ const Postpage = ( { type } ) => {
 
         if (type === "CreatePost") {
             var data = await createNewPost(post)
-            console.log("here")
+            navigate("/post/"+id)
         } else {
-            console.log("here")
             var data = await updateOldPost(post)
+            navigate("/post/"+id)
         }
 
-        navigate("/post/"+id)
     };
 
 
