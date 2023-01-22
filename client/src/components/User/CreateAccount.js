@@ -41,8 +41,8 @@ const CreateAccount = () => {
         }
         
         console.log(data)
-        cookies.set('user_data', data["newUserSchema"], { path: '/' });
-        cookies.set('user_token', data["token"], { path: '/' });
+        cookies.set('user_data', data["newUserSchema"], { path: '/', maxAge: 172800 });
+        cookies.set('user_token', data["token"], { path: '/', maxAge: 172800 });
         navigate("/")
     };
 
