@@ -91,18 +91,32 @@ const CollectionsDetailsPage = () => {
                     </div>
                 </div>
 
-                <h1 className=" text-3xl"> {collection["name"]} </h1>
+                <h1 className=" text-3xl mt-1 font-Title md:text-5xl truncate"> {collection["name"]} </h1>
+
                 { postUser !== undefined &&
                    
                     <> 
-                     <h2 className=" font-thin mt-1 mb-2">by <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button></h2>
+                        {/* { postUser["image"]?.length > 0 &&
+                            <div className=" flex gap-3 mt-2 mb-4">
+                                <div className="avatar cursor-pointer">
+                                    <div className="w-8 md:w-10 rounded-full">
+                                        <img onClick={() => navigate(`/Profile/${postUser._id}`)} src={postUser["image"]} alt={collection._id}  />
+                                    </div>
+                                </div>
+                                <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button>
+                            </div>
+                        } */}
+{/* 
+                        { postUser["image"]?.length === 0 && */}
+                        <h2 className=" font-thin mt-1 mb-2">by <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button></h2>
+                        {/* } */}
                     </>
                 }
 
                 { userData?.["_id"] === collection["user_id"] &&
                     <div className=" flex md:justify-start  flex-row justify-center items-center gap-2 md:items-center">
-                        <button onClick={() => navigate("/EditCollection/"+collection["_id"])} className="btn btn-primary cursor-pointer btn-sm rounded-md">Edit</button>
-                        <label htmlFor="my-modal" className="btn btn-sm btn-error hover:opacity-80 text-white">Delete</label>
+                        <button onClick={() => navigate("/EditCollection/"+collection["_id"])} className="btn btn-xs  btn-primary cursor-pointer md:btn-sm rounded-md">Edit</button>
+                        <label htmlFor="my-modal" className="btn btn-xs md:btn-sm btn-error hover:opacity-80 text-white">Delete</label>
                     </div>
                 } 
 

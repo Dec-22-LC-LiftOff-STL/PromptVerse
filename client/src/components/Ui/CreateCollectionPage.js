@@ -192,7 +192,7 @@ const CreateCollectionPage = ( { type } ) => {
                                 <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
                                 <p class="text-xs text-gray-400">SVG, PNG, JPG</p>
                             </div>
-                            <input onChange={(e) => handleImageUpload(e)} id="dropzone-file" type="file" class="hidden" />
+                            <input accept="image/*" onChange={(e) => handleImageUpload(e)} id="dropzone-file" type="file" class="hidden" />
                         </label>
                     </div> 
                 </>
@@ -212,6 +212,7 @@ const CreateCollectionPage = ( { type } ) => {
                     <span className="label-text">Collection Name</span>
                 </label> 
                 <input
+                maxLength={40}
                 value={Collection.name}
                 onChange={(e) => setCollection({ ...Collection, name: e.target.value })}
                 placeholder="Cool Cars" className=" input input-bordered w-full bg-grey" 

@@ -67,6 +67,7 @@ export const getUsers = async (req, res) => {
 }
 
 
+
 export const removeUser = async (req, res ) => {
     try {
         const {id} = req.params;
@@ -79,18 +80,38 @@ export const removeUser = async (req, res ) => {
 }
 
 
+// export const updateUser = async (req, res) => {
+//     try {
+//         console.log("updating user")
+//         const { _id } = req.body;
+//         if (!await UserSchema.findById(_id));
+//         const updatedPost = req.body;
+//         await UserSchema.findByIdAndUpdate(_id, updatedPost, { new: true });
+//         const updated = await UserSchema.findById(_id)
+//         res.json(updated);
+//     } catch (error) {
+//         console.log(error)
+//         res.status(404).json({ message: error.message });
+//     }
+// }
+
 export const updateUser = async (req, res) => {
     try {
-        const { email, password, posts, _id } = req.body;
+    
+        const { _id } = req.body;
+        console.log(" updating user ")
         if (!await UserSchema.findById(_id));
-        const updatedPost = { email, password, posts, _id };
-        await UserSchema.findByIdAndUpdate(_id, updatedPost, { new: true });
+        console.log(" updating user ")
+        await UserSchema.findByIdAndUpdate(_id, req.body, { new: true });
         const updated = await UserSchema.findById(_id)
-        res.json(updated);
+        console.log(" updating user ")
+        return res.json(updated);
+
     } catch (error) {
-        res.status(404).json({ message: error.message });
+        return res.status(409).json({ message: error.message })
     }
 }
+
 
 
 export const GetUserFromId = async (req, res) => { 

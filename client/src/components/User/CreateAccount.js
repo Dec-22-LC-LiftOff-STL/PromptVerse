@@ -9,7 +9,10 @@ const CreateAccount = () => {
     const [user, setUserData] = useState({
         "email": "",
         "password": "",
-        "posts": []
+        "posts": [],
+        "image": "",
+        "bio": "",
+        "display_name": ""
     });
     const [comfirmPassword, setComfirmPassword] = useState({"password": ""})
     const [passwordsMatchCheck, setPasswordsMatchCheck] = useState(false)
@@ -45,6 +48,7 @@ const CreateAccount = () => {
         cookies.set('user_token', data["token"], { path: '/', maxAge: 172800 });
         navigate("/")
     };
+    
 
 
 

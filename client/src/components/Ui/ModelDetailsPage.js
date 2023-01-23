@@ -158,9 +158,27 @@ const ModelDetailsPage = () => {
                     <h1 className="font-bold font-Title truncate text-2xl md:text-3xl">{model.name}</h1>
 
                     <div className=" flex md:items-start flex-col gap-2">
-                        { postUser !== undefined &&
-                            <h2 className=" font-thin">by <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button></h2>
-                        }
+
+                    { postUser !== undefined &&
+                        <> 
+                            { postUser["image"]?.length > 0 &&
+                                <div className=" flex gap-3 mt-0 mb-1">
+                                    <div className="avatar cursor-pointer">
+                                        <div className=" w-8 md:w-10 rounded-full">
+                                            <img onClick={() => navigate(`/Profile/${postUser._id}`)} src={postUser["image"]} alt={model._id}  />
+                                        </div>
+                                    </div>
+                                    <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button>
+                                </div>
+                            }
+
+                            { postUser["image"]?.length === 0 &&
+                                <h2 className=" font-thin mt-1 mb-2">by <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button></h2>
+                            }
+
+                        </>
+                    }
+
                         { userData?.["_id"] === model["user_id"] &&
                             <> 
                             <div className=" flex justify-start md:items-center items-start">

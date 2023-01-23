@@ -18,6 +18,7 @@ API.interceptors.request.use((req) => {
 export const createUser = (newUser) =>  API.post("/users/signup", newUser);
 export const ApiUserLogin = (UserLogin) =>  API.post("/users/Login", UserLogin);
 export const fetchUserWithId = (id) => API.post(`${"users/getUser"}/${id}`);
+export const updateUser = (updatedUser) =>  API.post("/users/updateUser", updatedUser);
 
 
 export const fetchModels = (search) => API.post("/models/getModels", search);
@@ -39,3 +40,4 @@ export const updatePost = (updatedPost) =>  API.post("/posts/EditPost", updatedP
 export const fetchPosts = (search) => API.post("/posts/getPosts", search);
 export const fetchPostWithId = (id) => API.post(`${"posts/getPost"}/${id}`);
 export const removePostWithId = (id) => API.post(`${"posts/removePost"}/${id}`);
+export const getRandomPost = () => API.post(`${"posts/getRandomPost"}`);

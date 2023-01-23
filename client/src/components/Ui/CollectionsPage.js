@@ -86,7 +86,7 @@ const CollectionsPage = ( {type, search_value} ) => {
         
         {type === "homepage" &&
             <div className=" w-full flex flex-col mb-10 justify-center items-center">
-            <div className=" w-[95%] md:w-[50%]">   
+            <div className=" w-[95%] md:w-[50%] max-w-[700px]">   
                 <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
@@ -99,7 +99,7 @@ const CollectionsPage = ( {type, search_value} ) => {
           }
 
         {models.length >= 1 && 
-            <div className=" flex flex-col gap-5 justify-center items-center w-full md:w-auto">
+            <div className=" flex flex-col gap-5 justify-center items-center max-w-screen w-full md:w-auto">
                 {models.map((data, index) => (
                     <div className="hero min-h-auto bg-base-200 rounded-md shadow-md">
                         <div className="hero-content flex-col lg:flex-row-reverse md:justify-between w-full ">
@@ -111,9 +111,9 @@ const CollectionsPage = ( {type, search_value} ) => {
                                 </div>
                             </div> */}
 
-                            <img src={data["image"]} alt={data["_id"]} className="max-w-sm rounded-lg shadow-2xl max-h-[300px]" />
+                            <img src={data["image"]} alt={data["_id"]} className="w-sm max-w-screen rounded-lg shadow-2xl max-h-[300px]" />
 
-                            <div className=" w-full">
+                            <div className=" w-full max-w-screen">
                                 <h1 className="text-2xl font-bold">{data["name"]}</h1>
                                 <p className="py-6 opacity-80">{data.description}</p>
                                 <button onClick={() => navigate("/collection/"+data["_id"])} className="btn btn-primary mr-4">View</button>

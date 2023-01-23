@@ -89,6 +89,19 @@ export const removePost = async (req, res ) => {
     }
 }
 
+
+
+export const getRandomPost = async (req, res) => { 
+    try {
+        const RandomPost = await Post.aggregate([{ $sample: { size: 1 } }])
+        console.log("getting random post")
+        res.status(200).json(RandomPost);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
+
 export const updatePost = async (req, res) => {
     try {
     

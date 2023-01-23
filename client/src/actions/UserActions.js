@@ -35,3 +35,14 @@ export async function getUserWithId(id) {
       return error
   }
 }
+
+
+export async function updateCurrentUser(post) {
+  try {
+    const { data } = await api.updateUser(post);
+    return data
+  } catch (error) {
+    console.log(error);
+    return error
+  }
+};

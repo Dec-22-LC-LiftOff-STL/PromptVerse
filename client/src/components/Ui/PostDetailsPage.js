@@ -245,8 +245,8 @@ const PostDetailsPage = () => {
                     <h3 className="font-bold text-lg text-center">Are you sure you want to delete this post?</h3>
                     <div className="modal-action">
                     <div className=" w-full justify-center gap-4 flex">
-                        <label onClick={() => delete_post()} htmlFor="my-modal" className="btn btn-outline btn-error">Yes</label>
-                        <label htmlFor="my-modal" className="btn btn-outline btn-success">No</label>
+                        <label onClick={() => delete_post()} htmlFor="my-modal" className="btn text-white hover:opacity-80 btn-error">Yes</label>
+                        <label htmlFor="my-modal" className="btn btn-primary">No</label>
                     </div>
                 </div>
             </div>
@@ -277,8 +277,21 @@ const PostDetailsPage = () => {
 
                     { postUser !== undefined &&
                         <div className=" flex md:items-center flex-col md:flex-row gap-2">
+                            
+                            { postUser["image"]?.length > 0 &&
+                                <div className=" flex gap-3">
+                                    <div className="avatar cursor-pointer">
+                                        <div className="w-8 md:w-10 rounded-full">
+                                            <img onClick={() => navigate(`/Profile/${postUser._id}`)} src={postUser["image"]} alt={post.title}  />
+                                        </div>
+                                    </div>
+                                    <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button>
+                                </div>
+                            }
 
-                            <h2 className=" font-thin">by <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button></h2>
+                            { postUser["image"]?.length === 0 &&
+                                <h2 className=" font-thin mt-1 mb-2">by <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button></h2>
+                            }
 
                             { userData?.["_id"] === post["user_id"] &&
                                 <> 

@@ -14,6 +14,7 @@ import ModelsPage from './components/Ui/ModelsPage';
 import HomePage from './components/Ui/HomePage';
 import CreateCollectionPage from './components/Ui/CreateCollectionPage';
 import CollectionsDetailsPage from './components/Ui/CollectionDetailsPage';
+import SettingsPage from './components/User/SettingsPage';
 
 
 function App() {
@@ -50,6 +51,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/Profile/:id" element={<ProfilePage /> } />
 
+          <Route path="/Settings" element={<SettingsPage />} />
+          
         </Routes>
       </BrowserRouter>
     </div>

@@ -69,7 +69,7 @@ const Header = (data) => {
             <li><button onClick={() => navigate('/CreatePost')}>Create Post</button></li>
             <li><button onClick={() => navigate('/CreateCollection')}>Create Collection</button></li>
             <li><button onClick={() => navigate('/CreateModel')}>Create Model</button></li>
-            <li><button>Settings</button></li> 
+            <li><button onClick={() => navigate('/Settings')}>Settings</button></li> 
             <li><button onClick={() => Logout()}>Logout</button></li>
           </ul>
         </div>

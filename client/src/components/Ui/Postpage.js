@@ -222,7 +222,7 @@ const Postpage = ( { type } ) => {
                                 <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
                                 <p class="text-xs text-gray-400">SVG, PNG, JPG</p>
                             </div>
-                            <input onChange={(e) => handleImageUpload(e)} id="dropzone-file" type="file" class="hidden" />
+                            <input accept="image/*" onChange={(e) => handleImageUpload(e)} id="dropzone-file" type="file" class="hidden" />
                         </label>
                     </div> 
                 </>

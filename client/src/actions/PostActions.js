@@ -33,6 +33,17 @@ export async function getPosts(id) {
 }
 
 
+export async function getRandomPost() {
+  try {
+      const { data } = await api.getRandomPost();
+      console.log(data)
+      return data
+  } catch (error) {
+      console.log(error)
+  }
+}
+
+
 export async function getPostWithId(id) {
   try {
       const { data } = await api.fetchPostWithId(id)

@@ -88,7 +88,7 @@ const ModelsPage = ( {type, search_value} ) => {
         
         {type === "homepage" &&
             <div className=" w-full flex flex-col mb-10 justify-center items-center">
-                <div className=" w-[95%] md:w-[50%]">   
+                <div className=" w-[95%] md:w-[50%] max-w-[700px]">   
                     <div className="relative">
                         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                             <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
@@ -108,14 +108,14 @@ const ModelsPage = ( {type, search_value} ) => {
                     <div className="hero md:w-[90%] bg-base-200 rounded-md">
 
                             <div className="hero-content flex-col lg:flex-row md:justify-between w-full">
-                                <img src={data.image} alt={data._id} className="max-w-sm rounded-lg shadow-2xl" />
+                                <img src={data.image} alt={data._id} className="w-sm max-w-screen rounded-lg shadow-2xl" />
 
  
                                 <div className=" w-full">
-                                    <h2 class="card-title mt-[-10px] truncate text-ellipsis w-auto opacity-80">{data.name}</h2>
+                                    <h2 class="card-title max-w-[100%] mt-[-10px] truncate text-ellipsis w-auto opacity-80">{data.name}</h2>
                                     <p className="py-6">{data.description}</p>
                                     <div className=" flex gap-4">
-                                        <button onClick={() => navigate("/model/"+data["_id"])} className="btn btn-primary">Details</button>
+                                        <button onClick={() => navigate("/model/"+data["_id"])} className="btn btn-primary">View</button>
                                             { userData?.["_id"] === data["user_id"] && 
                                                 <button onClick={() => navigate("/EditModel/"+data["_id"])} className="btn btn-error text-white">Edit</button>
                                             }

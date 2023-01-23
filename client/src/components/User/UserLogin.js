@@ -65,7 +65,7 @@ const UserLogin = () => {
 
 
         if (rememberMe === false) {
-            cookies.remove('user_remember_me')
+            cookies.remove('user_remember_me', { path: '/' })
         }
 
 
