@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import UserSchema from '../models/User.js';
 import jwt from 'jsonwebtoken'
+import { getRandomPost } from './PostActions.js';
+import Post from '../models/Post.js';
 
 
 const createToken = (_id) => {
@@ -28,8 +30,14 @@ export const signup = async (req, res) => {
     console.log(hashedPassword)
     newUserSchema["password"] = hashedPassword
 
-    console.log(newUserSchema)
     
+    const RandomPost = await Post.aggregate([{ $sample: { size: 1 } }])
+    if (RandomPost[0] !== undefined) {
+        newUserSchema["image"] = RandomPost[0]["image"]
+    }
+    console.log(RandomPost)
+
+
     try {
         await newUserSchema.save();
         const token = createToken(newUserSchema._id)
@@ -54,7 +62,7 @@ export const LoginUser = async (req, res) => {
         if (!isMatch) return res.status(400).json({ msg: 'incorrect password' })
 
         console.log("here")
-        
+
         return res.status(201).json({ email_check_UserSchema, token })
 
     } catch (error) {

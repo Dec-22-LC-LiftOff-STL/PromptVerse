@@ -21,6 +21,7 @@ const SettingsPage = () => {
             if (!('response' in user_Data)) {
                 if (user_Data !== undefined) {
                     setUser(user_Data)
+                    setImage(user_Data["image"])
                 }
             }
             else {
@@ -56,31 +57,42 @@ const SettingsPage = () => {
         LoadUserData()
     }, [update])
 
+
     const remove_image = () => {
+        setImage("")
         setUser({ ...user, image: ""})
     }
 
     const UpdateLoadUserData = async (event) => { 
 
-        if (image?.length !== 0) {
+        if (image.length >= 1) {
             user["image"] = image
         }
 
-        const user_Data = await updateCurrentUser(user)
+        var user_Data = await updateCurrentUser(user)
+        if (image.length >= 1) {
+            user["image"] = image
+        }
+        user_Data = await updateCurrentUser(user)
         setUser(user_Data)
+
     }
 
     const GetRandomProfileImage = async () => { 
         const new_image = await getRandomPost()
         user["image"] = new_image[0]["image"]
+        //console.log(new_image[0]["image"])
         setImage(new_image[0]["image"])
-        await UpdateLoadUserData()
+        var user_Data = await updateCurrentUser(user)
+        setUser(user_Data)
+        //console.log(user_Data["image"])
     }   
 
 
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
         const new_image = await resizeFile(file)
+        user["image"] = new_image
         setImage(new_image)
         await UpdateLoadUserData()
     };
@@ -102,19 +114,19 @@ const SettingsPage = () => {
 
             <>
 
-            {user["image"] !== "" &&
+            {image.length >= 1 &&
                 <div  className=" w-full flex flex-col self-center items-center justify-center mb-2">
 
                     <div className="avatar">
                         <div className="w-36 rounded-full">
-                        <img src={user["image"] } alt="preview_image" />
+                        <img src={image} alt="preview_image" />
                         </div>
                     </div>
 
                 </div>
             }
 
-                { user["image"]?.split("")?.length === 0 &&
+                {image.length === 0 &&
                     <div class="flex items-center justify-center w-[95%] mt-2">
                         <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer  hover:bg-bray-800 bg-gray-700  border-gray-600 hover:border-gray-500 hover:bg-gray-600">
                             <div class="flex flex-col items-center justify-center pt-5 pb-6">

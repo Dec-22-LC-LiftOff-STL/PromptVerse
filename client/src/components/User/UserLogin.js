@@ -68,11 +68,12 @@ const UserLogin = () => {
             cookies.remove('user_remember_me', { path: '/' })
         }
 
-        console.log(data["email_check_UserSchema"])
+
         data["email_check_UserSchema"]["image"] = ""
         cookies.set('user_data', data["email_check_UserSchema"], { path: '/', maxAge: 172800 });
         cookies.set('user_token', data["token"], { path: '/', maxAge: 172800 });
         
+
         console.log(cookies.get('user_data'))
         navigate("/")
 
