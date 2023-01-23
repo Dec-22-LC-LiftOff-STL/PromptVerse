@@ -298,7 +298,6 @@ const PostDetailsPage = () => {
                                 <div className=" flex justify-start md:ml-3 md:items-center items-start">
                                     <button onClick={() => navigate("/EditPost/"+post["_id"])} className="btn mr-2 btn-primary  cursor-pointer btn-sm rounded-md">Edit</button>
                                     <label htmlFor="my-modal" className="btn btn-sm text-white btn-error hover:opacity-80">Delete</label>
-                                    <label htmlFor="my-modal-6" onClick={() => setPost(post)} className={"btn ml-2 btn-primary  cursor-pointer btn-sm rounded-md"}> Save </label> 
                                 </div>
                                 </>
                             } 
@@ -332,6 +331,11 @@ const PostDetailsPage = () => {
                         </div>
 
                     </div>
+
+                    {userData !== undefined &&
+                        <label htmlFor="my-modal-6" onClick={() => setPost(post)} className={"btn ml-2 btn-primary cursor-pointer btn-sm rounded-md mt-8"}> Save Post</label> 
+
+                    }
 
                 </div>
 

@@ -71,7 +71,7 @@ const ProfilePage = () => {
                 }
 
                 { userData?.["_id"] === profileUser["_id"] && 
-                    <button onClick={() => navigate("/Settings")} className=" mt-[-8px] btn btn-xs btn-primary"> Settings </button>
+                    <button onClick={() => navigate("/Settings")} className=" mt-[-8px] btn btn-xs btn-primary"> Edit Profile </button>
                 }
 
 

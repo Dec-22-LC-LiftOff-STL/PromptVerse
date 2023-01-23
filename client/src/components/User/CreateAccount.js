@@ -25,6 +25,7 @@ const CreateAccount = () => {
         event.preventDefault();
         console.log(user)
         console.log(comfirmPassword)
+        
         if (user["password"] !== comfirmPassword["password"]) {
             setPasswordsMatchCheck(true)
             return
@@ -48,7 +49,7 @@ const CreateAccount = () => {
         cookies.set('user_token', data["token"], { path: '/', maxAge: 172800 });
         navigate("/")
     };
-    
+
 
 
 

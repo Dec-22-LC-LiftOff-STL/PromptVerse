@@ -41,18 +41,25 @@ export const signup = async (req, res) => {
 
 
 export const LoginUser = async (req, res) => {
-    const { email, password } = req.body;
-    const UserModel = req.body;
+    try {
+        const { email, password } = req.body;
+        const UserModel = req.body;
 
-    const email_check_UserSchema = await UserSchema.findOne({ email }).collation( { locale: 'en', strength: 1 } )
-    if (!email_check_UserSchema) return res.status(400).json({ msg: 'no user with this email' })
+        const email_check_UserSchema = await UserSchema.findOne({ email }).collation( { locale: 'en', strength: 1 } )
+        if (!email_check_UserSchema) return res.status(400).json({ msg: 'no user with this email' })
 
-    const token = createToken(email_check_UserSchema._id)
+        const token = createToken(email_check_UserSchema._id)
 
-    const isMatch = await bcrypt.compare(password, email_check_UserSchema["password"]);
-    if (!isMatch) return res.status(400).json({ msg: 'incorrect password' })
+        const isMatch = await bcrypt.compare(password, email_check_UserSchema["password"]);
+        if (!isMatch) return res.status(400).json({ msg: 'incorrect password' })
 
-    return res.status(201).json({ email_check_UserSchema, token })
+        console.log("here")
+        
+        return res.status(201).json({ email_check_UserSchema, token })
+
+    } catch (error) {
+        return res.status(409).json({ message: error.message })
+    }
 }
 
 
