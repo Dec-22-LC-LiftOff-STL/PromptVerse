@@ -60,7 +60,7 @@ const CreateAccount = () => {
 
         <div className="mb-4">
             <label className="block text-white text-sm font-bold mb-2">
-            Your email
+             Email
             </label>
             <input
             type="email"
@@ -116,8 +116,14 @@ const CreateAccount = () => {
         }
 
         <div className="flex items-center justify-between w-full"> 
-            <button className="btn btn-primary w-full"> Create </button>
+            <button className="btn btn-primary w-full"> SIGN UP </button>
         </div>
+        
+        <div className=" self-center w-full flex flex-col justify-center items-center mt-10 opacity-80">
+            <div className=" divider opacity-80 text-sm mb-2"> Already have an account? </div>
+            <a href="/Login" className="link text-sm link-info link-hover">Login</a>
+        </div>
+
       </form>
     );
 };

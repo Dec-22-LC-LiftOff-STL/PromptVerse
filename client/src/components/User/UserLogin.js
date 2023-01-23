@@ -149,13 +149,27 @@ const UserLogin = () => {
         }
 
         <div className="flex items-center justify-between w-full"> 
-            <button className=" btn btn-primary w-full">
-            <span className="r-0 mr-0 relative inset-y-0 flex items-start pl-3">			
+            <span className="absolute ml-4 flex items-start">			
                 <svg className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="True">
                     <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
                 </svg>
-            </span> <h1 className=" self-center"> Login </h1> </button>
+            </span> 
+            <button className=" btn btn-primary w-full">
+            
+            <h1 className=" self-center"> Login </h1> </button>
         </div>
+
+        <div className=" self-center w-full flex flex-col justify-center items-center mt-10 opacity-80">
+            <div className=" divider opacity-80 text-sm mb-2"> Don't have an account? </div>
+            <a href="/Sign-Up" className="link text-sm link-info link-hover">Sign Up</a>
+        </div>
+        
+        {/* 
+        <div className=" self-center w-full flex flex-col justify-center items-center mt-5">
+            <h1 className=" opacity-80"> Don't have an account? </h1>
+            <a href="/Sign-Up" className="link opacity-80 link-info link-hover">Sign Up</a>
+        </div> */}
+
     </form>
 );
 };

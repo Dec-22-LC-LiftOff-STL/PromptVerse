@@ -44,7 +44,7 @@ export const LoginUser = async (req, res) => {
     const { email, password } = req.body;
     const UserModel = req.body;
 
-    const email_check_UserSchema = await UserSchema.findOne({ email })
+    const email_check_UserSchema = await UserSchema.findOne({ email }).collation( { locale: 'en', strength: 1 } )
     if (!email_check_UserSchema) return res.status(400).json({ msg: 'no user with this email' })
 
     const token = createToken(email_check_UserSchema._id)

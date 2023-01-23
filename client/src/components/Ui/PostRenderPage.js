@@ -195,7 +195,7 @@ const PostRenderPage = ( {type, search_value, post_id} ) => {
             </>
         }
 
-        <input type="checkbox" id="my-modal-6" className="modal-toggle " />
+            <input type="checkbox" id="my-modal-6" className="modal-toggle " />
             <div className="modal modal-bottom sm:modal-middle ">
                 <div className="modal-box flex flex-col justify-center items-center bg-slate-800">
 
@@ -214,7 +214,7 @@ const PostRenderPage = ( {type, search_value, post_id} ) => {
                                     <h1 className=" truncate overflow-hidden font-bold max-w-[100px]  md:max-w-[400px]">{data["name"]}</h1>
                                     <button onClick={() => navigate('/collection/'+data["_id"])} className=" btn btn-sm btn-primary ml-auto">View</button>
                                     { currentPost?.["in_boards"].includes(data["_id"]) &&
-                                        <button onClick={() => remove_post_from_board(data["_id"])} className=" btn btn-sm btn-error text-white"> Remove </button>
+                                        <button onClick={() => remove_post_from_board(data["_id"])} className=" btn btn-sm btn-error hover:opacity-80 text-white"> Remove </button>
                                     }
 
                                     { !currentPost?.["in_boards"].includes(data["_id"]) &&
