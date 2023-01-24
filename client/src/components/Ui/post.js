@@ -21,11 +21,11 @@ const Post = ( { type, data, userData, setCurrentPost } ) => {
                     <EditIcon onClick={() => navigate("/EditPost/"+data["_id"])} className={" z-10 ml-2 mt-2 cursor-pointer w-5 rounded-md bg-none absolute hover:opacity-90 transition-2 opacity-60 rounded-empty" + ((PostState === false) ? ' invisible' : ' visible')}/> 
                 }
                 { userData?.["_id"] !== undefined &&
-                    <label htmlFor="my-modal-6" onClick={() => setCurrentPost(data)} className={" z-10 btn btn-sm btn-primary absolute mt-1 right-1 font-Title font-thin" + ((PostState === false) ? ' invisible' : ' visible')}> Save </label> 
+                    <label htmlFor="my-modal-6" onClick={() => setCurrentPost(data)} className={" z-10 btn btn-sm btn-primary absolute mt-1 right-1 font-Title text-xl" + ((PostState === false) ? ' invisible' : ' visible')}> Save </label> 
                 }
 
                 <div class="relative overflow-hidden self-center rounded-t-md bg-no-repeat bg-cover">
-                    <figure><img className=" z-0 cursor-pointer hover:scale-110 transition duration-300 ease-in-out" onClick={() => load_post_page()} src={data.image} alt={data._id} /></figure>
+                    <figure><a href={"/post/"+(data._id)}><img className=" z-0 cursor-pointer hover:scale-110 transition duration-300 ease-in-out" onClick={() => load_post_page()} src={data.image} alt={data._id} /></a></figure>
                 </div>
 
                 {/* bg-slate-600  */}

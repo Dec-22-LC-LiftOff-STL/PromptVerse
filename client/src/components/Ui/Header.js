@@ -30,7 +30,7 @@ const Header = (data) => {
 
 
   return (
-    <div className=" bg-slate-800 w-full text-white p-1 mb-4 flex font-sans font-bold shadow-lg">
+    <div className=" bg-slate-800 w-full max-w-screen text-white p-1 mb-4 flex font-sans font-bold shadow-lg">
 
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Architects+Daughter&family=Poppins:wght@300&family=Righteous&family=Roboto:wght@300&family=Varela+Round&display=swap" rel="stylesheet"></link>
         
@@ -55,14 +55,17 @@ const Header = (data) => {
 
 
       {cookies.get('user_data') !== undefined && 
-        <button onClick={() => goToProfile()} className='truncate md:visible invisible ml-auto mr-1 max-w-[140px] cursor-pointer text btn btn-ghost normal-case'>{userData["email"]}</button>
+
+        <button onClick={() => goToProfile()} className='truncate block md:inline md:visible text-center invisible ml-auto mr-1 max-w-[200px] cursor-pointer text btn btn-ghost normal-case'>
+          <h2 class="self-center truncate text-ellipsis w-auto opacity-100">{userData.email}</h2>
+        </button>
       }
 
 
       {cookies.get('user_data') !== undefined &&
-        <div className=" dropdown dropdown-end">
-          <button class=" outline-none btn btn-square btn-ghost mr-1">
-            <svg tabIndex={0}  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-7 h-7 stroke-current outline-none"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        <div className=" dropdown dropdown-end max-w-screen">
+          <button class=" outline-none btn btn-square btn-ghost mr-1 max-w-screen">
+            <svg tabIndex={0} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-7 h-7 stroke-current outline-none"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
           </button>
           <ul tabIndex={0} className="dropdown-content menu p-2 shadow mt-1 bg-slate-600 rounded-b-md w-52">
             <li><button onClick={() => goToProfile()}>Profile</button></li>

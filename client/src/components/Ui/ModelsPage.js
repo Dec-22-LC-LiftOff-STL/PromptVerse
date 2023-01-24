@@ -108,7 +108,13 @@ const ModelsPage = ( {type, search_value} ) => {
                     <div className="hero md:w-[90%] bg-base-200 rounded-md">
 
                             <div className="hero-content flex-col lg:flex-row md:justify-between w-full">
-                                <img src={data.image} alt={data._id} className="w-sm max-w-screen rounded-lg shadow-2xl" />
+
+                            {/* <div className=" md:avatar">
+                                <div className="w-sm md:w-80 rounded">
+                                <img src={data.image} alt={data._id} />
+                                </div>
+                            </div> */}
+                            <img src={data["image"]} alt={data["_id"]} className="w-sm max-w-screen rounded-lg shadow-2xl max-h-[300px]" />
 
  
                                 <div className=" w-full">

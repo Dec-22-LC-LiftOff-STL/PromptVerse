@@ -11,9 +11,9 @@ import { updateOldPost } from "../../actions/PostActions.js";
 import { getCollections } from "../../actions/CollectionActions";
 
 
-function ClipboardCopy({ type, name, copyText }) {
+function ClipboardCopy({ type, name, copyText, id }) {
     const [isCopied, setIsCopied] = useState(false);
-  
+    const navigate = useNavigate()
 
     async function copyTextToClipboard(text) {
       if ('clipboard' in navigator) {
@@ -58,6 +58,10 @@ function ClipboardCopy({ type, name, copyText }) {
                      <span>{isCopied ? 'Copied!' : 'Copy'}</span>
                 </button>
              }
+
+             {name === "Model Used" && 
+                <button onClick={() => navigate("/model/"+id)} className=" btn btn-sm w-full"> view model</button>
+            }
         </div>
     );
   }
@@ -318,8 +322,7 @@ const PostDetailsPage = () => {
                         <div className=" flex flex-col md:w-[45%]">
                             {postModel !== undefined &&
                                 <>
-                                    <ClipboardCopy type="Display" name="Model Used" copyText={postModel.name} />
-                                    <button onClick={() => navigate("/model/"+postModel._id)} className=" btn btn-sm w-full"> view model</button>
+                                    <ClipboardCopy type="Display" name="Model Used" id={postModel._id} copyText={postModel.name} />
                                 </>
                             }
 

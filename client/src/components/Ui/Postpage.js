@@ -117,7 +117,7 @@ const Postpage = ( { type } ) => {
             Resizer.imageFileResizer(
                 file,
                 512,
-                800,
+                832,
                 "JPEG",
                 80,
                 0,

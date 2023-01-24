@@ -42,14 +42,14 @@ export const getPosts = async (req, res) => {
         const skip = req.body["skip"] && /^\d+$/.test(req.body["skip"]) ? Number(req.body["skip"]) : 0
 
         if (req.body["type"] == "collection") {
-            var posts = await Post.find({ in_boards: { $in: [req.body["search"]] } }, undefined, { skip, limit: 20 }) //.sort('_id')
+            var posts = await Post.find({ in_boards: { $in: [req.body["search"]] } }, undefined, { skip, limit: 25 }) //.sort('_id')
         }
         else {
             if (req.body["search"] !== "") {
-                var posts = await Post.find({ $text: { $search: req.body["search"] } }, undefined, { skip, limit: 20 }).sort('_id')
+                var posts = await Post.find({ $text: { $search: req.body["search"] } }, undefined, { skip, limit: 25 }) //.sort('_id')
             }
             else {
-                var posts = await Post.find({}, undefined, { skip, limit: 20 }).sort('_id')
+                var posts = await Post.find({}, undefined, { skip, limit: 25 }).sort('_id')
             }
         }
 
