@@ -210,7 +210,7 @@ const PostDetailsPage = () => {
 
                     {collectionsData.length >= 1 && 
                     <> 
-                    <div className=" flex flex-col">
+                    <div className=" flex flex-col gap-2">
                         {collectionsData.map((data, index) => (
                             <div key={index} className=" flex items-center gap-2">
                                 <h1 className=" truncate overflow-hidden font-bold max-w-[100px]  md:max-w-[400px]">{data["name"]}</h1>
