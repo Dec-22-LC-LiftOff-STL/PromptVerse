@@ -174,6 +174,11 @@ const PostRenderPage = ( {type, search_value, post_id} ) => {
         }
       }
 
+      const view_collection = (collection_id) => {
+        navigate('/collection/'+collection_id)
+        window.location.reload()
+      }
+
 
     useEffect(() => {
         LoadMorePosts()
@@ -219,7 +224,7 @@ const PostRenderPage = ( {type, search_value, post_id} ) => {
                             {collectionsData.map((data, index) => (
                                 <div key={index} className=" flex items-center gap-2">
                                     <h1 className=" truncate overflow-hidden font-bold max-w-[100px]  md:max-w-[400px]">{data["name"]}</h1>
-                                    <button onClick={() => navigate('/collection/'+data["_id"])} className=" btn btn-sm btn-primary ml-auto">View</button>
+                                    <button onClick={() => view_collection(data["_id"])} className=" btn btn-sm btn-primary ml-auto">View</button>
                                     { currentPost?.["in_boards"].includes(data["_id"]) &&
                                         <button onClick={() => remove_post_from_board(data["_id"])} className=" btn btn-sm btn-error hover:opacity-80 text-white"> Remove </button>
                                     }

@@ -58,7 +58,7 @@ const CollectionsDetailsPage = () => {
 
     useEffect(() => {
         GetModel()
-    }, [update]);
+    }, [update, id]);
 
 
     return (
@@ -106,7 +106,7 @@ const CollectionsDetailsPage = () => {
                                 <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button>
                             </div>
                         } */}
-{/* 
+                        {/* 
                         { postUser["image"]?.length === 0 && */}
                         <h2 className=" font-thin mt-1 mb-2">by <button onClick={() => navigate(`/Profile/${postUser._id}`)} class="link link-hover truncate">{postUser.email}</button></h2>
                         {/* } */}
@@ -136,7 +136,7 @@ const CollectionsDetailsPage = () => {
 
             {collection?.["_id"] && 
             <>
-                <PostRenderPage type="collection" search_value={collection["_id"]}/>
+                <PostRenderPage type="collection" search_value={id}/>
             </>
             }
 
