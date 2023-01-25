@@ -6,7 +6,6 @@ import EditIcon from '@mui/icons-material/Edit';
 const Post = ( { type, data, userData, setCurrentPost } ) => {
     const navigate = useNavigate()
     const [PostState, setPostState] = useState(false) 
-
     const load_post_page = () => {
         navigate(`/post/${data._id}`)
         window.location.reload()
@@ -20,7 +19,7 @@ const Post = ( { type, data, userData, setCurrentPost } ) => {
                 { userData?.["_id"] === data["user_id"] &&
                     <EditIcon onClick={() => navigate("/EditPost/"+data["_id"])} className={" z-10 ml-2 mt-2 cursor-pointer w-5 rounded-md bg-none absolute hover:opacity-90 transition-2 opacity-60 rounded-empty" + ((PostState === false) ? ' invisible' : ' visible')}/> 
                 }
-                { userData?.["_id"] !== undefined &&
+                {(userData?.["_id"] !== undefined && type !== "PostDetails") &&
                     <label htmlFor="my-modal-6" onClick={() => setCurrentPost(data)} className={" z-10 btn btn-sm btn-primary absolute mt-1 right-1 font-Title text-xl" + ((PostState === false) ? ' invisible' : ' visible')}> Save </label> 
                 }
 

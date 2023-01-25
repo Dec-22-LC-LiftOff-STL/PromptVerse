@@ -189,6 +189,12 @@ const PostDetailsPage = () => {
         }
     }
 
+    window.onpopstate = e => {
+        window.location.reload()
+    }
+
+
+
     useEffect(() => {
         GetPosts()
     }, [update, id]);
