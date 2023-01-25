@@ -37,24 +37,24 @@ function ClipboardCopy({ type, name, copyText, id }) {
     }
   
     return (
-        <div class="form-control w-[100%] md:max-w-xs">
+        <div class="form-control w-[100%] md:max-w-xs focus:outline-none">
             <label class="label">
                 <span class="label-text">{name}</span>
             </label>
 
             {(type === "textarea" || type === "textarea display") && 
-                <div class="px-3 py-3 outline outline-1 outline-slate-600 bg-slate-600 rounded-xl shadow bg-opacity-50 font-light flex flex-col space-y-5">
+                <div class=" textarea textarea-bordered  px-3 py-3 bg-slate-600 rounded-lg focus:outline-none bg-opacity-50">
                     <p>
-                        <p class="rounded hover:bg-opacity-40 cursor-pointer " value={copyText}>{copyText}   </p>
+                        <p class="rounded outline-none" value={copyText}>{copyText}   </p>
                     </p>
                 </div>
             }
 
             {(type === "input" || type === "Display")  && 
-                <input className="bg-slate-600 bg-opacity-50 input input-bordered" type="text" value={copyText} readOnly />
+                <input className="bg-slate-600 focus:outline-none bg-opacity-50 input input-bordered" type="text" value={copyText} readOnly />
             }
              {(type !== "Display" && type !== "textarea display") && 
-                <button className="mt-1 btn btn-sm" onClick={handleCopyClick}>
+                <button className="mt-1 btn focus:outline-none btn-sm" onClick={handleCopyClick}>
                      <span>{isCopied ? 'Copied!' : 'Copy'}</span>
                 </button>
              }
@@ -191,7 +191,7 @@ const PostDetailsPage = () => {
 
     useEffect(() => {
         GetPosts()
-    }, [update]);
+    }, [update, id]);
 
 
     return (

@@ -39,9 +39,9 @@ function ClipboardCopy({ type, name, copyText }) {
             </label>
 
             {(type === "textarea" || type === "textarea display") && 
-                <div class="mt-1 px-4 py-3 outline outline-1 outline-slate-600 bg-slate-600 rounded-xl shadow bg-opacity-50 font-light flex flex-col space-y-5">
+                <div class=" textarea textarea-bordered  px-3 py-3 bg-slate-600 rounded-lg focus:outline-none bg-opacity-50">
                     <p>
-                        <p class="rounded hover:bg-opacity-40 cursor-pointer " value={copyText}>{copyText}   </p>
+                        <p class="rounded outline-none" value={copyText}>{copyText}   </p>
                     </p>
                 </div>
             }

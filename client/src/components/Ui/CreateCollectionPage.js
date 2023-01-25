@@ -215,7 +215,7 @@ const CreateCollectionPage = ( { type } ) => {
                 maxLength={40}
                 value={Collection.name}
                 onChange={(e) => setCollection({ ...Collection, name: e.target.value })}
-                placeholder="Cool Cars" className=" input input-bordered w-full bg-grey" 
+                placeholder="Cool Cars" className=" input input-bordered w-full bg-grey focus:outline-none" 
                 />
             </div>
 
@@ -235,7 +235,7 @@ const CreateCollectionPage = ( { type } ) => {
                 </label> 
                 <textarea 
                     onChange={(e) => setCollection({ ...Collection, description: e.target.value })}
-                    className="textarea textarea-bordered h-24 outline-none mb-4" 
+                    className="textarea textarea-bordered h-24 outline-none mb-4 focus:outline-none" 
                     value={Collection.description}
                     placeholder="A collection of cool car posts.">
                 </textarea>

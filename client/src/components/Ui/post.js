@@ -25,7 +25,7 @@ const Post = ( { type, data, userData, setCurrentPost } ) => {
                 }
 
                 <div class="relative overflow-hidden self-center rounded-t-md bg-no-repeat bg-cover">
-                    <figure><a href={"/post/"+(data._id)}><img className=" z-0 cursor-pointer hover:scale-110 transition duration-300 ease-in-out" onClick={() => load_post_page()} src={data.image} alt={data._id} /></a></figure>
+                    <figure><a className=" rounded-t-md" href={"/post/"+(data._id)}><img className=" z-0 cursor-pointer rounded-t-md hover:scale-110 transition duration-300 ease-in-out" onClick={() => load_post_page()} src={data.image} alt={data._id} /></a></figure>
                 </div>
 
                 {/* bg-slate-600  */}

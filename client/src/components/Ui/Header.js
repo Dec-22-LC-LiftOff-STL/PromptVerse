@@ -41,7 +41,7 @@ const Header = (data) => {
       {cookies.get('user_data') !== undefined && 
         <div class="dropdown hidden md:inline bg-transparent self-center pt-1">
           <label tabindex="0" className=' self-center'> 
-                <button className=' self-center btn btn-sm btn-ghost'>
+                <button className=' self-center btn btn-sm btn-ghost opacity-90'>
                 Create
                 <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
               </button></label>

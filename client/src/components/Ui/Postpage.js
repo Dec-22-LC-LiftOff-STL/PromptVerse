@@ -260,7 +260,7 @@ const Postpage = ( { type } ) => {
                 <input
                 value={post.title}
                 onChange={(e) => setPostData({ ...post, title: e.target.value })}
-                placeholder="Type here" className=" input input-bordered outline-none w-full bg-grey" 
+                placeholder="Type here" className=" input input-bordered outline-none w-full bg-grey focus:outline-none" 
                 />
             </div>
 
@@ -280,7 +280,7 @@ const Postpage = ( { type } ) => {
                 </label> 
                 <textarea 
                     onChange={(e) => setPostData({ ...post, promptUsed: e.target.value })}
-                    className="textarea textarea-bordered h-24 outline-none mb-4" 
+                    className="textarea textarea-bordered h-24 outline-none mb-4 focus:outline-none" 
                     value={post.promptUsed}
                     placeholder="A man wearing sunglasses">
                 </textarea>
@@ -301,19 +301,19 @@ const Postpage = ( { type } ) => {
                 </label> 
                 <textarea 
                     onChange={(e) => setPostData({ ...post, Negative_Prompt: e.target.value })}
-                    className="textarea textarea-bordered h-24 outline-none mb-4" 
+                    className="textarea textarea-bordered h-24 outline-none mb-4 focus:outline-none" 
                     value={post.Negative_Prompt}
                     placeholder="ugly, deformed, bad lighting">
                 </textarea>
             </div>
 
-            <div className="flex justify-start md:form-control w-auto">
-                <div className=" md:form-control w-full">
+            <div className="flex justify-start md:form-control w-auto focus:outline-none">
+                <div className=" md:form-control w-full focus:outline-none">
                     <label className="label">
                         <span className="label-text">Model Used</span>
                     </label>
 
-                    <select onChange={(e) => setPostData({ ...post, model_id: e.target.value })} className="select select-bordered w-full mb-5">
+                    <select onChange={(e) => setPostData({ ...post, model_id: e.target.value })} className="select select-bordered w-full mb-5 focus:outline-none">
                         { models.length !== 0 &&
                             <>
                             {models.map((data, index) => (
@@ -336,13 +336,13 @@ const Postpage = ( { type } ) => {
             }
 
 
-            <div className="flex justify-start md:form-control w-auto">
-                <div className=" md:form-control w-full">
+            <div className="flex justify-start md:form-control w-auto focus:outline-none">
+                <div className=" md:form-control w-full focus:outline-none">
                     <label className="label">
                         <span className="label-text">Sampler Used</span>
                     </label>
 
-                    <select onChange={(e) => setPostData({ ...post, sampler: e.target.value })} className="select select-bordered w-full mb-5">
+                    <select onChange={(e) => setPostData({ ...post, sampler: e.target.value })} className="select select-bordered w-full mb-5 focus:outline-none">
                         <option value="Euler a" defaultValue={"Euler a"}>Euler a</option>
                         <option value="Euler">Euler</option>
                         <option value="LMS">LMS</option>
@@ -375,7 +375,7 @@ const Postpage = ( { type } ) => {
                 type="number"
                 value={post.steps}
                 onChange={(e) => setPostData({ ...post, steps: e.target.value })}
-                placeholder="20" className="input input-bordered w-full" 
+                placeholder="20" className="input input-bordered w-full focus:outline-none" 
                 />
             </div>
 
@@ -396,7 +396,7 @@ const Postpage = ( { type } ) => {
                 type="number"
                 value={post.seed}
                 onChange={(e) => setPostData({ ...post, seed: e.target.value })}
-                placeholder="20" className="input input-bordered w-full" 
+                placeholder="20" className="input input-bordered w-full focus:outline-none" 
                 />
             </div>
 

@@ -39,7 +39,7 @@ const ProfilePage = () => {
         console.log(navState)
         LoadUserData()
         // setUpdate(!update)
-    }, [update]);
+    }, [update, id]);
 
 
     return (
@@ -63,9 +63,9 @@ const ProfilePage = () => {
                 <h1 className=" text-2xl md:text-4xl font-Title font-bold">{profileUser.email}</h1>
                 
                 { profileUser["bio"]?.length >= 1 &&
-                    <div class="px-3 py-3 w-[95%] md:w-auto max-w-[600px] text-center outline outline-1 outline-slate-600 bg-slate-600 rounded-xl shadow bg-opacity-50 font-light flex flex-col space-y-5">
+                    <div class="px-3 py-3 w-[95%] md:w-auto max-w-[600px] text-center textarea textarea-bordered outline-slate-600 bg-slate-600 rounded-xl shadow bg-opacity-50 font-light flex flex-col space-y-5">
                         <p>
-                            <p class="rounded hover:bg-opacity-40 cursor-pointer ">{profileUser.bio}   </p>
+                            <p class="rounded hover:bg-opacity-40 cursor-pointer outline-none">{profileUser.bio}</p>
                         </p>
                     </div>
                 }
