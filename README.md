@@ -9,8 +9,6 @@ A website where people can share AI generated images/prompts/models using stable
 
 The main reason to use stable diffusion is that currently it's the only open source image generator out which also makes it the most popular, and the most confusing to use because it's more technical then the other image generation options, other image generators require you to pay a monthly subscription or by how many images you make with no way to use them locally for free, the main downside of stable diffusion currently is that it is harder to make good looking images without the correct prompt and settings compared to other models.
 
-Link to the website: https://moonlit-tiramisu-d02a83.netlify.app/
-
 
 # Features
 * Users can create and authenticate accounts.
