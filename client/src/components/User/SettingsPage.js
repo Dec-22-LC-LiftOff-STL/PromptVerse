@@ -155,7 +155,7 @@ const SettingsPage = () => {
                 <textarea 
                     onChange={(e) => setUser({ ...user, bio: e.target.value })}
                     maxLength={250}
-                    className="textarea textarea-bordered h-24 outline-none mb-2 focus:outline-none" 
+                    className="textarea border-2 focus:textarea-bordered h-24 outline-none mb-2 focus:outline-none" 
                     value={user.bio}
                     placeholder="I find and share cool images and collections of car posts.">
                 </textarea>

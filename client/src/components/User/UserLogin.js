@@ -102,7 +102,7 @@ const UserLogin = () => {
             type="email"
             value={user.email}
             onChange={(e) => setUserData({ ...user, email: e.target.value })}
-            className="shadow input input-bordered w-full py-2 px-3 leading-tight border-spacing-4 focus:outline-none"
+            className="shadow input border-2 focus:input-bordered w-full py-2 px-3 leading-tight border-spacing-4 focus:outline-none"
             />
         </div>
 
@@ -125,7 +125,7 @@ const UserLogin = () => {
             type="password"
             value={user.password}
             onChange={(e) => setUserData({ ...user, password: e.target.value })}
-            className="shadow input input-bordered w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow input border-2 focus:input-bordered w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
             />
         </div>
 

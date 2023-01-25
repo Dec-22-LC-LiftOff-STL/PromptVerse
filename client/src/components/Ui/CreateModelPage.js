@@ -224,7 +224,7 @@ const CreateModelPage = ( { type } ) => {
                 <input
                 value={model.name}
                 onChange={(e) => setModel({ ...model, name: e.target.value })}
-                placeholder="stable-diffusion-v1-5" className=" input input-bordered w-full bg-grey focus:outline-none" 
+                placeholder="stable-diffusion-v1-5" className=" input border-2 focus:input-bordered w-full bg-grey focus:outline-none" 
                 />
             </div>
 
@@ -244,7 +244,7 @@ const CreateModelPage = ( { type } ) => {
                 <input
                 value={model.download_link}
                 onChange={(e) => setModel({ ...model, download_link: e.target.value })}
-                placeholder="https://huggingface.co/runwayml/stable-diffusion-v1-5" className=" input input-bordered w-full bg-grey focus:outline-none" 
+                placeholder="https://huggingface.co/runwayml/stable-diffusion-v1-5" className=" input border-2 focus:input-bordered w-full bg-grey focus:outline-none" 
                 />
             </div>
 
@@ -264,7 +264,7 @@ const CreateModelPage = ( { type } ) => {
                 </label> 
                 <textarea 
                     onChange={(e) => setModel({ ...model, description: e.target.value })}
-                    className="textarea textarea-bordered h-24 outline-none mb-4 focus:outline-none" 
+                    className="textarea border-2 focus:textarea-bordered h-36  outline-none mb-4 focus:outline-none" 
                     value={model.description}
                     placeholder="The Stable-Diffusion-v1-5 checkpoint was initialized with the weights of the Stable-Diffusion-v1-2 checkpoint and subsequently fine-tuned on 595k steps at resolution 512x512 on laion-aesthetics v2 5+ and 10% dropping of the text-conditioning to improve classifier-free guidance sampling.">
                 </textarea>

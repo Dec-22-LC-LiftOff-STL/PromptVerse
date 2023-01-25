@@ -40,6 +40,8 @@ const PostRenderPage = ( {type, search_value, post_id} ) => {
     const [collectionsData, setCollections] = useState([])
     const [currentPost, setCurrentPost] = useState(undefined)
 
+    const [loadingPosts, setLoadingPosts] = useState(false)
+
 
     const update_posts = () => {
         setSkip(posts.length)
@@ -56,6 +58,7 @@ const PostRenderPage = ( {type, search_value, post_id} ) => {
 
     // const [stackGrid, setStackGrid] = useState();
     const LoadMorePosts = async () => { 
+        setLoadingPosts(true)
         try {
             var data = await getPosts({"skip":skip,"search": search, "type": type})
             console.log(data)
@@ -63,6 +66,7 @@ const PostRenderPage = ( {type, search_value, post_id} ) => {
                 if (type !== "PostDetails") {
                     setPosts([...posts, ...loadImages(data)])
                     setSearchResultsFound(false)
+                    setLoadingPosts(false)
                 }
                 else {
                     data.forEach((value, index) => {
@@ -72,15 +76,18 @@ const PostRenderPage = ( {type, search_value, post_id} ) => {
                     })
                     if (data.length === 0) {
                         setSearchResultsFound(true)
+                        setLoadingPosts(false)
                     }
                     else {
                         setPosts([...posts, ...loadImages(data)])
                         setSearchResultsFound(false)
+                        setLoadingPosts(false)
                     }
                 }
             }
             else {
                 setSearchResultsFound(true)
+                setLoadingPosts(false)
             }
 
             if (userData !== undefined) {
@@ -249,7 +256,7 @@ const PostRenderPage = ( {type, search_value, post_id} ) => {
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none focus:outline-none ">
                         <svg aria-hidden="true" className="w-5 h-5 text-gray-400 focus:outline-none " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </div>
-                    <input onKeyUp={handleKeyDown} onChange={(e) => setsearch(e.target.value)} type="search" className=" input input-bordered w-full p-4 pl-10 text-sm text-white focus:outline-none" placeholder="Search Images" required />
+                    <input onKeyUp={handleKeyDown} onChange={(e) => setsearch(e.target.value)} type="search" className="input border-2 focus:input-bordered  w-full p-4 pl-10 text-sm text-white focus:outline-none" placeholder="Search Images" required />
                 </div>
             </div>
             <button onClick={()=>searchPosts()} class="text-white w-[95%] mt-5 btn btn-sm btn-primary md:w-[120px]">Search</button>
@@ -300,9 +307,16 @@ const PostRenderPage = ( {type, search_value, post_id} ) => {
             </div>
         }
 
-        { (posts.length >= 1 && searchResultsFound === false) &&
+        { (posts.length >= 1 && searchResultsFound === false && loadingPosts === false) &&
             <button className=" btn btn-primary mt-2 mb-6 w-[95%] md:w-[200px]" onClick={() => update_posts()}>Load More</button>
         }
+
+        { (loadingPosts === true) && 
+            <div className=" w-100% h-screen flexjustify-center">
+                <button class="btn loading mt-10">loading</button>
+            </div>
+        }   
+
     </>
     );
 

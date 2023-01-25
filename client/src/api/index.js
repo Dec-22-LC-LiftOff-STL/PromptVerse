@@ -41,3 +41,4 @@ export const fetchPosts = (search) => API.post("/posts/getPosts", search);
 export const fetchPostWithId = (id) => API.post(`${"posts/getPost"}/${id}`);
 export const removePostWithId = (id) => API.post(`${"posts/removePost"}/${id}`);
 export const getRandomPost = () => API.post(`${"posts/getRandomPost"}`);
+
