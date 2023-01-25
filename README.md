@@ -1,6 +1,6 @@
 # PromptVerse
 
-<img style="borderRadius: 20px" width="1680" alt="Screen Shot 2022-05-11 at 1 07 02 PM" src="https://user-images.githubusercontent.com/17935336/214705138-4b4f4323-8dd0-4513-adf4-05ab68921d91.png">
+<img style="border-radius: 30px" width="1680" alt="Screen Shot 2022-05-11 at 1 07 02 PM" src="https://user-images.githubusercontent.com/17935336/214705138-4b4f4323-8dd0-4513-adf4-05ab68921d91.png">
 
 
 Link to the website: https://moonlit-tiramisu-d02a83.netlify.app/
