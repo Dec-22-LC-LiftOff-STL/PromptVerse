@@ -1,6 +1,6 @@
 # PromptVerse
 
- <img src="[https://raw.githubusercontent.com/YOURLS/YOURLS/1.7.9/images/yourls-logo.png](https://user-images.githubusercontent.com/17935336/214704413-3e5803f7-83a4-4d59-857e-fb0bb01e1ec7.png)" border="1px solid red"/>
+![git](https://user-images.githubusercontent.com/17935336/214705138-4b4f4323-8dd0-4513-adf4-05ab68921d91.png)
  
 Link to the website: https://moonlit-tiramisu-d02a83.netlify.app/
 
