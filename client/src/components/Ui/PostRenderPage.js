@@ -109,7 +109,7 @@ const PostRenderPage = ( {type, search_value, post_id} ) => {
         }
     }
 
-    const remove_post_from_board = async (board_id) => {
+    const remove_post_from_board = async (board_id, user_id) => {
 
         if (currentPost !== undefined ) {
             if (currentPost["in_boards"].includes(board_id)) {
@@ -121,16 +121,18 @@ const PostRenderPage = ( {type, search_value, post_id} ) => {
         try {
             var data = await updateOldPost(currentPost)
             setCurrentPost(data)
-            if (type === "collection") {
+
+            if (type === "collection" && user_id === userData["_id"] && search === board_id) {
                 searchPosts()
             }
+
         } catch (error) {
             console.log(error)
         }
     }
 
 
-    const add_post_to_board = async (board_id) => {
+    const add_post_to_board = async (board_id, user_id) => {
 
         if (currentPost !== undefined && "in_boards" in currentPost ) {
             if (!currentPost["in_boards"].includes(board_id)) {
@@ -148,6 +150,13 @@ const PostRenderPage = ( {type, search_value, post_id} ) => {
         try {
             var data = await updateOldPost(currentPost)
             setCurrentPost(data)
+
+
+            if (type === "collection" && user_id === userData["_id"] && search === board_id) {
+                console.log("here")
+                searchPosts()
+            }
+
         } catch (error) {
             console.log(error)
         }
@@ -226,11 +235,11 @@ const PostRenderPage = ( {type, search_value, post_id} ) => {
                                     <h1 className=" truncate overflow-hidden font-bold max-w-[100px]  md:max-w-[400px]">{data["name"]}</h1>
                                     <button onClick={() => view_collection(data["_id"])} className=" btn btn-sm btn-primary ml-auto">View</button>
                                     { currentPost?.["in_boards"].includes(data["_id"]) &&
-                                        <button onClick={() => remove_post_from_board(data["_id"])} className=" btn btn-sm btn-error hover:opacity-80 text-white"> Remove </button>
+                                        <button onClick={() => remove_post_from_board(data["_id"], data["user_id"])} className=" btn btn-sm btn-error hover:opacity-80 text-white"> Remove </button>
                                     }
 
                                     { !currentPost?.["in_boards"].includes(data["_id"]) &&
-                                        <button onClick={() => add_post_to_board(data["_id"])} className=" btn btn-sm btn-secondary"> Add </button>
+                                        <button onClick={() => add_post_to_board(data["_id"], data["user_id"])} className=" btn btn-sm btn-secondary"> Add </button>
                                     }
 
                                 </div>
