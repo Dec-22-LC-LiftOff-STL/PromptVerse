@@ -128,7 +128,7 @@ const ModelDetailsPage = () => {
                         <h3 className="font-bold text-lg text-center">Are you sure you want to delete this model?</h3>
                         <div className="modal-action">
                         <div className=" w-full justify-center gap-4 flex">
-                            <label onClick={() => delete_model()} htmlFor="my-modal" className="btn text-white btn-error">Yes</label>
+                            <label onClick={() => delete_model()} htmlFor="my-modal" className="btn text-white hover:opacity-80 btn-error">Yes</label>
                             <label htmlFor="my-modal" className="btn btn-primary">No</label>
                         </div>
                     </div>

@@ -166,8 +166,8 @@ const CreateModelPage = ( { type } ) => {
                         <h3 className="font-bold text-lg text-center">Are you sure you want to delete this model?</h3>
                         <div className="modal-action">
                         <div className=" w-full justify-center gap-4 flex">
-                            <label onClick={() => delete_model()} htmlFor="my-modal" className="btn btn-outline btn-error">Yes</label>
-                            <label htmlFor="my-modal" className="btn btn-outline btn-success">No</label>
+                            <label onClick={() => delete_model()} htmlFor="my-modal" className="btn hover:opacity-80 text-white btn-error">Yes</label>
+                            <label htmlFor="my-modal" className="btn btn-primary">No</label>
                         </div>
                     </div>
                 </div>
@@ -302,7 +302,7 @@ const CreateModelPage = ( { type } ) => {
 
             <div className="flex items-center flex-col gap-4 justify-center w-full md:w-auto"> 
                 {type === "EditModel" && 
-                    <label htmlFor="my-modal" className="btn btn-error text-white w-full md:w-auto">Delete Model</label>
+                    <label htmlFor="my-modal" className="btn btn-error text-white hover:opacity-80 w-full md:w-auto">Delete Model</label>
                 }
                 {type === "EditModel" && 
                     <button className="btn btn-primary w-full md:w-auto"> Update </button>
