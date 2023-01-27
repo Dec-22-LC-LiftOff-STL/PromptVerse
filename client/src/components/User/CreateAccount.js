@@ -91,6 +91,7 @@ const CreateAccount = () => {
             Password
             </label>
             <input
+            minLength={3}
             placeholder="Password"
             type="password"
             value={user.password}
@@ -104,6 +105,7 @@ const CreateAccount = () => {
             Confirm password
             </label>
             <input
+            minLength={3}
             placeholder="Confirm Password"
             type="password"
             value={comfirmPassword.password}

@@ -358,7 +358,7 @@ const PostDetailsPage = () => {
             </div>
         }
 
-        {(post.length !== [] && post["_id"] !== undefined) && 
+        {(post.length !== [] && post["_id"] !== undefined && post.length !== 0) && 
             <PostRenderPage type="PostDetails" post_id={post["_id"]} search_value={(post["promptUsed"].split(" ")[0])}/>
         }
 
