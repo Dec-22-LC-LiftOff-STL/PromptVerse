@@ -325,7 +325,7 @@ const PostRenderPage = ( {type, search_value, post_id} ) => {
             <button className=" btn btn-primary mt-2 mb-6 w-[95%] md:w-[200px]" onClick={() => update_posts()}>Load More</button>
         }
 
-        { (loadingPosts === true) && 
+        { (loadingPosts === true && type !== "homepage") && 
             <div className=" w-100% h-screen flexjustify-center">
                 <button class="btn loading mt-2">loading</button>
             </div>
